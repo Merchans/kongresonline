@@ -1,0 +1,29 @@
+html,
+body
+{
+    font-size: 1em;
+    line-height: 1.5;
+    min-height: 100%;
+    font-family: "Source Sans Pro", sans-serif;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.23) 0%, rgba(196, 196, 196, 0) 100%);
+}
+
+img {
+ width: 100% !important;
+  }
+
+
+a:hover
+{
+	color: #FFFFFF;
+}
+
+a
+{
+	color: #979797;
+}
+
+footer
+{
+	background: #F5F5F5;
+}

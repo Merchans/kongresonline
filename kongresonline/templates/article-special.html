@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kongresonline.cz</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+<style>
+    .navbar-collapse {
+        justify-content: flex-end;
+    }
+
+    footer {
+        background: none;
+    }
+    main
+    {
+        margin-bottom: 0;
+    }
+</style>
+<style>
+    .nv-post-navigation,
+.nv-single-post-wrap .nv-tags-list,
+.nv-single-post-wrap .nv-thumb-wrap {
+    margin-bottom: 20px
+}
+
+.nv-single-post-wrap .entry-header:first-child,
+.nv-single-post-wrap .nv-content-wrap:first-child,
+.nv-single-post-wrap .nv-post-navigation:first-child,
+.nv-single-post-wrap .nv-tags-list:first-child,
+.nv-single-post-wrap .nv-thumb-wrap:first-child {
+    margin-top: 30px
+}
+
+.single-post-container .title {
+    margin-bottom: 0
+}
+
+.attachment-neve-blog {
+    display: flex
+}
+
+.nv-post-navigation {
+    display: flex;
+    justify-content: space-between
+}
+
+.nv-post-navigation .next a:hover,
+.nv-post-navigation .previous a:hover {
+    text-decoration: none
+}
+
+.nv-post-navigation .next a:hover span:not(.nav-direction),
+.nv-post-navigation .previous a:hover span:not(.nav-direction) {
+    text-decoration: underline
+}
+
+.nv-post-navigation .next .nav-direction,
+.nv-post-navigation .previous .nav-direction {
+    color: #676767;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+
+}
+
+.nv-post-navigation .next {
+    margin-left: auto;
+    text-align: right
+}
+
+.nv-content-wrap .page-numbers {
+    justify-content: center;
+    margin: 10px auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    list-style-type: none
+}
+
+.nv-content-wrap .page-numbers>a:not(:last-child) span,
+.nv-content-wrap .page-numbers>span {
+    padding-right: 20px
+}
+
+.post-password-form {
+    margin-bottom: 40px;
+    text-align: center
+}
+
+.post-password-form input[type=submit] {
+    height: 39px;
+    margin-left: 10px
+}
+
+.post-password-form label {
+    margin-bottom: 0
+}
+
+.post-password-form p {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.post-password-form label>input {
+    margin-left: 10px
+}
+
+.nv-tags-list {
+    font-size: .85em
+}
+
+.nv-tags-list span {
+    margin-right: 10px
+}
+
+.nv-tags-list a {
+    display: inline-block;
+    padding: 2px 10px;
+    transition: all .3s ease;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border: 1px solid #0366d6;
+    color: #0366d6
+}
+
+.nv-tags-list a:hover {
+    background: #0366d6;
+    border-color: #0366d6;
+    color: #fff
+}
+
+#comments {
+    border-top: 1px solid #f0f0f0;
+    margin-top: 10px
+}
+
+#comments ol {
+    list-style: none
+}
+
+#comments ol>ol {
+    padding-left: 10px
+}
+
+#comments .nv-content-wrap ol {
+    list-style-type: decimal
+}
+
+#comments .nv-comments-list>li {
+    padding: 10px 0 0
+}
+
+#comments .children>li {
+    margin-top: 20px;
+    padding-top: 20px
+}
+
+#comments .edit-reply {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: .85em
+}
+
+#comments .edit-reply .nv-reply-link {
+    margin-left: auto
+}
+
+.nv-comments-list {
+    padding-bottom: 20px
+}
+
+.nv-comments-title-wrap {
+    margin: 40px 0 60px
+}
+
+.nv-comment-article {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0
+}
+
+.nv-comment-header {
+    display: flex;
+    align-items: center;
+    text-transform: none;
+    font-style: normal;
+    font-size: .85em;
+    margin-bottom: 20px
+}
+
+.nv-comment-header .comment-author {
+    display: flex;
+    flex-direction: column
+}
+
+.nv-comment-avatar {
+    margin-right: 20px
+}
+
+.nv-comment-avatar>img {
+    float: left;
+    border-radius: 50%
+}
+
+.comment-author .author {
+    font-weight: 700;
+    text-transform: uppercase
+}
+
+#comments input:not([type=submit]):not([type=checkbox]) {
+    width: 100%
+}
+
+#comments textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%
+}
+
+#comments .comment-respond {
+    margin: 40px 0
+}
+
+#comments .comment-reply-title small {
+    float: right
+}
+
+.comment-form {
+    display: grid;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px
+}
+
+.comment-form>p:not(.comment-notes) {
+    margin-bottom: 0
+}
+
+.comment-form label {
+    margin-bottom: 10px;
+    display: inline-block
+}
+
+.chi-other-text
+{
+    width: 275px;
+    height: 59px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 26px;
+    color: #000000;
+}
+
+</style>
+<style>
+	html
+	{
+		background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #FFFFFF;
+	}
+</style>
+<body class="chi-category-bg">
+<header>
+        <div class="navbar navbar-light chi-bg-light chi-navbar-height">
+            <div class="chi-logo-sentens">
+                Provozováno portálem <a class="navbar-brand chi-logo-text-words" href="index.html" title="Kongresonline.cz"><u>Kongresonline.cz</u></a>
+            </div>
+            <form class="form-inline  mx-auto">
+                <div class="chi-search">
+                    <input class="form-control mr-sm-2 w-100" id="chi-search" type="search" placeholder="Vyhledat na celém portále a článcích" aria-label="Search">
+                </div>
+            </form>
+        </div>
+</header>
+<div class="chi-claim">
+    <nav class="navbar navbar-expand-lg navbar-light chi-pb-0">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ">
+                    <li class="nav-item chi-nav-item active">
+                        <a class="nav-link chi-nav-link chi-active white-color" href="index.html">KOMENTÁŘE</a>
+                    </li>
+                    <li class="nav-item chi-nav-item">
+                        <a class="nav-link chi-nav-link white-color" href="#">VIDEOKOMENTÁŘE</a>
+                    </li>
+                    <li class="nav-item chi-nav-item">
+                        <a class="nav-link chi-nav-link white-color" href="#">AKREDITOVANÉ TESTY</a>
+                    </li>
+                    <li class="nav-item chi-nav-item">
+                        <a class="nav-link chi-nav-link white-color" href="#">TÉMATA</a>
+                    </li>
+                </ul>
+            </div>
+    </nav>
+        <div class="chi-category-logo-center mb-3">
+        <img src="img/dianews-logo-white 2.png" alt="">
+    </div>
+</div>
+<div class="chi-parent container">
+<div class="chi-absolute">
+            <div class="row chi-category-bg mr-0">
+                <div class="col-md-8 chi-video-section mt-4">
+                    <div class="chi-breadcrump-navigation">
+                        <p><strong><a href="#">Dianews</a></strong> &gt; <strong><a href="#">Komentáře</a></strong> &gt; Jak moc účinnost léku ovlivňuje nápoj, kterým se zapíjí?</p>
+                    </div>
+                    <div class="d-flex h-20">
+                        <div class="chi-tag text-uppercase">
+                            <a href="#" class="chi-tag_link">komentář</a>
+                        </div>
+                        <div class="chi-tag chi-tag--white text-uppercase">
+                            <a href="#" class="chi-tag_link--white">témata</a>
+                        </div>
+                    </div>
+                    <hr class="divider mt-0">
+                    <h1 class="chi-article-title">Jak moc účinnost léku ovlivňuje nápoj, kterým se zapíjí?</h1>
+                    <strong class="chi-name-title">prof. MUDr. Štěpán Svačina, DrSc., MBA <time class="chi-time" datetime="2019-09-29 00:00">-29&nbsp;září,&nbsp;2019</time></strong>
+                    <div class="chi-article-img">
+                        <img src="img/article-img.png" alt="article-img">
+                    </div>
+                    <p class="chi-paragrapg-bold">
+                        Většina lékařů se snaží hlídat případné interakce medikace, kterou předepisují. Méně je ale pomýšleno na účinky běžných potravin a nápojů, které pacienti konzumují každý den. Notoricky známý je inhibiční efekt grepového džusu na systém cytochromu P450 (CYP) 3A4. Takových interakcí je ale celá řada a alespoň nějaký vliv na biologickou dostupnost léků má v podstatě veškeré ovoce a zelenina a šťávy z nich. Pochopitelně se to také týká nápojů, ve kterých jsou obsaženy a které pacienti mohou používat pro zapíjení léků. Jedinou bezpečnou tekutinou k zapíjení medikace je čistá pramenitá voda v dostatečném množství. U vybraných účinných látek by se potom měl nemocný vyvarovat konzumace rizikových potravin a nápojů alespoň hodinu po spolknutí léku.
+                    </p>
+                    <p class="chi-paragrapg">
+                        Lékové interakce tvoří asi jednu čtvrtinu až jednu polovinu všech lékových chyb. Obecně se jedná o změnu očekávaných vlastností farmaka vzniklou působením jiného léčiva, nápoje, potravy nebo výživového doplňku. Důsledkem interakce může být zvýšení nebo snížení intenzity účinku podaného léku, ovlivnění nežádoucích účinků nebo neočekávaná toxicita. Vzhledem k tomu, že všechna orální léčiva je nutné zapít, stoupá význam interakcí těchto farmak a tekutin použitých pro jejich zapití. Nápoje potom nejčastěji inhibují nebo naopak indukují influxní a efluxní pumpy enterocytu, ať už na apikální nebo bazolaterální straně. Kromě toho mohou mít vliv na enzymatickou výbavu střevních a jiných buněk, měnit pH žaludečního obsahu a tráveniny, působit jako rozpouštědla lipofilních léčiv a méně často vytvářet s léčivy nevstřebatelné komplexy. Naprostá většina léčiv je hydrofilní a neprochází tak membránou enterocytu pouhou difuzí. Do systému se molekuly dostávají aktivním transportem.
+                    </p>
+                    <h2 class="chi-article-title-h2">Na chodbách nemocnic běžně dostupný čaj se k zapíjení léků nehodí</h2>
+                    <p class="chi-paragrapg">
+                        Naprosto nevhodným nápojem k zapíjení léčiv je například zelený čaj. Ten už v malém množství, přibližně dvou nálevových sáčků, inhibuje influxní pumpu enterocytu a zabraňuje tak vstřebávání léků ze střevního lumen, dále potom inhibuje CYP3A4 a smíšeně indukuje a inhibuje P-glykoprotein. Zelený čaj tak snižuje biologickou dostupnost například beta-blokátorů o 50–85 %, naopak zvyšuje expozici simvastatinu o více než 200 %, nevyzpytatelně mění biologickou dostupnost digoxinu a prostřednictvím inhibice transportního systému PCFT interferuje se vstřebáváním folátu. Běžně používaný černý čaj sice tak závažné účinky nemá, ani on ale není ideálním nápojem k zapíjení medikace. Černý čaj totiž například zabraňuje vstřebávání orálně podávaného dvojmocného železa.</p>
+                    <blockquote class="chi-blockquote">
+                        <p>Podobně jako zelený čaj však na influxní pumpy působí téměř všechny ovocné nápoje s tím, že platí, že čím je džus čerstvější a přírodnější, tím vyšší je riziko a míra lékové interakce.</p>
+                    </blockquote>
+                    <h2 class="chi-article-title-h2">Nejhorší je fresh juice</h2>
+                    <p class="chi-paragrapg">
+                        Podobně jako zelený čaj však na influxní pumpy působí téměř všechny ovocné nápoje s tím, že platí, že čím je džus čerstvější a přírodnější, tím vyšší je riziko a míra lékové interakce. Zodpovědná za ni může být celá řada molekul, často se jedná o hesperetin. Ve světové odborné literatuře jsou dokonce popsány případy selhání tak nákladné a důležité terapie, jako jsou tyrozinkinázové inhibitory sunitinib nebo erlotinib v léčbě nádorových onemocnění, a to kvůli zapíjení pomerančovým džusem. Bezpečná není ale ani zelenina a šťáva z ní. Hlavní zeleninová složka, která interaguje s léky a je přítomná napříč jednotlivými druhy, je quercetin. Ten inhibuje CYP2C9, CYP2E1, CYP1A2, P-glykoprotein a některé další transportní systémy. Tím zvyšuje expozici některým látkám, například pravastatinu, losartanu nebo fexofenadinu.</p>
+                    <p class="chi-paragrapg">
+                        Poměrně známá je interakce třezalky tečkované a čaje z ní připraveného. Třezalka, ale také rooibos nebo máta peprná, indukují činnost efluxní pumpy enterocytu a podporují tak návrat některých látek, včetně digoxinu, zpět do střevního lumen. Kromě toho působí jako induktor různých cytochromových systémů, čímž urychluje odbourávání stovek běžně používaných látek. Mnoho látek, včetně grapefruitové nebo rajčatové šťávy, také inhibuje enzymatický metabolismus přímo v enterocytu, a to často ireverzibilně s obnovením funkce až syntézou nových enzymů v řádu dní. Obecně lze říci, že citrusy s větším plodem mají tento efekt výraznější než citrusy s menším plodem a silněji také působí červeně nebo růžově zbarvené plody.</p>
+                    <div class="d-flex h-20 mt-5">
+                        <div class="chi-tag text-uppercase mr-auto p-2">
+                            <a href="#" class="chi-tag_link">REKLAMNÍ SDĚLENÍ</a>
+                        </div>
+                    </div>
+                    <hr class="divider mt-0">
+                    <div class="chi-advertise">
+                        <img src="img/image 1.png" alt="">
+                    </div>
+                    <h2 class="chi-article-title-h2">Kyselina fosforečná mění pH žaludku</h2>
+                    <p class="chi-paragrapg">
+                        Interakci změnou žaludečního pH vykazuje například Coca-Cola, respektive v ní obsažená kyselina fosforečná. Snížením pH tráveniny zvyšuje biologickou dostupnost některých léčiv jako konazolových antimykotik, tyrozinkinázových inhibitorů nebo nesteroidních analgetik. Toho lze někdy dokonce terapeuticky využít, například v případě, kdy nemocný s lékem užívá inhibitory protonové pumpy.</p>
+                    <h2 class="chi-article-title-h2">Kombinace alkoholu a retardovaných opiátů může zabíjet</h2>
+                    <p class="chi-paragrapg">
+                        Alkoholické nápoje, zejména v koncentraci nad 30 %, působí jako rozpouštědla lipofilních léčiv. Některá léčiva, jako metronidazol nebo latamoxef, naopak mohou interagovat s metabolismem alkoholu a způsobovat tak disulfiramovou reakci s projevy nauzey, vomitu či návaly horka. Životu nebezpečná je interakce alkoholu s lékovou formou retardovaných opiátů ve skeletových tabletách. Jedná se o speciální akrylát, který se lisuje do tablety společně s opiátem a pomocnými látkami. Ty se potom uvolňují v řádu hodin. Alkohol, a to i v pivu, ale způsobuje jejich okamžité vyplavení a nebezpečně vysokou plazmatickou koncentraci opiátu s rizikem inhibice dechového centra.</p>
+                    <p class="chi-paragrapg">
+                        Naopak přeceňovaný je mezi odbornou veřejností vliv mléka. To sice může, podobně jako minerálky, způsobovat vznik nerozpustných komplexů, tento typ interakce je ale spíše vzácný. Týká se fluorochinolonů, bisfosfonátů a starších tetracyklinů. Doxycyklin tímto mechanismem postižen není.</p>
+                    <h2 class="chi-article-title-h2">Redakčně zpracováno ze sdělení, které na XVIII. setkání lékařů ČR a SR v Litomyšli přednesl:</h2>
+                    <div class="media chi-article-author-box">
+                        <img class="mr-3" src="img/article-author.png" alt="Generic placeholder image">
+                        <div class="media-body ">
+                            <h6 class="mt-0 chi-article-body-box">PharmDr. Josef Suchopár<br>DrugAgency, a. s., Praha</h6>
+                        </div>
+                    </div>
+                    <hr class="divider mt-3">
+                    <div class="nv-post-navigation"><div class="previous"><a href="https://www.artresin.cz/nezarazene/foceni/" rel="prev"><span class="nav-direction">Předchozí článek</span><span class="chi-other-text">Pozor na méně obvyklé příčiny komplikací diabetu</span></a></div><div class="next"><a href="https://www.artresin.cz/nezarazene/kdo-ma-zidli-ten-bydli/" rel="next"><span class="nav-direction">Následující článek</span><span class="chi-other-text">VZP rozpustí finanční rezervy, přidat&nbsp;má&nbsp;i&nbsp;ambulantním&nbsp;specialistům!</span></a></div></div>
+                    <div class="others-articles">
+                        <div class="d-flex h-20 mt-5">
+                            <div class="chi-tag text-uppercase mr-auto p-2">
+                                <a href="#" class="chi-tag_link">ostatní články</a>
+                            </div>
+                        </div>
+                        <hr class="divider mt-0">
+                        <ul class="list-unstyled">
+                            <li class="media">
+                                <div class="image-credit-wrapper chi-othes-articles">
+                                    <span class="image-credit chi-category-credit">
+                <a href="img/media-obj.png" class="chi-category__link">UROLOGUM.CZ</a>
+            </span>
+                                    <img src="img/media-obj.png">
+                                </div>
+                                <div class="media-body ">
+                                    <h5 class="mt-0 mb-1 card-title chi-card-title">Máte pacienty s fibrilací síní a akutním koronárním syndromem nebo PCI?</h5>
+                                    <strong class="chi-name-title">prof. MUDr. Štěpán Svačina, DrSc., MBA <time class="chi-time" datetime="2019-09-29 00:00">-29&nbsp;září,&nbsp;2019</time></strong>
+                                    <p class="chi-card-text">
+                                        Diabetes je chronické onemocnění, které je zatíženo celou řadou kardiovaskulárních i jiných komplikací. Nemocné velmi často trápí mnoho komorbidit
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="image-credit-wrapper chi-othes-articles">
+                                    <span class="image-credit chi-category-credit">
+                <a href="img/media-obj.png" class="chi-category__link">UROLOGUM.CZ</a>
+            </span>
+                                    <img src="img/media-obj-2.png">
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1 card-title chi-card-title">Máte pacienty s fibrilací síní a akutním koronárním syndromem nebo PCI?</h5>
+                                    <strong class="chi-name-title">prof. MUDr. Štěpán Svačina, DrSc., MBA <time class="chi-time" datetime="2019-09-29 00:00">-29&nbsp;září,&nbsp;2019</time></strong>
+                                    <p class="chi-card-text">
+                                        Diabetes je chronické onemocnění, které je zatíženo celou řadou kardiovaskulárních i jiných komplikací. Nemocné velmi často trápí mnoho komorbidit
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="image-credit-wrapper chi-othes-articles">
+                                    <span class="image-credit chi-category-credit">
+                <a href="img/media-obj.png" class="chi-category__link">UROLOGUM.CZ</a>
+            </span>
+                                    <img src="img/media-obj-3.png">
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1 card-title chi-card-title">Máte pacienty s fibrilací síní a akutním koronárním syndromem nebo PCI?</h5>
+                                    <strong class="chi-name-title">prof. MUDr. Štěpán Svačina, DrSc., MBA <time class="chi-time" datetime="2019-09-29 00:00">-29&nbsp;září,&nbsp;2019</time></strong>
+                                    <p class="chi-card-text">
+                                        Diabetes je chronické onemocnění, které je zatíženo celou řadou kardiovaskulárních i jiných komplikací. Nemocné velmi často trápí mnoho komorbidit
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="image-credit-wrapper chi-othes-articles">
+                                    <span class="image-credit chi-category-credit">
+                <a href="img/media-obj.png" class="chi-category__link">UROLOGUM.CZ</a>
+            </span>
+                                    <img src="img/media-obj-4.png">
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1 card-title chi-card-title">Máte pacienty s fibrilací síní a akutním koronárním syndromem nebo PCI?</h5>
+                                    <strong class="chi-name-title">prof. MUDr. Štěpán Svačina, DrSc., MBA <time class="chi-time" datetime="2019-09-29 00:00">-29&nbsp;září,&nbsp;2019</time></strong>
+                                    <p class="chi-card-text">
+                                        Diabetes je chronické onemocnění, které je zatíženo celou řadou kardiovaskulárních i jiných komplikací. Nemocné velmi často trápí mnoho komorbidit
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="image-credit-wrapper chi-othes-articles">
+                                    <span class="image-credit chi-category-credit">
+                <a href="img/media-obj.png" class="chi-category__link">UROLOGUM.CZ</a>
+            </span>
+                                    <img src="img/media-obj-2.png">
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1 card-title chi-card-title">Máte pacienty s fibrilací síní a akutním koronárním syndromem nebo PCI?</h5>
+                                    <strong class="chi-name-title">prof. MUDr. Štěpán Svačina, DrSc., MBA <time class="chi-time" datetime="2019-09-29 00:00">-29&nbsp;září,&nbsp;2019</time></strong>
+                                    <p class="chi-card-text">
+                                        Diabetes je chronické onemocnění, které je zatíženo celou řadou kardiovaskulárních i jiných komplikací. Nemocné velmi často trápí mnoho komorbidit
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-4 mt-5">
+                    <div class="advertisment-col">
+                        <div class="d-flex h-20">
+                            <div class="chi-tag text-uppercase mr-auto p-2">
+                                <a href="#" class="chi-tag_link">REKLAMNÍ SDĚLENÍ</a>
+                            </div>
+                        </div>
+                        <hr class="divider mt-0">
+                        <div class="text-center">
+                            <a href="http://rozesilky.kongresonline.cz/Dianews/email30/img/toujeo-zip.pdf" target="_blank"><img src="img/banner.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="chi-category-thems mt-5">
+                        <div class="d-flex h-20">
+                            <div class="chi-tag text-uppercase mr-auto p-2">
+                                <a href="#" class="chi-tag_link">témata</a>
+                            </div>
+                        </div>
+                        <hr class="divider mt-0">
+                        <div class="chi-theme-box">
+                            <figure class="inline-image chi-cards">
+                                <div class="chi-theme-card">
+                                    <div class="image-credit-wrapper">
+                                        <span class="image-credit chi-category-credit">
+                <a href="#" class="chi-category__link">UROLOGUM.CZ</a>
+            </span>
+                                        <img src="img/theme-1.png">
+                                    </div>
+                                    <div class="card-body chi-card-body">
+                                        <div class="chi-name--min-title">Pozor na méně obvyklé příčiny komplikací diabetu</div>
+                                        <strong class="chi-name-title "><time class="chi-time" datetime="2019-09-29 00:00">29&nbsp;září,&nbsp;2019</time></strong>
+
+                                    </div>
+                                </div>
+                                <div class="chi-theme-card">
+                                    <div class="image-credit-wrapper">
+                                        <span class="image-credit chi-category-credit">
+                <a href="#" class="chi-category__link">KARDIOROK.CZ</a>
+            </span>
+                                        <img src="img/theme-2.png">
+                                    </div>
+                                    <div class="card-body chi-card-body">
+                                        <div class=" chi-name--min-title">Pozor na méně obvyklé příčiny komplikací diabetu</div>
+                                        <strong class="chi-name-title"><time class="chi-time" datetime="2019-09-29 00:00">29&nbsp;září,&nbsp;2019</time></strong>
+                                    </div>
+                                </div>
+                            </figure>
+                            <figure class="inline-image chi-cards">
+                                <div class="chi-theme-card">
+                                    <div class="image-credit-wrapper">
+                                        <span class="image-credit chi-category-credit">
+                <a href="#" class="chi-category__link">dianews.cz</a>
+            </span>
+                                        <img src="img/theme-3.png">
+                                    </div>
+                                    <div class="card-body chi-card-body">
+                                        <div class="chi-name--min-title">Pozor na méně obvyklé příčiny komplikací diabetu</div>
+                                        <strong class="chi-name-title "><time class="chi-time" datetime="2019-09-29 00:00">29&nbsp;září,&nbsp;2019</time></strong>
+
+                                    </div>
+                                </div>
+                                <div class="chi-theme-card">
+                                    <div class="image-credit-wrapper">
+                                        <span class="image-credit chi-category-credit">
+                <a href="#" class="chi-category__link">UROLOGUM.CZ</a>
+            </span>
+                                        <img src="img/theme-4.png">
+                                    </div>
+                                    <div class="card-body chi-card-body">
+                                        <div class=" chi-name--min-title">Pozor na méně obvyklé příčiny komplikací diabetu</div>
+                                        <strong class="chi-name-title"><time class="chi-time" datetime="2019-09-29 00:00">29&nbsp;září,&nbsp;2019</time></strong>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="d-flex h-20">
+                        <div class="chi-tag text-uppercase mr-auto p-2">
+                            <a href="#" class="chi-tag_link">VIDEO</a>
+                        </div>
+                    </div>
+                    <hr class="divider mt-0">
+                    <div class="card chi-card--borner-none chi-card">
+                        <div class="chi-box-1 chi-card--box-1">
+                            <div class="d-flex flex-row">
+                                <div class="chi-tag text-uppercase">
+                                    <a href="#" class="chi-tag_link">2:23</a>
+                                </div>
+                                <!--<div class="chi-category text-uppercase">
+                                            <a href="#" class="chi-category__link">dianews.cz</a>
+                                        </div>-->
+                            </div>
+                        </div>
+                        <div class="card-body chi-card-body">
+                            <h5 class="card-title chi-card-title">Pozor na méně obvyklé příčiny komplikací diabetu</h5>
+                            <strong class="chi-name-title">prof. MUDr. Štěpán Svačina, DrSc., MBA <time class="chi-time" datetime="2019-09-29 00:00">-29&nbsp;září,&nbsp;2019</time></strong>
+                            <p class="chi-card-text">Diabetes je chronické onemocnění, které je zatíženo celou řadou kardiovaskulárních i jiných komplikací. Nemocné velmi často trápí mnoho komorbidit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+        <div class="chi-hr"></div>
+        <div class="chi-footer-webpage-info">
+            <p>© 2019 CZECH HEALTH INTERACTIVE</p>
+            <p><a href="#">Podmínky užití</a> | <a href="#">Sponzoři</a></p>
+        </div>
+    </footer>
+        </div>
+    </div>
+    <!-- JQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <!-- Bootstrap Propper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
