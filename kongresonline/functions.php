@@ -20,6 +20,15 @@ require_once THEME_DIRECTORY ."/inc/mtb/mtb_catagory_select.php";
 
 
 /*
+ * EXCERPT EDITOR
+ * */
+require_once THEME_DIRECTORY ."/inc/excerpt-editor.php";
+$excerpt = new Excerpt();
+
+//Allow HTML Tags in Wordpress Excerpt
+require_once THEME_DIRECTORY ."/inc/excerpt-allow.php";
+
+/*
 *   CHI Option Page
 */
 require_once THEME_DIRECTORY ."/inc/opg/chi_option_menu_page.php";
@@ -170,15 +179,13 @@ function czech_date( $dateFormat, $dateData ){
 /* MAIN LOOP EDIT */
 
 function chi_category_main_query_offset( $query, $offset = 2 ) {
-/*echo '<pre>';
-print_r( get_term_meta( get_cat_ID($query->query["category_name"]), 'chi_selected_in_claim_posts', true ) );
-echo '</pre>';
-die();*/
+
 	if (!is_admin())
 	{
         if ( $query->is_main_query() && $query->is_category(  ) && $query->is_archive(  )  )
         {
             $text = array("empty");
+
             if (is_array(explode("/", $_SERVER['REQUEST_URI'])))
             {
                 $text = array_filter(explode("/", $_SERVER['REQUEST_URI']));
@@ -210,6 +217,17 @@ die();*/
 			{
                 $query->set( 'offset', 0 );
 			}
+            else if( get_term_meta( get_cat_ID($query->query["category_name"]), "_chi_selected_one_options")[0] == 2 )
+            {
+            	$args_three_latest_post_and_videos = array("post_type" => array("chi_video", "post"), "posts_per_page" => 3, "category_name" => $query->query["category_name"], "post_status" => "publish");
+
+                $posts_and_videos = new  WP_Query($args_three_latest_post_and_videos);
+                $ids_not_in_main_loop = wp_list_pluck( $posts_and_videos->posts, 'ID' );
+
+
+                $exclude = get_term_meta( get_cat_ID($query->query["category_name"]), 'chi_selected_in_claim_posts', true );
+                $query->set('post__not_in', $ids_not_in_main_loop );
+            }
             else if( get_term_meta( get_cat_ID($query->query["category_name"]), "_chi_selected_one_options")[0] == 3 )
 			{
 				$exclude = get_term_meta( get_cat_ID($query->query["category_name"]), 'chi_selected_in_claim_posts', true );
@@ -225,6 +243,18 @@ die();*/
 
 }
 add_action( 'pre_get_posts', "chi_category_main_query_offset" );
+add_action( 'pre_get_posts', "chi_tag_add_post_type" );
+
+function chi_tag_add_post_type( $query )
+{
+    if ( $query->is_main_query() )
+	{
+		if ( $query->is_tag() )
+		{
+            $query->set('post_type' , array("post", "chi_video"));
+		}
+	}
+}
 
 /**
  * Pagination
@@ -270,27 +300,7 @@ function filter_post_type_link($link, $post)
 
 add_filter('post_type_link', 'filter_post_type_link', 10, 2);
 
-/*
-function chi_video_category_main_query_set( $query )
-{
 
-    if ( $query->is_main_query() )
-    {
-        $query->set('category__in', 23);
-    }
-}
-
-add_action( 'pre_get_posts', 'chi_video_category_main_query_set' );
-
-
-function is_cpt_chi_video( $post)
-{
-    if ($post->post_type != 'chi_video')
-        return 0;
-    else
-        return 1;
-}
-*/
 add_action('pre_get_posts', function($query) {
     if ( ! is_admin() && $query->is_main_query() ) {
 
@@ -354,6 +364,7 @@ function admin_js() { ?>
 
     </script>
 <?php }
+
 add_action('admin_head', 'admin_js');
 
 
@@ -367,7 +378,9 @@ function has_title_meta_box( $meta_box )
 
 function chi_claims()
 {
+
     $category = get_the_category()[0]->slug;
+
 
     $args_one_video = array("post_type" => array("chi_video", "post"), "posts_per_page" => 1, "category_name" => $category, "post_status" => "publish");
     $first_video = new  WP_Query($args_one_video);
@@ -399,3 +412,4 @@ add_filter( 'body_class', function( $classes ) {
 
     return $classes;
 } );
+
