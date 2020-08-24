@@ -73,8 +73,21 @@ function ticket_directors_to_movies_meta_options($post)
  * Hooks into WordPress' save_post function
  */
 add_action('save_post', 'ticket_movies_save_post');
-function ticket_movies_save_post( $post_id )
+//add_action('pre_get_scheduled_event', 'ticket_movies_save_post');
+
+// https://wordpress.stackexchange.com/questions/288501/meta-value-does-not-save-for-scheduled-posts
+function die_bitch()
 {
+	die("I am DEATH!!");
+}
+function ticket_movies_save_post(  )
+{
+    global $post;
+
+	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
+        return $post->ID;
+    }
+
     if ( isset( $_POST['chi_advertising_horizontal'] ) && !empty($_POST['chi_advertising_horizontal'] )) {
 
         $sanitized_data_directors = array();
@@ -86,11 +99,11 @@ function ticket_movies_save_post( $post_id )
             $sanitized_data_directors[$key] = (int)strip_tags(stripslashes($value));
         }
 
-        update_post_meta($post_id, '_chi_advertising_horizontals', $sanitized_data_directors);
+        update_post_meta($post->ID, '_chi_advertising_horizontals', $sanitized_data_directors);
     }
     else
     {
-        delete_post_meta( $post_id, '_chi_advertising_horizontals');
+        delete_post_meta( $post->ID, '_chi_advertising_horizontals');
     }
 
     if ( isset( $_POST['chi_advertising_vertical'] ) && !empty($_POST['chi_advertising_vertical'] )) {
@@ -104,11 +117,11 @@ function ticket_movies_save_post( $post_id )
             $sanitized_data_actors[$key] = (int)strip_tags(stripslashes($value));
         }
 
-        update_post_meta($post_id, '_chi_advertising_verticals', $sanitized_data_actors);
+        update_post_meta($post->ID, '_chi_advertising_verticals', $sanitized_data_actors);
     }
     else
     {
-        delete_post_meta( $post_id, '_chi_advertising_verticals');
+        delete_post_meta( $post->ID, '_chi_advertising_verticals');
     }
 
 

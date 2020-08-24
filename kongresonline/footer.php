@@ -22,7 +22,7 @@
 					.hide()
 					.fadeIn();
 			}
-		}, 5000)
+		}, 100)
 		document.getElementById("chi-submit").addEventListener("click",
 			function (e) {
 				if ($('#customCheck1').is(':checked')) {
@@ -32,4 +32,31 @@
 			});
 	})
 </script>
+<script>
+	$(document).ready(function () {
+
+		document.getElementById("chi-close").addEventListener("click", function () {
+			window.location.replace("http://google.com");
+		});
+		setTimeout(function () {
+			/*document.querySelector(".chi-bg-modal").style.display = "flex".hide();*/
+			$("#pfizerPopupContainer")
+				.css("display", "flex")
+				.hide()
+				.fadeIn();
+		}, 200);
+
+		document.getElementById("pfizer-confirm-yes").addEventListener("click",
+			function (e) {
+				var myNewURL = "?company=pfizerOK";//the new URL
+				window.history.pushState("object or string", "Title", "/" + myNewURL );
+				$("#pfizerPopupContainer").fadeOut();
+			});
+
+		document.getElementById("pfizer-confirm-no").addEventListener("click",function () {
+			window.location.replace("http://google.com");
+		});
+	})
+</script>
+
 </html>

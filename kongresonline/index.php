@@ -77,8 +77,8 @@
 					</div>
 					<div class="">
 						<ul class="list-inline m-0">
-							<li class="list-inline-item"><a href="#">Videa ze speciálů</a></li>
-							<li class="list-inline-item "><a href="#" class="chi-active-link">Všechny videa</a></li>
+							<li class="list-inline-item"><span >Videa ze speciálů</span></li>
+							<li class="list-inline-item "><span class="chi-active-link">Všechny videa</span></li>
 						</ul>
 					</div>
 				</div>

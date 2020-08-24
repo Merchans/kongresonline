@@ -161,5 +161,8 @@ if ( ! class_exists( 'CHI_CATEGORY_LOGO' ) ) {
 				<img src='<?php echo  $chi_special_logo; ?>'>
 			</a>
         </div>
+			<div class="chi-info-text white-color text-center">
+                <?php echo category_description( get_the_category()[0]->cat_ID ); ?>
+			</div>
         <?php }
  }

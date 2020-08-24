@@ -70,10 +70,6 @@ if ($all_video)
     ?>
     <?php chi_special_logo(); ?>
     <div class="container">
-        <div class="chi-info-text white-color text-center">
-            <?php echo category_description( get_the_category()[0]->cat_ID );
-            ?>
-        </div>
         <?php
         if ($test[1] != "video" and !$all_video )
         {?>

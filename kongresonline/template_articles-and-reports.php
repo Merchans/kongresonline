@@ -44,14 +44,14 @@ $first_video_ID = $first_video->posts[0]->ID;
 
                  <a href="<?php echo get_category_link( get_the_category( get_the_ID() )[0] ); ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug ?></a>
             </span>
-                                        <?php the_post_thumbnail("medium") ?>
+										<a href="<?php echo get_permalink() ?>"><?php the_post_thumbnail("medium") ?></a>
                                     </div>
                                     <div class="media-body ">
                                         <a href="<?php echo get_permalink() ?>"><h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title(); ?></h5></a>
                                         <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
                                             <time class="chi-time" datetime><?php the_time(get_option("date_format")); ?></time>
                                         </strong>
-                                        <p class="chi-card-text"><?php echo wp_trim_words( get_the_content(), 25) ?></p>
+                                        <p class="chi-card-text"><?php echo excerpt(25); ?></p>
                                     </div>
                                 </li>
                             <?php endwhile ?>

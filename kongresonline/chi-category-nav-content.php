@@ -70,7 +70,7 @@ if ($all_video)
             );
 
             $latest_video = get_posts( $args );
-            
+
 			?>
 			<?php
 

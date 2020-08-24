@@ -39,7 +39,7 @@ if ( ( get_term_meta( $category_ID, '_chi_selected_one_options' )[0] ) == 3 )
                                    "posts_per_page" => 1,
                                    "category_name"  => $category,
                                    "post_status"    => "publish",
-                                   "post__not_in"   => $not_in_main_loop
+                                   "post__not_in"	=> $not_in_main_loop
 
     );
     $category_posts        = new WP_Query($args_one_offset_video);
@@ -53,46 +53,46 @@ if ( ( get_term_meta( $category_ID, '_chi_selected_one_options' )[0] ) == 3 )
             $not_in_main_loop[] = get_the_ID();
             ?>
 
-            <div class="d-flex h-20">
-                <div class="chi-tag text-uppercase mr-auto p-2">
-                    <span class="chi-tag_link">
-                        <?php _e("VIDEA", "chi") ?>
-                    </span>
-                </div>
-            </div>
-            <hr class="divider mt-0">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card chi-card--borner-none chi-card">
-                        <div class="chi-box-1 chi-card--box-1"
-                             style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
-                            <a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
-                            <div class="d-flex flex-row">
-                                <div class="chi-tag text-uppercase">
-                                    <a href="<?php echo get_permalink() ?>"
-                                       class="chi-tag_link"><?php echo chi_video_time()[0] ?></a>
-                                </div>
+			<div class="d-flex h-20">
+				<div class="chi-tag text-uppercase mr-auto p-2">
+					<span class="chi-tag_link">
+						<?php _e("VIDEA", "chi") ?>
+					</span>
+				</div>
+			</div>
+			<hr class="divider mt-0">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card chi-card--borner-none chi-card">
+						<div class="chi-box-1 chi-card--box-1"
+							 style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
+							<a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
+							<div class="d-flex flex-row">
+								<div class="chi-tag text-uppercase">
+									<a href="<?php echo get_permalink() ?>"
+									   class="chi-tag_link"><?php echo chi_video_time()[0] ?></a>
+								</div>
                                 <?php $terms = get_the_tags(); ?>
                                 <?php if (is_array($terms) && ! empty($terms)) { ?>
                                     <?php $url = get_tag_link($terms[0]->term_id); ?>
-                                    <div class="chi-category text-uppercase">
-                                        <a href="<?php echo $url; ?>" class="chi-category__link"><?php echo $terms[0]->name; ?></a>
-                                    </div>
+									<div class="chi-category text-uppercase">
+										<a href="<?php echo $url; ?>" class="chi-category__link"><?php echo $terms[0]->name; ?></a>
+									</div>
                                 <?php } ?>
-                            </div>
-                        </div>
-                        <div class="card-body chi-card-body">
-                            <?php $chi_title_meta_box = get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name") ?>
-                            <a href="<?php echo get_permalink() ?>"><h5
-                                    class="card-title chi-card-title"><?php the_title(); ?></h5>
-                            </a>
-                            <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
-                                <time class="chi-time"><?php the_time(get_option("date_format")) ?></time>
-                            </strong>
-                            <p class="chi-card-text"><?php echo excerpt(25); ?></p>
-                        </div>
-                    </div>
-                </div>
+							</div>
+						</div>
+						<div class="card-body chi-card-body">
+							<?php $chi_title_meta_box = get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name") ?>
+							<a href="<?php echo get_permalink() ?>"><h5
+									class="card-title chi-card-title"><?php the_title(); ?></h5>
+							</a>
+							<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
+								<time class="chi-time"><?php the_time(get_option("date_format")) ?></time>
+							</strong>
+							<p class="chi-card-text"><?php echo excerpt(25); ?></p>
+						</div>
+					</div>
+				</div>
             <?php $i++;endwhile;
         wp_reset_postdata(); else: ?>
     <?php endif; ?>
@@ -114,26 +114,26 @@ if ( ( get_term_meta( $category_ID, '_chi_selected_one_options' )[0] ) == 3 )
                     echo 'mt-5';
                 }
                 ?> border-bottom">
-                    <div class="media chi-media position-relative p-0">
-                        <div
-                                class="d-flex flex-row align-items-end chi-media-img justify-content-between chi-media-container"
-                                style="background: url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
+					<div class="media chi-media position-relative p-0">
+						<div
+								class="d-flex flex-row align-items-end chi-media-img justify-content-between chi-media-container"
+								style="background: url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
 
-                            <a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-75 chi-media-container_child"> </a>
+							<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-75 chi-media-container_child"> </a>
                                 <?php $terms = get_the_tags(); ?>
-                                <?php if (! empty($terms) ) { ?>
-                                    <?php if (is_array($terms) && ! empty($terms)) { ?>
-                            <div class="chi-category text-uppercase chi-media-container_child">
-                                        <?php $url = get_tag_link($terms[0]->term_id); ?>
-                                        <a href="<?php echo $url; ?>"
-                                           class="chi-category__link"><?php echo $terms[0]->name; ?></a>
-                            </div>
-                                    <?php } ?>
-                                <?php } ?>
-                            <div class="chi-tag text-uppercase chi-media-container_child">
-                                <a href="<?php echo get_permalink(); ?>" class="chi-tag_link"><?php echo chi_video_time()[0]; ?></a>
-                            </div>
-                        </div>
+                				<?php if (! empty($terms) ) { ?>
+									<?php if (is_array($terms) && ! empty($terms)) { ?>
+							<div class="chi-category text-uppercase chi-media-container_child">
+										<?php $url = get_tag_link($terms[0]->term_id); ?>
+										<a href="<?php echo $url; ?>"
+										   class="chi-category__link"><?php echo $terms[0]->name; ?></a>
+							</div>
+									<?php } ?>
+								<?php } ?>
+							<div class="chi-tag text-uppercase chi-media-container_child">
+								<a href="<?php echo get_permalink(); ?>" class="chi-tag_link"><?php echo chi_video_time()[0]; ?></a>
+							</div>
+						</div>
                         <div class="media-body">
                             <a href="<?php echo get_permalink(); ?>"><h5
                                     class="mt-0 chi-sub-title"><?php the_title(); ?></h5>
@@ -142,21 +142,21 @@ if ( ( get_term_meta( $category_ID, '_chi_selected_one_options' )[0] ) == 3 )
                                   datetime><?php the_time(get_option("date_format")); ?></time>
                         </div>
                     </div>
-                </div>
+				</div>
                 <?php $i++; endwhile;
             wp_reset_postdata(); else: ?>
-            <?php $show_diw = 0; ?>
+			<?php $show_diw = 0; ?>
         <?php endif; ?>
     </div>
-    <a href="<?php echo $video ?>" class="chi-more-videos-btn">
-        <span class="chi-more-videos-btn__text">
-            <?php _e("další videa") ?>
-        </span>
-    </a>
-    <?php  if($show_diw)
-    {
-        ?>
-        </div>
-        <?php
-    }?>
+	<a href="<?php echo $video ?>" class="chi-more-videos-btn">
+		<span class="chi-more-videos-btn__text">
+			<?php _e("další videa") ?>
+		</span>
+	</a>
+	<?php  if($show_diw)
+	{
+		?>
+		</div>
+		<?php
+	}?>
 <?php } ?>

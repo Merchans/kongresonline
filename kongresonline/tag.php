@@ -21,11 +21,8 @@ $taxonomiUrl = array_filter(explode("/", $_SERVER['REQUEST_URI']));
                                     </div>
                                     <div class="media-body ">
                                         <a href="<?php the_permalink() ?>"><h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title() ?></h5></a>
-                                        <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
-                                        <p class="chi-card-text">
-                                            <?php echo wp_trim_words( get_the_content(), 21, '...' );
-                                            ?>
-                                        </p>
+                                        <strong class="chi-name-title"><?php if( has_title_meta_box("") ) { echo has_title_meta_box($chi_title_meta_box); }; ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
+										<p class="chi-card-text"><?php echo excerpt(25); ?></p>
                                     </div>
                                 </li>
                             <?php endwhile ?>
@@ -43,6 +40,9 @@ $taxonomiUrl = array_filter(explode("/", $_SERVER['REQUEST_URI']));
     </div>
     </div>
 </main>
+<footer class="single container">
+    <?php get_template_part("chi-footer-content"); ?>
+</footer>
 <?php
 get_footer();
 wp_footer();

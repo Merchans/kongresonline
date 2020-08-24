@@ -43,13 +43,13 @@ wp_enqueue_style( 'custom-css_style', get_stylesheet_directory_uri() . '/custom-
 function chi_hook_for_google_analytics() {
     ?>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-69849523-44"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-69849523-45"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
 
-		  gtag('config', 'UA-69849523-44');
+		  gtag('config', 'UA-69849523-45');
 		</script>
     <?php
 }

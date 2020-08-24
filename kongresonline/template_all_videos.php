@@ -36,16 +36,18 @@ wp_head();
                                 <?php $categories = get_the_category()[0]->slug; ?>
                                 <div class="col-md-4">
                                     <div class="chi-video-box">
-                                        <div class="chi-video position-relative" >
-                                            <div class="d-flex flex-row align-items-end chi-video-img justify-content-between" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
-                                                <div class="chi-category text-uppercase">
-                                                    <a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo $categories ?></a>
-                                                </div>
-                                                <div class="chi-tag text-uppercase mr-0">
-                                                    <a href="<?php echo get_permalink()?>" class="chi-tag_link"><?php echo chi_video_time()[0]  ?></a>
-                                                </div>
-                                            </div>
-                                        </div>
+										<div class="chi-video position-relative" >
+											<div class="d-flex flex-row align-items-end chi-media-img justify-content-between chi-media-container" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
+												<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-75 chi-media-container_child">
+												</a>
+												<div class="chi-category text-uppercase chi-media-container_child">
+													<a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo $categories ?></a>
+												</div>
+												<div class="chi-tag text-uppercase chi-media-container_child">
+													<a href="<?php echo get_permalink()?>" class="chi-tag_link"><?php echo chi_video_time()[0]  ?></a>
+												</div>
+											</div>
+										</div>
                                         <div class="chi-video-body">
                                             <a href="<?php echo get_permalink() ?>"><h5 class="mt-0 chi-sub-title"><?php the_title()?></h5></a>
                                             <time class="chi-time" ><?php the_date(); ?></time>
@@ -64,7 +66,7 @@ wp_head();
         </div>
         </div>
     </main>
-    <footer>
+    <footer class="container">
         <?php get_template_part("chi-footer-content");	?>
     </footer>
 <?php

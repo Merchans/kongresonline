@@ -7,15 +7,20 @@ wp_head();
 	{
 		width: 275px;
 		height: 59px;
-		font-style: normal;
+		font-style: italic;
 		font-weight: bold;
 		font-size: 18px;
 		line-height: 26px;
 		color: #000000;
 	}
+
+	.chi-other-text:hover
+	{
+		text-decoration: underline;
+	}
 	p,h2,h3,h4,h6,h7
 	{
-		color: #626262;
+		color: #212529;
 	}
 	p
 	{
@@ -103,7 +108,7 @@ wp_head();
             <div class="others-articles">
                 <div class="d-flex h-20 mt-5">
                     <div class="chi-tag text-uppercase mr-auto p-2">
-                        <a href="#" class="chi-tag_link">podobné VIDEA</a>
+                        <span class="chi-tag_link">PODOBNÁ VIDEA</span>
                     </div>
                 </div>
                 <hr class="divider mt-0">
@@ -139,11 +144,22 @@ wp_head();
                             <div class="col-md-4">
                                 <div class="chi-video-box">
                                     <div class="chi-video position-relative">
-                                        <div class="d-flex flex-row align-items-end chi-video-img justify-content-end" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
-                                            <div class="chi-tag text-uppercase mr-0">
-                                                <a href="<?php echo get_permalink(); ?>" class="chi-tag_link"><?php echo chi_video_time()[0];  ?></a>
-                                            </div>
-                                        </div>
+										<div class="d-flex flex-row align-items-end chi-video-img justify-content-between chi-media-container" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
+											<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-75 chi-media-container_child">
+											</a>
+                                            <?php $tags = get_the_tags(); ?>
+                                            <?php if (is_array($tags) && !empty($tags)) { ?>
+                                                <?php foreach( $tags as $tag) {?>
+                                                    <?php $url = get_tag_link($tag) ?>
+													<div class="chi-category text-uppercase chi-media-container_child">
+														<a href="<?php echo $url; ?>" class="chi-category__link chi-tag_link--white"><?php echo $tag->name; ?></a>
+													</div>
+                                                <?php } ?>
+                                            <?php } ?>
+											<div class="chi-tag mr-0">
+												<a href="<?php echo get_permalink(); ?>" class="chi-tag_link"><?php echo chi_video_time()[0]; ?></a>
+											</div>
+										</div>
                                     </div>
                                     <div class="chi-video-body">
                                         <a href="<?php echo get_permalink(); ?>"><h5 class="mt-0 chi-sub-title"><?php the_title(); ?></h5></a>
@@ -161,7 +177,7 @@ wp_head();
             <div class="advertisment-col">
                 <div class="d-flex h-20">
                     <div class="chi-tag text-uppercase mr-auto p-2">
-                        <a href="#" class="chi-tag_link">REKLAMNÍ SDĚLENÍ</a>
+                        <span class="chi-tag_link">REKLAMNÍ SDĚLENÍ</span>
                     </div>
                 </div>
                 <hr class="divider mt-0">
@@ -254,7 +270,7 @@ wp_head();
                         ?>
                         <div class="d-flex h-20">
                             <div class="chi-tag text-uppercase mr-auto p-2">
-                                <a href="#" class="chi-tag_link">VIDEO</a>
+                                <span class="chi-tag_link">VIDEO</span>
                             </div>
                         </div>
                         <hr class="divider mt-0">

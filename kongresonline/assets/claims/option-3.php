@@ -36,7 +36,7 @@ if ($test[1] == "video" or $all_video)
 {
     $active_video = "chi-active";
     $category = $test[2];
-    $alert = "všechny videa";
+    $alert = "VŠECHNA VIDEA";
     ?>
     <style>
         .chi-claim
@@ -59,12 +59,6 @@ if ($test[1] == "video" or $all_video)
     </style>
     <?php
 }
-/*
-if ($test[1] == $category)
-{
-    $active_article = "chi-active";
-}
-*/
 
 if ($all_video)
 {
@@ -87,10 +81,6 @@ if ($all_video)
         ?>
         <?php chi_special_logo(); ?>
         <div class="container">
-            <div class="chi-info-text white-color text-center">
-                <?php echo category_description( get_the_category()[0]->cat_ID );
-                ?>
-            </div>
             <?php
             if ($test[1] != "video" and !$all_video )
             {?>
@@ -181,9 +171,9 @@ if ($all_video)
                         get_template_part("chi-horizontal-advertising");
                     ?>
                     <div class="others-articles">
-                        <div class="d-flex h-20 <?php if ($test[1] != 'video'  and !$all_video) {echo 'mt-5';} ?>">
+                        <div class="d-flex h-20 <?php if ($test[1] != 'video'  and !$all_video) {echo '';} ?>">
                             <div class="chi-tag text-uppercase mr-auto p-2">
-                                <a href="#" class="chi-tag_link" id="ostatni-clanky"><?php echo $alert ?></a>
+                                <span class="chi-tag_link" id="ostatni-clanky"><?php echo $alert ?></span>
                             </div>
                         </div>
                         <hr class="divider mt-0">
@@ -192,20 +182,23 @@ if ($all_video)
                                 <?php while (have_posts()) : the_post() ?>
                                     <?php $chi_title_meta_box = ""; $chi_title_meta_box = get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name")?>
                                     <li class="media">
-                                        <div class="image-credit-wrapper chi-othes-articles">
-                                            <?php $terms = get_the_terms(get_the_ID(), "congress"); ?>
-                                            <?php if (is_array($terms) && !empty($terms)) { ?>
-                                                <?php $url = get_home_url() .'/'. $terms[0]->taxonomy .'/'. $terms[0]->slug;  ?>
-                                                <span class="image-credit chi-category-credit">
-														<a href="<?php echo $url; ?>" class="chi-category__link"><?php echo $terms[0]->name; ?></a>
-													</span>
+										<div class="image-credit-wrapper chi-othes-articles">
+                                            <?php $terms = get_the_tags(); ?>
+                                            <?php if ( !empty($terms) ) { ?>
+                                                <?php if (is_array($terms) && ! empty($terms)) { ?>
+                                                    <?php $url = get_tag_link($terms[0]->term_id); ?>
+													<div class="image-credit chi-category-credit">
+														<a href="<?php echo $url; ?>"
+														   class="chi-category__link"><?php echo $terms[0]->name; ?></a>
+													</div>
+                                                <?php } ?>
                                             <?php } ?>
-                                            <?php the_post_thumbnail() ?>
-                                        </div>
+											<a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail() ?></a>
+										</div>
                                         <div class="media-body ">
                                             <a href="<?php echo get_permalink();  ?>"><h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title() ?></h5></a>
                                             <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
-                                            <p class="chi-card-text"><?php echo wp_trim_words( get_the_content(), 25) ?></p>
+                                            <p class="chi-card-text"><?php echo excerpt(25); ?></p>
                                         </div>
                                     </li>
                                 <?php endwhile ?>
@@ -224,11 +217,11 @@ if ($all_video)
                     </div>
 
                 </div>
-                <div class="col-md-3 mt-5">
+                <div class="col-md-3">
                     <div class="advertisment-col">
                         <div class="d-flex h-20">
                             <div class="chi-tag text-uppercase mr-auto p-2">
-                                <a href="#" class="chi-tag_link">REKLAMNÍ SDĚLENÍ</a>
+                                <span class="chi-tag_link">REKLAMNÍ SDĚLENÍ</span>
                             </div>
                         </div>
                         <hr class="divider mt-0">
@@ -269,7 +262,7 @@ if ($all_video)
                     <div class="chi-category-thems mt-5">
                         <div class="d-flex h-20">
                             <div class="chi-tag text-uppercase mr-auto p-2">
-                                <a href="#" class="chi-tag_link">témata</a>
+                                <span class="chi-tag_link">témata</span>
                             </div>
                         </div>
                         <hr class="divider mt-0">
@@ -320,7 +313,7 @@ if ($all_video)
                                 ?>
                                 <div class="d-flex h-20">
                                     <div class="chi-tag text-uppercase mr-auto p-2">
-                                        <a href="#" class="chi-tag_link">VIDEO</a>
+                                        <span class="chi-tag_link">VIDEO</span>
                                     </div>
                                 </div>
                                 <hr class="divider mt-0">
@@ -333,7 +326,7 @@ if ($all_video)
                                             {
                                                 ?>
                                                 <div class="chi-tag text-uppercase">
-                                                    <a href="#" class="chi-tag_link"><?php echo chi_video_time($advert->ID)[0]; ?></a>
+                                                    <span class="chi-tag_link"><?php echo chi_video_time($advert->ID)[0]; ?></span>
                                                 </div>
                                                 <?php
                                             }
@@ -348,7 +341,8 @@ if ($all_video)
                                     <div class="card-body chi-card-body">
                                         <a href="<?php echo get_permalink($advert->ID)  ?>"><h6 class="card-title chi-card-title"><?php echo $advert->post_title ?></h6></a>
                                         <strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name", $advert->ID)?><time class="chi-time" datetime> - <?php echo get_the_date(get_option( 'date_format' ), $advert->ID )  ?></time></strong>
-                                        <p class="chi-card-text"><?php echo wp_trim_words( get_the_content("","",$advert->ID), 29) ?></p>
+                                        <p class="chi-card-text"><?php echo excerpt(29); ?></p>
+
                                     </div>
                                 </div>
                                 <?php
@@ -363,7 +357,7 @@ if ($all_video)
         </div>
         </div>
     </main>
-    <footer class="chi-category-bg">
+    <footer class="container">
         <?php get_template_part("chi-footer-content");	?>
     </footer>
 <?php

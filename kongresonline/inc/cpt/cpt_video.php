@@ -54,7 +54,7 @@ add_action( 'init', 'chi_create_tax' );
 function chi_create_tax() {
     register_taxonomy('congress', array('post', 'chi_video'),
         array(
-            'hierarchical'  => false,
+            'hierarchical'  => true,
             'label'         => __( 'Kongresy', 'chi-templates' ),
             'singular_name' => __( 'Kongres', 'chi-templates' ),
             'rewrite'       => true,

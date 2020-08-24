@@ -54,15 +54,12 @@ $num = 0;
                                     <span class="image-credit chi-category-credit">
                 <a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug; ?></a>
             </span>
-									<?php 	if (has_post_thumbnail()) { the_post_thumbnail( 'full' ); } ?>
+									<?php 	if (has_post_thumbnail()) { ?> <a href="<?php echo get_permalink() ?>"> <?php the_post_thumbnail( 'full' ); } ?> </a>
 								</div>
 								<div class="media-body ">
 									<a href="<?php the_permalink() ?>"><h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title() ?></h5></a>
 									<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
-									<p class="chi-card-text">
-										<?php echo wp_trim_words( get_the_content(), 21, '...' );
-                                        ?>
-									</p>
+									<p class="chi-card-text"><?php echo excerpt(25); ?></p>
 								</div>
 							</li>
 						<?php endwhile;  wp_reset_postdata();  ?>
@@ -85,13 +82,15 @@ $num = 0;
                     <div class="col-md-4">
                         <div class="chi-video-box">
                             <div class="chi-video position-relative">
-                                <div class="d-flex flex-row align-items-end chi-video-img justify-content-between" style="background: linear-gradient(80deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
-                                    <div class="chi-category text-uppercase">
+                                <div class="d-flex flex-row align-items-end chi-media-img justify-content-between chi-media-container" style="background: linear-gradient(80deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
+									<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-75 chi-media-container_child">
+									</a>
+									<div class="chi-category text-uppercase chi-media-container_child">
 										<a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug; ?></a>
-                                    </div>
-                                    <div class="chi-tag text-uppercase mr-0">
-										<a href="<?php echo get_permalink()?>" class="chi-tag_link"><?php echo chi_video_time()[0]  ?></a>
-                                    </div>
+									</div>
+									<div class="chi-tag text-uppercase chi-media-container_child">
+										<a href="<?php echo get_permalink(); ?>" class="chi-tag_link"><?php echo chi_video_time()[0];  ?></a>
+									</div>
                                 </div>
                             </div>
                             <div class="chi-video-body">
@@ -121,15 +120,12 @@ $num = 0;
                                     <span class="image-credit chi-category-credit">
                 <a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug; ?></a>
             </span>
-                                        <?php 	if (has_post_thumbnail()) { the_post_thumbnail( 'full' ); } ?>
+                                        <?php 	if (has_post_thumbnail()) { ?> <a href="<?php echo get_permalink() ?>"> <?php the_post_thumbnail( 'full' ); } ?> </a>
 									</div>
 									<div class="media-body ">
 										<a href="<?php the_permalink() ?>"><h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title() ?></h5></a>
 										<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
-										<p class="chi-card-text">
-                                            <?php echo wp_trim_words( get_the_content(), 21, '...' );
-                                            ?>
-										</p>
+										<p class="chi-card-text"><?php echo excerpt(25); ?></p>
 									</div>
 								</li>
 					<?php endwhile; wp_reset_postdata(); } ?>

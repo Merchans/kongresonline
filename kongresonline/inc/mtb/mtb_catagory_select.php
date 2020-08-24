@@ -77,12 +77,14 @@ function chi_selected_one_option_save( $category )
         $claim = $("#chi_claim_posts");
         console.log($("select.postform").val());
 		<?php
-        if (get_term_meta($_GET["tag_ID"], "_chi_selected_one_options")[0] != 3)
-		{
-			?>
-	    		$claim.hide();
-			<?php
+
+        if ( isset($_GET["tag_ID"]) && (get_term_meta($_GET["tag_ID"], "_chi_selected_one_options")[0] != 3))
+        {
+        ?>
+	    $claim.hide();
+        <?php
         }
+
 		?>
 
 	    $("select.postform").change(function(){

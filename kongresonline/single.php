@@ -7,15 +7,25 @@ wp_head();
 	{
 		width: 275px;
 		height: 59px;
-		font-style: normal;
+		font-style: italic;
 		font-weight: bold;
 		font-size: 18px;
 		line-height: 26px;
 		color: #000000;
 	}
+
+	.chi-other-text:hover
+	{
+		text-decoration: underline;
+	}
 	p,h2,h3,h4,h6,h7
 	{
-		color: #626262;
+		color: #212529;
+	}
+	h3
+	{
+		font-weight: normal;
+		font-size: 1.4em;
 	}
 	p
 	{
@@ -122,7 +132,7 @@ wp_head();
 					<div class="others-articles">
 						<div class="d-flex h-20 mt-5">
 							<div class="chi-tag text-uppercase mr-auto p-2">
-								<a href="#" class="chi-tag_link">ostatní články</a>
+								<span class="chi-tag_link">ostatní články</span>
 							</div>
 						</div>
 						<hr class="divider mt-0">
@@ -159,15 +169,20 @@ wp_head();
                                     <?php $chi_title_meta_box = ""; $chi_title_meta_box = get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name")?>
 									<li class="media">
 										<div class="image-credit-wrapper chi-othes-articles">
-<!--        <span class="image-credit chi-category-credit">
-                <a href="<?php echo get_template_directory_uri(); ?>/img/media-obj.png" class="chi-category__link"><?php echo get_the_category()[0]->slug?></a>
-            </span> -->
-                                            <?php the_post_thumbnail() ?>
+                                            <?php $terms = get_the_tags(); ?>
+                                            <?php if (is_array($terms) && ! empty($terms)) { ?>
+                                                <?php $url = get_tag_link($terms[0]->term_id); ?>
+												<div class="image-credit chi-category-credit">
+													<a href="<?php echo $url; ?>"
+													   class="chi-category__link"><?php echo $terms[0]->name; ?></a>
+												</div>
+                                            <?php } ?>
+											<a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail() ?></a>
 										</div>
 										<div class="media-body ">
 											<a href="<?php echo get_permalink()?>"><h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title(); ?></h5></a>
 											<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
-											<p class="chi-card-text"><?php echo wp_trim_words( get_the_content(), 19, "" ) ?></p>
+                                             <p class="chi-card-text"><?php echo excerpt(25); ?></p>
 										</div>
 									</li>
                             <?php $i++;endwhile; wp_reset_postdata();  else: ?>
@@ -180,7 +195,7 @@ wp_head();
 					<div class="advertisment-col">
 						<div class="d-flex h-20">
 							<div class="chi-tag text-uppercase mr-auto p-2">
-								<a href="#" class="chi-tag_link">REKLAMNÍ SDĚLENÍ</a>
+								<span class="chi-tag_link"><?php _e("REKLAMNÍ SDĚLENÍ", "chi"); ?></span>
 							</div>
 						</div>
 						<hr class="divider mt-0">
@@ -309,34 +324,11 @@ wp_head();
                     }
 
 					?>
-	<!--	<div class="d-flex h-20">
-						<div class="chi-tag text-uppercase mr-auto p-2">
-							<a href="#" class="chi-tag_link">VIDEO</a>
-						</div>
-					</div>
-					<hr class="divider mt-0">-->
-					<!--<div class="card chi-card--borner-none chi-card">
-						<div class="chi-box-1 chi-card--box-1">
-							<div class="d-flex flex-row">
-								<div class="chi-tag text-uppercase">
-									<a href="#" class="chi-tag_link">2:23</a>
-								</div>
-								<<div class="chi-category text-uppercase">
-                                            <a href="#" class="chi-category__link">dianews.cz</a>
-                                        </div>
-							</div>
-						</div>
-						<div class="card-body chi-card-body">
-							<h5 class="card-title chi-card-title">Pozor na méně obvyklé příčiny komplikací diabetu</h5>
-							<strong class="chi-name-title">prof. MUDr. Štěpán Svačina, DrSc., MBA <time class="chi-time" datetime="2019-09-29 00:00">-29&nbsp;září,&nbsp;2019</time></strong>
-							<p class="chi-card-text">Diabetes je chronické onemocnění, které je zatíženo celou řadou kardiovaskulárních i jiných komplikací. Nemocné velmi často trápí mnoho komorbidit</p>
-						</div>
-					</div>
-				</div>-->
+
 					</div></div>
-			<footer>
-				<?php get_template_part("chi-footer-content"); ?>
-			</footer>
+	<footer class="single container">
+        <?php get_template_part("chi-footer-content"); ?>
+	</footer>
 		</div>
 	</div>
 <?php

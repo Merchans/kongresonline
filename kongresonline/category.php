@@ -1,5 +1,6 @@
 <?php
 
+    $GLOBALS["not_in_main_loop"] = array();
 	$category = get_the_category();
 	$category_ID = $category[0]->cat_ID;
 	$option = (get_term_meta($category_ID, '_chi_selected_one_options')[0]);

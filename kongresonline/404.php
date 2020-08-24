@@ -102,14 +102,11 @@ wp_head();
     </div> -->
 </main>
 <footer>
-    <div class="container">
-        <div class="container chi-hr mt-25 chi-pt-5"></div>
-        <div class="chi-footer-webpage-info">
-            <p>© 2019 CZECH HEALTH INTERACTIVE</p>
-            <p><a href="#">Podmínky užití</a> | <a href="#">Sponzoři</a></p>
-        </div>
-    </div>
+    <?php get_template_part("chi-footer-content");	?>
 </footer>
+<script>
+	document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
 <?php
 
 get_footer();

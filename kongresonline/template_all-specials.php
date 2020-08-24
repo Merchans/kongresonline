@@ -7,7 +7,7 @@ wp_head();
 		/* Add shadows to create the "chi-card" effect */
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 		transition: 0.3s;
-		width: 300px;
+		height: 300px;
 		text-align: center;
 		margin: 30px 0;
 	}
@@ -45,7 +45,7 @@ wp_head();
 		</div>
 		<div class="chi-mt-1"></div>
 		<div class="container">
-			<div class="row chi-flex">
+			<div class="row">
                 <?php
                 $categories = get_categories();
 
@@ -60,6 +60,7 @@ wp_head();
                             $imgId = wp_get_attachment_image_src($imgId, "small")[0] ? wp_get_attachment_image_src($imgId, "small")[0] : "";
                             $bg    = wp_get_attachment_image_src($bg, "small")[0] ? wp_get_attachment_image_src($bg, "small")[0] : "";
                             ?>
+							<div class="col-md-4 col-6">
 							<a href="<?php echo $url ?>" class="chi-category-color"
 							   title="<?php echo $category->name; ?>">
 								<div class="chi-card p-20"
@@ -79,9 +80,11 @@ wp_head();
                                     ?>
 								</div>
 							</a>
+							</div>
                             <?php
                         } else {
                             ?>
+				<div class="col-md-4 col-6">
 							<a href="<?php echo $url ?>" class="chi-category-color"
 							   title="<?php echo $category->name; ?>">
 								<div class="chi-card p-20">
@@ -98,6 +101,7 @@ wp_head();
                                     ?>
 								</div>
 							</a>
+				</div>
                             <?php
                         }
                     }
@@ -110,7 +114,7 @@ wp_head();
 
         <?php endif ?>
 </main>
-<footer>
+<footer class="container">
     <?php get_template_part("chi-footer-content"); ?>
 </footer>
 <?php
