@@ -1,4 +1,4 @@
-<?php if ($_GET["company"] == "pfizer")  { ?>
+<?php if ( isset($_GET["company"]) && $_GET["company"] == "pfizer")  { ?>
 
 	<div class="chi-bg-modal" id="pfizerPopupContainer">
 		<div class="modal-dialog" role="document">

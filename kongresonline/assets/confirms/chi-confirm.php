@@ -1,6 +1,6 @@
 <?php
 
-if ($_GET["company"] && isset($_GET["company"]) && $_GET["company"] == "pfizer"  )
+if (isset($_GET["company"]) && $_GET["company"] == "pfizer"  )
 {
 	$url = "/?company=pfizer";
 }
