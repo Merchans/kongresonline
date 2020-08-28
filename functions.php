@@ -182,6 +182,18 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 
 	if (!is_admin())
 	{
+		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() && is_category( 'kardiovaskularni-zpravodajstvi' ) )
+		{
+            $args_one_video_or_post = array("post_type" => array("chi_video", "post"), "posts_per_page" => 1, "category_name" =>"kardiovaskularni-zpravodajstvi", "post_status" => "publish", 'fields' => 'ids');
+
+           	$first_video_or_post_or_post = new  WP_Query($args_one_video_or_post);
+
+            $post = $first_video_or_post_or_post->posts;
+
+            $offset = 0;
+
+            $query->set('post__not_in', $post);
+		}
         if ( $query->is_main_query() && $query->is_category(  ) && $query->is_archive(  )  )
         {
             $text = array("empty");
