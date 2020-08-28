@@ -23,7 +23,7 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
     $active_article = "chi-active";
 }
 
-$alert     = "ostatní články";
+$alert = __("všechny videa", "chi");
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
 if ($url_segments[1] == "video" or $all_video) {
@@ -39,7 +39,6 @@ $first_video_or_post_or_post = new  WP_Query($args_one_video_or_post);
 $chi_special_logo = wp_get_attachment_image_src (  get_term_meta ( $category_id, "category-image-id", true ), 'full')[0];
 
 $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_page" => 2, "category_name" => $category_slug, "post__not_in" => $first_video_or_post_or_post->posts[0]->ID );
-
 
 
 if ($all_video)
@@ -71,6 +70,7 @@ if ($all_video)
     <div class="container chi-bg-white">
         <div class="row row--white">
             <div class="col-md-9 chi-video-section mt-30px">
+                <?php if ($url_segments[1] != "video" and ! $all_video) { ?>
                 <div class="d-flex h-20">
                     <div class="chi-tag text-uppercase mr-auto p-2">
                         <span  class="chi-tag_link">VIDEO</span>
@@ -182,9 +182,10 @@ if ($all_video)
 		</span>
 					</a>
                 </div>
+                <?} ?>
                 <div class="others-articles">
                     <?php if (have_posts()) : ?>
-						<div class="d-flex h-20 mt-5">
+						<div class="d-flex h-20 <?php if ($url_segments[1] == "video" and $all_video) { echo "mt-5"; } ?>">
 							<div class="chi-tag text-uppercase mr-auto p-2">
 								<span class="chi-tag_link"><?php echo $alert ?></span>
 							</div>

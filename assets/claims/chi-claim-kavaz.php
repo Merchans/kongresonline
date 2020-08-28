@@ -15,6 +15,16 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
     $active_article = "chi-active";
 }
 
+$alert = "ostatní články";
+$all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
+if ($all_video)
+{
+    $active_article = "chi-active";
+    $active_video = "";
+    $alert =  __("ČLÁNKY A REPORTÁŽE", "chi");
+}
+
+
 // From url get ID category
 $category_id = get_category_by_slug( $category )->term_id;
 
@@ -28,6 +38,9 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
 
 
 <div class="container">
+    <?php
+    if ($url_segments[1] != "video" and !$all_video )
+    {?>
     <div class="chi-info-banner">
         <div class="row chi-category-bg chi-pt-15">
             <div class="col-md-6 overflow-hidden chi-pr-lg-0">
@@ -91,4 +104,5 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
             </div>
         </div>
     </div>
+    <?php } ?>
 </div>

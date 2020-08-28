@@ -78,9 +78,6 @@ if ($all_video)
                     <div class="col-md-6 overflow-hidden chi-pr-lg-0">
                         <div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video->post->ID) ?>) no-repeat center center; background-size: cover;">
                             <div class="d-flex flex-row">
-<!--                                <div class="chi-tag text-uppercase">
-                                    <a href="<?php echo get_post_type_archive_link($first_video->query["post_type"][0]) ?>" class="chi-tag_link">VIDEA</a>
-                                </div>-->
                                 <?php $terms = get_the_terms($first_video->post->ID, "congress"); ?>
                                 <?php if (is_array($terms) && !empty($terms)) { ?>
                                     <?php foreach( $terms as $term) {?>

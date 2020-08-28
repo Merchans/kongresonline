@@ -15,7 +15,7 @@ if (strpos($only_articles, "?clanky-a-reportaze")) {
 
 $first_video = new  WP_Query();
 
-$alert     = "ostatní články";
+$alert = __("všechny videa", "chi");
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
 $show_diw = 1;
