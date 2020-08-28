@@ -84,7 +84,7 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
                                     <a class="text-white" href="/kongresove-zpravodajstvi">Aktuální reportáže a rozhovory z odborných medicínských kongresů.</a>
                                 </p>
                                 <div class="chi-btn-kavaz">
-                                    <a  href="/kongresove-zpravodajstvi" class="chi-btn-kavaz_link">OTEVŘÍT RUBRIKU</a>
+                                    <a  href="/kongresove-zpravodajstvi" class="chi-btn-kavaz_link"><?php _e("OTEVŘÍT RUBRIKU", "chi"); ?></a>
                                 </div>
                             </div>
                         </div>
@@ -92,10 +92,10 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
                     <div class="col-md-12 overflow-hidden">
                         <div class="chi-box-3 chi-box--pl-33 chi-box--pb-33">
                             <div class="chi-box-2__textarea">
-                                <h1 class="chi-title-white chi-title-white--fz27 chi-title-white--mb-20">Okénko mladých lékařů</h1>
-                                <p class="chi-kavaz-text">Rubrika mladých angiologů, kardiologů a internistů, kteří svým kolegům předávají zkušenosti z navštívených kongresů, odborné problematiky i vlastní práce.</p>
+								<a href="<?php echo get_term_link(51); ?>"><h1 class="chi-title-white chi-title-white--fz27 chi-title-white--mb-20"><?php echo  get_term(51)->name ?></h1></a>
+								<a href="<?php echo get_term_link(51); ?>"><p class="chi-kavaz-text"><?php echo get_term(51)->description  ?></p></a>
                                 <div class="chi-btn-kavaz">
-                                    <a href="#" class="chi-btn-kavaz_link">OTEVŘÍT RUBRIKU</a>
+                                    <a href="<?php echo get_term_link(51); ?>" class="chi-btn-kavaz_link"><?php _e("OTEVŘÍT RUBRIKU", "chi"); ?></a>
                                 </div>
                             </div>
                         </div>

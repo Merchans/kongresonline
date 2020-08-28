@@ -23,7 +23,7 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
     $active_article = "chi-active";
 }
 
-$alert = __("všechny videa", "chi");
+$alert = __("ČLÁNKY A REPORTÁŽE", "chi");
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
 if ($url_segments[1] == "video" or $all_video) {
@@ -187,7 +187,7 @@ if ($all_video)
                     <?php if (have_posts()) : ?>
 						<div class="d-flex h-20 <?php if ($url_segments[1] == "video" and $all_video) { echo "mt-5"; } ?>">
 							<div class="chi-tag text-uppercase mr-auto p-2">
-								<span class="chi-tag_link"><?php echo $alert ?></span>
+								<span class="chi-tag_link" id="ostatni-clanky"><?php echo $alert ?></span>
 							</div>
 						</div>
 						<hr class="divider mt-0" />
