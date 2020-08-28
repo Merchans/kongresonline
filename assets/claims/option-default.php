@@ -59,7 +59,7 @@ if ($all_video)
 {
     $active_article = "chi-active";
     $active_video = "";
-    $alert = "ČLÁNKY A REPORTÁŽE";
+    $alert =  __("ČLÁNKY A REPORTÁŽE", "chi");
 }
 ?>
 	<div <?php body_class("chi-claim"); ?>>

@@ -18,10 +18,6 @@ $active_article = "";
 $active_video   = "";
 $url_segments           = array_filter(explode("/", $_SERVER['REQUEST_URI']));
 
- echo '<pre>';
- print_r( $url_segments  );
- echo '</pre>';
-die();
 $only_articles  = ($_SERVER['REQUEST_URI']);
 
 if (strpos($only_articles, "?clanky-a-reportaze")) {
@@ -61,7 +57,7 @@ if ($url_segments[1] == "video" or $all_video) {
 if ($all_video) {
     $active_article = "chi-active";
     $active_video   = "";
-    $alert          = "ČLÁNKY A REPORTÁŽE";
+    $alert          =  __("ČLÁNKY A REPORTÁŽE", "chi");
 }
 
 ?>

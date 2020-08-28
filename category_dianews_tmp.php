@@ -56,7 +56,7 @@ if ($url_segments[1] == "video" or $all_video) {
 if ($all_video) {
     $active_article = "chi-active";
     $active_video   = "";
-    $alert          = "ČLÁNKY A REPORTÁŽE";
+    $alert          =  __("ČLÁNKY A REPORTÁŽE", "chi");
 }
 $first_video = new  WP_Query();
 ?>

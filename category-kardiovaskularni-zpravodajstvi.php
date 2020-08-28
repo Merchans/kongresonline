@@ -18,6 +18,11 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
     $active_article = "chi-active";
 }
 
+if ($url_segments[1] == "video" or $all_video) {
+    $active_video = "chi-active";
+    $category     = $url_segments[2];
+    $alert        = "všechny videa";
+}
 // From url get ID category
 $category_id = get_category_by_slug( $category )->term_id;
 
@@ -27,6 +32,15 @@ $first_video_or_post_or_post = new  WP_Query($args_one_video_or_post);
 $chi_special_logo = wp_get_attachment_image_src (  get_term_meta ( $category_id, "category-image-id", true ), 'full')[0];
 
 $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_page" => 2, "category_name" => $category, "post__not_in" => $first_video_or_post_or_post->posts[0]->ID );
+
+
+
+if ($all_video) {
+    $active_article = "chi-active";
+    $active_video   = "";
+    $alert          =  __("ČLÁNKY A REPORTÁŽE", "chi");
+}
+
 ?>
 
 <style>
@@ -164,7 +178,7 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
                     <?php if (have_posts()) : ?>
 						<div class="d-flex h-20 mt-5">
 							<div class="chi-tag text-uppercase mr-auto p-2">
-								<span" class="chi-tag_link"><?php _e("ostatní články", "chi"); ?></span>
+								<span class="chi-tag_link"><?php echo $alert ?></span>
 							</div>
 						</div>
 						<hr class="divider mt-0" />
