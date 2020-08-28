@@ -1,5 +1,12 @@
 <?php
 $category = get_the_category()[0]->slug;
+
+
+if (is_page_template("template-kava.php"))
+{
+	$category = "kardiovaskularni-zpravodajstvi";
+}
+
 $article = get_site_url() . "/". $category;
 $video = get_site_url() . "/video/". $category;
 $active_article =  "";
@@ -57,7 +64,7 @@ if ($all_video)
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav text-uppercase">
             <li class="nav-item chi-nav-item" >
-                <?php $all_articles_url =  get_home_url() ."/". get_the_category()[0]->slug ."/?clanky-a-reportaze"; ?>
+                <?php $all_articles_url =  get_home_url() ."/".$category."/?clanky-a-reportaze"; ?>
                 <a class='nav-link chi-nav-link <?= $active_article ?> white-color' href='<?php echo $all_articles_url?>'>ČLÁNKY A REPORTÁŽE</a>
             </li>
 			<?php
