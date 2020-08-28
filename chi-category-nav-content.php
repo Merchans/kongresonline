@@ -4,7 +4,7 @@ $article = get_site_url() . "/". $category;
 $video = get_site_url() . "/video/". $category;
 $active_article =  "";
 $active_video =  "";
-$test = array_filter(explode("/", $_SERVER['REQUEST_URI']));
+$url_segments = array_filter(explode("/", $_SERVER['REQUEST_URI']));
 $only_articles = ($_SERVER['REQUEST_URI']);
 
 if (strpos($only_articles, "?clanky-a-reportaze"))
@@ -16,10 +16,10 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
 $alert = "ostatní články";
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
-if ($test[1] == "video" or $all_video)
+if ($url_segments[1] == "video" or $all_video)
 {
     $active_video = "chi-active";
-    $category = $test[2];
+    $category = $url_segments[2];
     $alert = "všechny videa";
     ?>
 	<style>

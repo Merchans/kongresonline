@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="cfb957e8-b90c-4d9e-8a83-3a16f7406cf9" name="dev.kongresonline" url="https://kongres-online.cz">
+      <webServer id="cfb957e8-b90c-4d9e-8a83-3a16f7406cf9" name="dev.kongresonline" url="dev.kongres-online.cz">
         <fileTransfer host="ftp.wp-hosting.cz" port="21" rootFolder="/kongres-online.cz/dev/wp-content/themes/chi">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />

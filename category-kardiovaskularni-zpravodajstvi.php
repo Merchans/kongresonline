@@ -10,7 +10,7 @@ $video = get_site_url() . "/video/". $category;
 
 $active_article =  "";
 $active_video =  "";
-$test = array_filter(explode("/", $_SERVER['REQUEST_URI']));
+$url_segments = array_filter(explode("/", $_SERVER['REQUEST_URI']));
 $only_articles = ($_SERVER['REQUEST_URI']);
 
 if (strpos($only_articles, "?clanky-a-reportaze"))

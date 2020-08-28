@@ -16,7 +16,7 @@ $video    = get_site_url() . "/video/" . $category;
 
 $active_article = "";
 $active_video   = "";
-$test           = array_filter(explode("/", $_SERVER['REQUEST_URI']));
+$url_segments           = array_filter(explode("/", $_SERVER['REQUEST_URI']));
 $only_articles  = ($_SERVER['REQUEST_URI']);
 
 if (strpos($only_articles, "?clanky-a-reportaze")) {
@@ -27,9 +27,9 @@ if (strpos($only_articles, "?clanky-a-reportaze")) {
 $alert     = "ostatní články";
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
-if ($test[1] == "video" or $all_video) {
+if ($url_segments[1] == "video" or $all_video) {
     $active_video = "chi-active";
-    $category     = $test[2];
+    $category     = $url_segments[2];
     $alert        = "všechny videa";
     ?>
 	<style>
@@ -66,7 +66,7 @@ $first_video = new  WP_Query();
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9 chi-video-section mt-5">
-                    <?php if ($test[1] != "video" and ! $all_video) {
+                    <?php if ($url_segments[1] != "video" and ! $all_video) {
                         ?>
 						<div class="d-flex h-20">
 							<div class="chi-tag text-uppercase mr-auto p-2">
@@ -167,12 +167,12 @@ $first_video = new  WP_Query();
 						</div>
                     <?php } ?>
                     <?php
-                    if ($test[1] != "video" and ! $all_video) {
+                    if ($url_segments[1] != "video" and ! $all_video) {
                         get_template_part("chi-horizontal-advertising");
                     }
                     ?>
 					<div class="others-articles">
-						<div class="d-flex h-20 <?php if ($test[1] != 'video' and ! $all_video) {
+						<div class="d-flex h-20 <?php if ($url_segments[1] != 'video' and ! $all_video) {
                             echo 'mt-5';
                         } ?>">
 							<div class="chi-tag text-uppercase mr-auto p-2">
@@ -217,7 +217,7 @@ $first_video = new  WP_Query();
                         ?>
                         <?php echo '</ul></nav>'; ?>
                         <?php
-                        if ($test[1] == "video") {
+                        if ($url_segments[1] == "video") {
                             get_template_part("chi-horizontal-advertising");
                         }
                         ?>

@@ -6,7 +6,7 @@ $video    = get_site_url() . "/video/" . $category;
 
 $active_article = "";
 $active_video   = "";
-$test           = array_filter(explode("/", $_SERVER['REQUEST_URI']));
+$url_segments           = array_filter(explode("/", $_SERVER['REQUEST_URI']));
 $only_articles  = ($_SERVER['REQUEST_URI']);
 
 if (strpos($only_articles, "?clanky-a-reportaze")) {
@@ -30,7 +30,7 @@ if ( ( get_term_meta( $category_ID, '_chi_selected_one_options' )[0] ) == 3 )
 }
 
 ?>
-<?php if ($test[1] != "video" and ! $all_video) {
+<?php if ($url_segments[1] != "video" and ! $all_video) {
 ?>
 
     <?php

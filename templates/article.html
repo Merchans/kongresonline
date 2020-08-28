@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <style>
-.navbar-collapse {
-    justify-content: flex-end;
-}
-
-<style>
     .navbar-collapse {
         justify-content: flex-end;
     }
@@ -266,14 +261,8 @@
 }
 
 </style>
-<style>
-	html
-	{
-		background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #FFFFFF;
-	}
-</style>
-<body class="chi-category-bg">
-<header>
+<body>
+    <header>
         <div class="navbar navbar-light chi-bg-light chi-navbar-height">
             <div class="chi-logo-sentens">
                 Provozováno portálem <a class="navbar-brand chi-logo-text-words" href="index.html" title="Kongresonline.cz"><u>Kongresonline.cz</u></a>
@@ -284,39 +273,38 @@
                 </div>
             </form>
         </div>
-</header>
-<div class="chi-claim">
-    <nav class="navbar navbar-expand-lg navbar-light chi-pb-0">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ">
-                    <li class="nav-item chi-nav-item active">
-                        <a class="nav-link chi-nav-link chi-active white-color" href="index.html">KOMENTÁŘE</a>
-                    </li>
-                    <li class="nav-item chi-nav-item">
-                        <a class="nav-link chi-nav-link white-color" href="#">VIDEOKOMENTÁŘE</a>
-                    </li>
-                    <li class="nav-item chi-nav-item">
-                        <a class="nav-link chi-nav-link white-color" href="#">AKREDITOVANÉ TESTY</a>
-                    </li>
-                    <li class="nav-item chi-nav-item">
-                        <a class="nav-link chi-nav-link white-color" href="#">TÉMATA</a>
-                    </li>
-                </ul>
-            </div>
-    </nav>
-        <div class="chi-category-logo-center mb-3">
-        <img src="img/dianews-logo-white 2.png" alt="">
-    </div>
-</div>
-<div class="chi-parent container">
-<div class="chi-absolute">
-            <div class="row chi-category-bg mr-0">
+
+        <nav class="navbar navbar-expand-lg navbar-light chi-bg-light chi-navbar-nav chi-pb-0">
+                <div class="chi-category-logo">
+                    <img src="img/category-dianews-logo.png" alt="dianews">
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item chi-nav-item active">
+                            <a class="nav-link chi-nav-link chi-active" href="index.html">KOMENTÁŘE</a>
+                        </li>
+                        <li class="nav-item chi-nav-item">
+                            <a class="nav-link chi-nav-link" href="#">VIDEOKOMENTÁŘE</a>
+                        </li>
+                        <li class="nav-item chi-nav-item">
+                            <a class="nav-link chi-nav-link" href="#">AKREDITOVANÉ TESTY</a>
+                        </li>
+                        <li class="nav-item chi-nav-item">
+                            <a class="nav-link chi-nav-link" href="#">TÉMATA</a>
+                        </li>
+                    </ul>
+                </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
                 <div class="col-md-8 chi-video-section mt-4">
                     <div class="chi-breadcrump-navigation">
-                        <p><strong><a href="#">Dianews</a></strong> &gt; <strong><a href="#">Komentáře</a></strong> &gt; Jak moc účinnost léku ovlivňuje nápoj, kterým se zapíjí?</p>
+                        <p><strong><a href="#">Dianews</a></strong> > <strong><a href="#">Komentáře</strong></a> > Jak moc účinnost léku ovlivňuje nápoj, kterým se zapíjí?</p>
                     </div>
                     <div class="d-flex h-20">
                         <div class="chi-tag text-uppercase">
@@ -356,7 +344,7 @@
                     </div>
                     <hr class="divider mt-0">
                     <div class="chi-advertise">
-                        <img src="img/image 1.png" alt="">
+                        <img src="img/image%201.png" alt="">
                     </div>
                     <h2 class="chi-article-title-h2">Kyselina fosforečná mění pH žaludku</h2>
                     <p class="chi-paragrapg">
@@ -563,15 +551,17 @@
                     </div>
                 </div>
             </div>
-            <footer>
-        <div class="chi-hr"></div>
-        <div class="chi-footer-webpage-info">
-            <p>© 2019 CZECH HEALTH INTERACTIVE</p>
-            <p><a href="#">Podmínky užití</a> | <a href="#">Sponzoři</a></p>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="container chi-hr mt-25 chi-pt-5"></div>
+            <div class="chi-footer-webpage-info">
+                <p>© 2019 CZECH HEALTH INTERACTIVE</p>
+                <p><a href="#">Podmínky užití</a> | <a href="#">Sponzoři</a></p>
+            </div>
         </div>
     </footer>
-        </div>
-    </div>
     <!-- JQuery Library -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <!-- Bootstrap Propper -->
@@ -580,4 +570,5 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>
