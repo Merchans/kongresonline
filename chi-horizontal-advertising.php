@@ -3,7 +3,7 @@ if ( is_category("kardiovaskularni-zpravodajstvi"))
 {
 	$id =  get_the_category()[0]->term_id;
 }
-elseif ( is_page_template("template-kava.php") )
+elseif ( is_page_template("template-kavaz.php") )
 {
     $id = 17;
 }

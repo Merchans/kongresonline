@@ -56,7 +56,7 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
 				<div class="others-articles">
 					<div class="d-flex h-20">
 						<div class="chi-tag text-uppercase mr-auto p-2">
-							<span  class="chi-tag_link">Kongresy</span>
+							<span  class="chi-tag_link"><?php _e( 'Kongresy', 'chi-templates' ); ?></span>
 						</div>
 					</div>
 					<hr class="divider mt-0 mb-0" />
@@ -94,10 +94,10 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
 										?>">
 											<h1 class="chi-title-white chi-title-white--fz30 chi-title-white--mb-20"><a class="chi-title-white" href="<?php echo get_term_link($kavaz_child->term_id) ?>"><?php echo $kavaz_child->name; ?></a></h1>
 											<p class="chi-kavaz-text chi-kavaz-text--w-292">
-												Zde bude uveden krátký popisek kongresu. Zde bude uveden krátký popisek kongresu. Zde bude uveden krátký popisek kongresu. Zde bude uveden krátký popisek kongresu.
+                                                <?php echo get_term($kavaz_child->term_id)->description  ?>
 											</p>
 											<div class="chi-btn-kavaz">
-												<a href="<?php echo get_term_link($kavaz_child->term_id) ?>" class="chi-btn-kavaz_link kavaz_link--white">Zobrazit všechny příspěvky</a>
+												<a href="<?php echo get_term_link($kavaz_child->term_id) ?>" class="chi-btn-kavaz_link kavaz_link--white"><?php _e("Zobrazit všechny příspěvky", "chi"); ?></a>
 											</div>
 										</div>
 									</div>
