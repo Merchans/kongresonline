@@ -21,7 +21,7 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
 if ($url_segments[1] == "video" or $all_video) {
     $active_video = "chi-active";
     $category     = $url_segments[2];
-    $alert        = "všechny videa";
+    $alert        = __("všechny videa", "chi");
 }
 // From url get ID category
 $category_id = get_category_by_slug( $category )->term_id;
