@@ -3,10 +3,15 @@
 <?php get_template_part("chi-category-nav-content"); ?>
 <?php
 
-$category = get_the_category()[0]->slug;
+$category_slug = get_the_category()[0]->slug;
 
-$article = get_site_url() . "/". $category;
-$video = get_site_url() . "/video/". $category;
+
+// From url get ID category
+$category_id = get_category_by_slug( $category_slug )->term_id;
+
+
+$article = get_site_url() . "/". $category_slug;
+$video = get_site_url() . "/video/". $category_slug;
 
 $active_article =  "";
 $active_video =  "";
@@ -18,24 +23,27 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
     $active_article = "chi-active";
 }
 
+$alert     = "ostatní články";
+$all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
+
 if ($url_segments[1] == "video" or $all_video) {
     $active_video = "chi-active";
-    $category     = $url_segments[2];
+    $category_slug     = $url_segments[2];
     $alert        = __("všechny videa", "chi");
 }
-// From url get ID category
-$category_id = get_category_by_slug( $category )->term_id;
 
-$args_one_video_or_post = array("post_type" => array("chi_video", "post"), "posts_per_page" => 1, "category_name" => $category, "post_status" => "publish");
+
+$args_one_video_or_post = array("post_type" => array("chi_video", "post"), "posts_per_page" => 1, "category_name" => $category_slug, "post_status" => "publish");
 $first_video_or_post_or_post = new  WP_Query($args_one_video_or_post);
 
 $chi_special_logo = wp_get_attachment_image_src (  get_term_meta ( $category_id, "category-image-id", true ), 'full')[0];
 
-$args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_page" => 2, "category_name" => $category, "post__not_in" => $first_video_or_post_or_post->posts[0]->ID );
+$args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_page" => 2, "category_name" => $category_slug, "post__not_in" => $first_video_or_post_or_post->posts[0]->ID );
 
 
 
-if ($all_video) {
+if ($all_video)
+{
     $active_article = "chi-active";
     $active_video   = "";
     $alert          =  __("ČLÁNKY A REPORTÁŽE", "chi");
@@ -74,7 +82,7 @@ if ($all_video) {
 						<?php
                         $args_one_offset_video = array("post_type"      => array("chi_video"),
                                                        "posts_per_page" => 1,
-                                                       "category_name"  => $category,
+                                                       "category_name"  => $category_slug,
                                                        "post_status"    => "publish",
                                                        "post__not_in"	=> array($link),
 
@@ -122,7 +130,7 @@ if ($all_video) {
                             'post_type'      => 'chi_video',
                             'post__not_in'   => $not_in_main_loop,
                             'posts_per_page' => 3,
-                            "category_name"  => $category,
+                            "category_name"  => $category_slug,
                         );
                         $the_query      = new WP_Query($args);
 
