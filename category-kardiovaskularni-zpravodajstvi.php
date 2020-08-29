@@ -55,16 +55,24 @@ if ($all_video)
         justify-content: flex-end;
     }
 </style>
+<?php  $chi_special_background = wp_get_attachment_image_src (  get_term_meta ( get_the_category()[0]->term_id , "category-backgound-id", true ), 'small')[0]; ?>
+<style>
+	.chi-claim--kavaz {
+		background-image: url(<?php echo $chi_special_background ?>);
+		background-color: #cccccc;
+		background-position: center 60px;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.chi-category-logo-center
+	{
+		width: 500px;
+	}
+</style>
 <body class="chi-claim--kavaz">
-	<div class="chi-category-logo-center mb-3 mt-5 chi-category-logo-center--w500">
-		<a href="<?php  echo get_category_link( $category_id ) ?>">
-			<img src="<?php echo $chi_special_logo ?>" />
-		</a>
-	</div>
-    <div class="chi-info-text white-color">
-        <?php echo category_description( $category_id ); ?>
-        <?php $link = $first_video_or_post_or_post->posts[0]->ID; ?>
-    </div>
+<?php chi_special_logo(); ?>
+<?php $link = $first_video_or_post_or_post->posts[0]->ID; ?>
 <main>
 	<?php  get_template_part("assets/claims/chi-claim-kavaz"); ?>
     <div class="container chi-bg-white">
