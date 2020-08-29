@@ -59,10 +59,10 @@ if ($all_video)
 <style>
 	.chi-claim--kavaz {
 		background-image: url(<?php echo $chi_special_background ?>);
-		background-color: #cccccc;
+		background-color: #fcfdfd;
 		background-position: center 60px;
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: contain;
 	}
 
 	.chi-category-logo-center
