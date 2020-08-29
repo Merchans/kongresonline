@@ -38,10 +38,24 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
 	.mt-25{
 		margin: 0;
 	}
+
+	.chi-category-logo-center
+	{
+		width: 500px;
+	}
+
+	@media (max-width: 500px)
+	{
+		.chi-category-logo-center
+		{
+			width: 100%;
+		}
+	}
+
 </style>
 
 <body class="chi-claim--kavaz">
-<div class="chi-category-logo-center mb-3 mt-5 chi-category-logo-center--w500">
+<div class="chi-category-logo-center mb-3">
     <a href="<?php  echo get_category_link( 17 ) ?>">
         <img src="<?php echo $chi_special_logo ?>" />
     </a>

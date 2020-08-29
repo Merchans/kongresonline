@@ -69,6 +69,15 @@ if ($all_video)
 	{
 		width: 500px;
 	}
+
+	@media (max-width: 500px)
+	{
+		.chi-category-logo-center
+		{
+			width: 100%;
+		}
+	}
+
 </style>
 <body class="chi-claim--kavaz">
 <?php chi_special_logo(); ?>
