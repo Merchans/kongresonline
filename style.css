@@ -1633,3 +1633,17 @@ input[type=checkbox]:checked:after {
 		padding: 15px;
 	}
 }
+
+
+header .d-felex
+{
+	height: 38px;
+}
+
+@media (max-width: 991px)
+{
+	header .d-felex
+	{
+		min-height: 80px!important;
+	}
+}
