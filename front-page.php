@@ -127,7 +127,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                             <?php $chi_title_meta_box = get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name")?>
 											<a href="<?php echo get_permalink() ?>"><h5 class="card-title chi-card-title"><?php the_title(); ?></h5></a>
 											<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
-											<p class="chi-card-text"><?php echo excerpt(25); ?></p>
+											<p class="chi-card-text"><?php echo excerpt(30); ?></p>
 										</div>
 									</div>
 								</div>
@@ -223,7 +223,7 @@ $first_video_ID = $first_video->posts[0]->ID;
 											<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
 												<time class="chi-time" datetime><?php the_time(get_option("date_format")); ?></time>
 											</strong>
-											<p class="chi-card-text"><?php echo excerpt(25); ?></p>
+											<p class="chi-card-text"><?php echo excerpt(30); ?></p>
 										</div>
 									</li>
                                 <?php endwhile ?>

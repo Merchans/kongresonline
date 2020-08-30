@@ -51,7 +51,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                         <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
                                             <time class="chi-time" datetime><?php the_time(get_option("date_format")); ?></time>
                                         </strong>
-                                        <p class="chi-card-text"><?php echo excerpt(25); ?></p>
+                                        <p class="chi-card-text"><?php echo excerpt(30); ?></p>
                                     </div>
                                 </li>
                             <?php endwhile ?>
