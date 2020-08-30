@@ -98,7 +98,7 @@ if ($all_video) {
 														   class="chi-category__link"><?php echo $terms[0]->name; ?></a>
 													</span>
                                             <?php } ?>
-                                            <?php the_post_thumbnail() ?>
+											<a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail() ?></a>
 										</div>
 										<div class="media-body ">
 											<a href="<?php echo get_permalink(); ?>"><h5
