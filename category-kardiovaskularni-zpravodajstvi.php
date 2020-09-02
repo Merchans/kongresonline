@@ -245,19 +245,19 @@ if ($all_video)
                     <?php endif ?>
                 </div>
             </div>
-            <div class="col-md-3 mt-30px">
-                <div class="advertisment-col">
-                    <div class="d-flex h-20">
-                        <div class="chi-tag text-uppercase mr-auto p-2">
-                            <span class="chi-tag_link">Zpravodajství z kongresů</span>
-                        </div>
-                    </div>
-                    <hr class="divider mt-0" />
-					<?php
+			<div class="col-md-3 mt-30px">
+				<div class="advertisment-col">
+					<div class="d-flex h-20">
+						<div class="chi-tag text-uppercase mr-auto p-2">
+							<span class="chi-tag_link">Zpravodajství z kongresů</span>
+						</div>
+					</div>
+					<hr class="divider mt-0" />
+                    <?php
                     $terms = get_terms( array(
                         'taxonomy' => 'congress',
                         'hide_empty' => false,
-						'slug'	=> 'kardiovaskularni-zpravodajstvi'
+                        'slug'	=> 'kardiovaskularni-zpravodajstvi'
                     ) );
 
                     $kvaz_id = $terms[0]->term_taxonomy_id;
@@ -268,17 +268,17 @@ if ($all_video)
                         'hide_empty' => 0,
                         'parent' => $kvaz_id,
                     ) );
-					?>
-					<?php if ( $kavaz_childs && !empty($kavaz_childs)) {?>
-                    <ul class="news-from-congress-container">
-						<?php  foreach ($kavaz_childs as $kavaz_child) { ?>
-							<li class="news-from-congress__item">
-								<a href="<?php echo get_term_link($kavaz_child->term_id) ?>">
-									<?php echo $kavaz_child->name; ?>
-								</a>
-							</li>
-                        <?php }?>
-                    </ul>
+                    ?>
+                    <?php if ( $kavaz_childs && !empty($kavaz_childs)) {?>
+						<ul class="news-from-congress-container">
+                            <?php  foreach ($kavaz_childs as $kavaz_child) { ?>
+								<li class="news-from-congress__item">
+									<a href="<?php echo get_term_link($kavaz_child->term_id) ?>">
+                                        <?php echo $kavaz_child->name; ?>
+									</a>
+								</li>
+                            <?php }?>
+						</ul>
                     <?php }?>
                     <?php
                     $id              = get_the_category()[0]->term_id;
@@ -290,16 +290,16 @@ if ($all_video)
                         );
                         $adverts      = get_posts($adverts_args);
                         if ($adverts)
-						{
-							?>
+                        {
+                            ?>
 							<div class="d-flex h-20">
 								<div class="chi-tag text-uppercase mr-auto p-2">
 									<span class="chi-tag_link">REKLAMNÍ SDĚLENÍ</span>
 								</div>
 							</div>
 							<hr class="divider mt-0">
-					<?php
-						}
+                            <?php
+                        }
                         foreach ($adverts as $advert) {
                             echo $advert->post_content;
                         }
@@ -427,8 +427,8 @@ if ($all_video)
                     }
                     }
                     ?>
-                </div>
-            </div>
+				</div>
+			</div>
         </div>
         <div class="container chi-bg-white">
 			<?php  get_template_part("chi-horizontal-advertising"); ?>
