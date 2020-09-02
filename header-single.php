@@ -322,7 +322,7 @@ $alert = __("všechny videa", "chi");
 </style>
 <?php
 } ?>
-<body  class="chi-category-bg">
+<body class="chi-claim--kavaz">
 <header>
 	<div class="navbar navbar-light chi-bg-light chi-navbar-height">
 

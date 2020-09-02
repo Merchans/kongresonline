@@ -54,20 +54,6 @@
                 ));
 
             ?>
-           <!-- <ul class="navbar-nav">
-                <li class="nav-item chi-nav-item active">
-                    <a class="nav-link chi-nav-link chi-active" href="index.html">KOMENTÁŘE</a>
-                </li>
-                <li class="nav-item chi-nav-item">
-                    <a class="nav-link chi-nav-link" href="#">VIDEOKOMENTÁŘE</a>
-                </li>
-                <li class="nav-item chi-nav-item">
-                    <a class="nav-link chi-nav-link" href="#">AKREDITOVANÉ TESTY</a>
-                </li>
-                <li class="nav-item chi-nav-item">
-                    <a class="nav-link chi-nav-link" href="#">TÉMATA</a>
-                </li>
-            </ul>-->
         </div>
     </nav>
 </header>
