@@ -18,7 +18,7 @@ img {
 
 
 a:hover {
-	/*color: #FFFFFF;*/
+	color: #E30613;
 	text-decoration: underline;
 }
 
@@ -1456,6 +1456,11 @@ input[type=checkbox]:checked:after {
 {
 	color:#FFFFFF;
 }
+.news-from-congress__item a:hover
+{
+	text-decoration: underline;
+	text-decoration-color: #e30613;
+}
 .chi-title-white--fz27
 {
 	font-size: 27px;
@@ -1516,6 +1521,12 @@ input[type=checkbox]:checked:after {
 	display: inline-block;
 	height: 28.5px;
 }
+.chi-btn-kavaz_link:hover
+{
+	color: #FFFFFF;
+	text-decoration: underline;
+	text-underline-color: #E30613;
+}
 
 .kavaz_link--white
 {
@@ -1523,6 +1534,18 @@ input[type=checkbox]:checked:after {
 	border: 2px solid white;
 	line-height: 4px;
 	font-size: 15.5px;
+}
+
+a.chi-title-white:hover
+{
+	text-decoration: underline;
+	color: #ffffff;
+	text-decoration-color: #E30613;
+}
+
+.text-white:hover {
+	text-decoration: underline;
+	text-decoration-color: #E30613;
 }
 
 .congress-box
@@ -1654,3 +1677,4 @@ header .d-felex
 .chi-claim.special-kardiovaskularni-zpravodajstvi {
 	height: 600px;
 }
+
