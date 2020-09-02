@@ -284,9 +284,9 @@ wp_head();
             ?>
 		</div>
         <?php
-        $id              = get_the_category()[0]->term_id;
+        $id              = get_the_ID();
         $close_end       = false;
-        $advertising_ids = get_term_meta($id, "chi_selected_thems_in_category");
+        $advertising_ids = get_post_meta($id, "_chi_selected_articles_or_videoss");
         if (count($advertising_ids) > 0 && ! empty($advertising_ids)) {
         $adverts_args = array(
             "post_type" => array(
