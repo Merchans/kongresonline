@@ -77,6 +77,7 @@ if ($all_video)
                 <div class="row chi-category-bg chi-pt-15">
                     <div class="col-md-6 overflow-hidden chi-pr-lg-0">
                         <div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video->post->ID) ?>) no-repeat center center; background-size: cover;">
+							<a href="<?php echo $first_video->post->guid;  ?>" class="d-block w-100 h-100"></a>
                             <div class="d-flex flex-row">
                                 <?php $terms = get_the_terms($first_video->post->ID, "congress"); ?>
                                 <?php if (is_array($terms) && !empty($terms)) { ?>
@@ -116,6 +117,7 @@ if ($all_video)
                                     ?>
                                     <div class="col-md-12 overflow-hidden">
                                         <div class="chi-box-<?php echo $i ?>" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($category_posts->post->ID) ?>) no-repeat center center; background-size: cover;">
+											<a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
                                             <div class="d-flex flex-row">
                                                 <?php $terms = get_the_terms(get_the_ID(), "congress"); ?>
                                                 <?php if (is_array($terms) && !empty($terms)) { ?>
@@ -135,7 +137,7 @@ if ($all_video)
                                                         </div>
                                                     <?php } ?>
                                                 <?php } ?>
-                                            </div>
+											</div>
                                             <a href="<?php echo get_permalink() ?>"><h1 class="chi-title-white"><?php the_title() ?></h1></a>
                                             <?php $chi_title_meta_box = get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name")?>
                                             <strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
