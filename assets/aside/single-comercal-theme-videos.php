@@ -64,9 +64,9 @@ $close_end = true;
 
                 <a href="<?php echo get_chi_make_specilal_form_category($advert->ID); ?>" class="chi-category__link"><?php echo get_the_category($advert->ID)[0]->slug ?></a>
             </span>
-                        <?php
+						<a href="<?php echo get_permalink($advert->ID); ?>">   <?php
                         echo get_the_post_thumbnail($advert->ID,"small");
-                        ?>
+							?> </a>
                     </div>
                     <div class="card-body chi-card-body">
                         <div class="text-left"><a href="<?php echo get_permalink($advert->ID)  ?>" class="chi-name--min-title"><?php echo $advert->post_title ?></a></div>
@@ -99,6 +99,7 @@ $close_end = true;
             <hr class="divider mt-0">
             <div class="card chi-card--borner-none chi-card">
                 <div class="chi-box-1 chi-card--box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($advert->ID) ?>) no-repeat center center; background-size: cover;">
+					<a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
                     <div class="d-flex flex-row">
                         <?php
 
