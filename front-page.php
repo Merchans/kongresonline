@@ -235,7 +235,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                     </div>
 
                 </div>
-				<?php get_template_part("chi-aside"); ?>
+				<?php get_template_part("assets/aside/chi-aside"); ?>
                 </div>
             </div>
         </div>

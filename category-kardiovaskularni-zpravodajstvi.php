@@ -280,7 +280,7 @@ if ($all_video)
                             <?php }?>
 						</ul>
                     <?php }?>
-                <?php get_template_part("assets/aside/homepage-comercal-theme-videos"); ?>
+                <?php get_template_part("assets/aside/chi-aside-category"); ?>
 			</div>
         </div>
 		</div>

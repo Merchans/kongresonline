@@ -129,7 +129,7 @@ if ($all_video) {
 				</div>
 				<div class="col-md-3">
 					<div class="advertisment-col">
-                        <?php get_template_part("assets/aside/homepage-comercal-theme-videos"); ?>
+                        <?php get_template_part("assets/aside/chi-aside-category"); ?>
 					</div>
 				</div>
 		</div>

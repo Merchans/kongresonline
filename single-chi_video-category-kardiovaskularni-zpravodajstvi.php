@@ -239,7 +239,7 @@ wp_head();
                     <?php }?>
                 </ul>
             <?php }?>
-            <?php get_template_part("/assets/aside/single-comercal-theme-videos"); ?>
+            <?php get_template_part("/assets/aside/chi-aside-single"); ?>
             </div>
         </div>
     <?php endwhile ?>

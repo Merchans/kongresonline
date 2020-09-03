@@ -133,7 +133,7 @@ $num = 0;
 					<?php get_template_part("chi-blog-pages"); ?>
                 </div>
             </div>
-            <?php get_template_part("chi-aside"); ?>
+            <?php get_template_part("assets/aside/chi-aside"); ?>
         </div>
     </div>
     </div>

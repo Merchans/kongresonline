@@ -62,7 +62,7 @@ wp_head();
                         <?php endif ?>
                         <?php wp_reset_query();?>
                 </div>
-                <?php get_template_part("chi-aside"); ?>
+                <?php get_template_part("assets/aside/chi-aside"); ?>
         </div>
         </div>
     </main>

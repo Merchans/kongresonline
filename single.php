@@ -193,7 +193,7 @@ wp_head();
 				</div>
 				<div class="col-md-4 mt-3">
 					<div class="advertisment-col">
-                        <?php get_template_part("/assets/aside/single-comercal-theme-videos"); ?>
+                        <?php get_template_part("/assets/aside/chi-aside-single"); ?>
 					</div></div>
 	<footer class="single container">
         <?php get_template_part("chi-footer-content"); ?>
