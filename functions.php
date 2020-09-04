@@ -459,3 +459,38 @@ function chi_check_for_category_single_template( $t )
     return $t;
 }
 
+
+function myTemplateSelect() {
+    if (is_category() && !is_feed()) {
+        if (is_category(get_cat_id('projects')) || cat_is_ancestor_of(get_cat_id('projects'), get_query_var('cat'))) {
+            load_template(TEMPLATEPATH . '/category-projects.php');
+            exit;
+        }
+    }
+}
+
+//add_action('template_redirect', 'myTemplateSelect');
+
+// https://markjaquith.wordpress.com/2014/02/19/template_redirect-is-not-for-loading-templates/
+function cheese_template_redirect( $template ) {
+
+    if ( is_tax() ) {
+
+        $term   = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+
+        $cheese = 50;   // Taxnomie ID for "kardiovaskularni-zpravodajstvi"
+		if ($term->parent)
+		{
+			if ($term->parent == $cheese)
+			{
+                $new_template = locate_template( array( 'some-custom-file.php' ) );
+                if ( '' != $new_template ) {
+                    return $new_template ;
+                }
+			}
+		}
+    }
+
+    return $template;
+}
+add_filter( 'template_include', 'cheese_template_redirect', 99 );
