@@ -17,7 +17,7 @@ $taxonomiUrl = array_filter(explode("/", $_SERVER['REQUEST_URI']));
                                     <span class="image-credit chi-category-credit">
                 <a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug; ?></a>
             </span>
-                                    <?php 	if (has_post_thumbnail()) { the_post_thumbnail( 'full' ); } ?>
+									<a href="<?php echo get_chi_make_specilal_form_category() ?>"><?php if (has_post_thumbnail()) { the_post_thumbnail( 'full' ); } ?> </a>
 								</div>
 								<div class="media-body ">
 									<a href="<?php the_permalink() ?>"><h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title() ?></h5></a>

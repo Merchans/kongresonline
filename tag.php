@@ -13,12 +13,12 @@ $taxonomiUrl = array_filter(explode("/", $_SERVER['REQUEST_URI']));
                         <?php if(have_posts()) : ?>
                             <?php while(have_posts()) : the_post() ?>
                                 <li class="media">
-                                    <div class="image-credit-wrapper chi-othes-articles">
+									<div class="image-credit-wrapper chi-othes-articles">
                                     <span class="image-credit chi-category-credit">
                 <a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug; ?></a>
             </span>
-                                        <?php 	if (has_post_thumbnail()) { the_post_thumbnail( 'full' ); } ?>
-                                    </div>
+										<a href="<?php echo get_chi_make_specilal_form_category() ?>">  <?php 	if (has_post_thumbnail()) { the_post_thumbnail( 'full' ); } ?></a>
+										</div>
                                     <div class="media-body ">
                                         <a href="<?php the_permalink() ?>"><h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title() ?></h5></a>
                                         <strong class="chi-name-title"><?php if( has_title_meta_box("") ) { echo has_title_meta_box($chi_title_meta_box); }; ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>

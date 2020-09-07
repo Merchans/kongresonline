@@ -1690,5 +1690,6 @@ header .d-felex
 	.chi-claim--kavaz {
 		background-position: center 95px;
 		background-image: url("img/kavaz-bg-mobile.png");
+		background-size: contain;
 	}
 }
