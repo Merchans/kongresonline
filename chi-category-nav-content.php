@@ -2,7 +2,7 @@
 $category = get_the_category()[0]->slug;
 
 
-if (is_page_template("template-kavaz.php"))
+if (is_page_template("template-kavaz.php") || is_page_template("taxonomy-congress-kardiovaskularni-zpravodajstvi.php"))
 {
 	$category = "kardiovaskularni-zpravodajstvi";
 }

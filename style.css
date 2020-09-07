@@ -1678,3 +1678,8 @@ header .d-felex
 	height: 600px;
 }
 
+@media (min-width:800px) and (max-width:900px){
+	.chi-claim--kavaz {
+		background-position: center 95px!important;
+	}
+}
