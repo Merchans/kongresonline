@@ -44,6 +44,14 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
 		width: 500px;
 	}
 
+	@media (max-width: 800px)
+	{
+		.chi-claim--kavaz {
+			background-position: center 95px;
+			background-image: url("<?php echo get_template_directory_uri();?>/img/kavaz-bg-mobile.png");
+		}
+	}
+
 	@media (max-width: 500px)
 	{
 		.chi-category-logo-center

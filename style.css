@@ -1126,12 +1126,6 @@ a.next.page-numbers:hover {
 	height: 510px;
 }
 
-.chi-claim--kavaz {
-	background-image:  url("img/313 1.png");
-	background-color: #cccccc; /* Used if the image is unavailable */
-	background-position: center 60px; /* Center the image*/
-	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: cover; /* Resize the background image to cover the entire container */}
 
 .chi-category-logo-center {
 	width: 315px;
@@ -1678,8 +1672,23 @@ header .d-felex
 	height: 600px;
 }
 
+.chi-claim--kavaz {
+	background-image:  url("img/313 1.png");
+	background-color: #cccccc; /* Used if the image is unavailable */
+	background-position: center 60px; /* Center the image*/
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover; /* Resize the background image to cover the entire container */}
+
 @media (min-width:800px) and (max-width:900px){
 	.chi-claim--kavaz {
 		background-position: center 95px!important;
+	}
+}
+
+@media (max-width: 800px)
+{
+	.chi-claim--kavaz {
+		background-position: center 95px;
+		background-image: url("img/kavaz-bg-mobile.png");
 	}
 }
