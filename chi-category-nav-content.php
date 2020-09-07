@@ -1,5 +1,6 @@
 <?php
-$category = get_the_category()[0]->slug;
+if (isset(get_the_category()[0]->slug))
+	$category = get_the_category()[0]->slug;
 
 
 if (is_page_template("template-kavaz.php") || is_page_template("taxonomy-congress-kardiovaskularni-zpravodajstvi.php"))
@@ -69,10 +70,15 @@ if ($all_video)
             </li>
 			<?php
 
+			if (isset( get_the_category()[0]->term_id ))
+                $category_ID = get_the_category()[0]->term_id;
+			else
+				$category_ID = "";
+
             $args = array(
                 'numberposts' => 1,
                 'post_type'  => 'chi_video',
-				"category"	=> get_the_category()[0]->term_id,
+				"category"	=> $category_ID
 
             );
 
