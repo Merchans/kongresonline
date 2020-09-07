@@ -611,6 +611,7 @@ a.next.page-numbers:hover {
 	line-height: 39px;
 	color: #FFFFFF;
 	background: #E30613;
+	-webkit-box-shadow: 0px 10px 20px rgba(227, 6, 19, 0.2);
 	box-shadow: 0px 10px 20px rgba(227, 6, 19, 0.2);
 	border-radius: 6px;
 	width: 275px;
@@ -1263,6 +1264,21 @@ a.next.page-numbers:hover {
 	box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.26);
 	border-radius: 16px;
 	position: relative;
+}
+
+@media (max-width: 600px)
+{
+	.chi-modal-content {
+		width: 100%;
+	}
+
+	.chi-close {
+		right: 15px;
+	}
+	.chi-claim-text
+	{
+		width: 400px!important;
+	}
 }
 
 .chi-logo-black {

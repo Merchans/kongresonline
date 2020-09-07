@@ -489,9 +489,15 @@ add_filter( 'template_include', 'kardiovaskularni_zpravodajstvi_template_file', 
 
 
 // https://www.webhostinghero.com/how-to-share-a-draft-page-in-wordpress/?fbclid=IwAR1hn_xdoMmt80d8LHgGbqFtHUMMnQd_GKG94KW_MaAPpyoUb5tdobbYA5w
-add_filter( 'posts_results', 'set_query_to_draft', null, 2 );
-function set_query_to_draft( $posts, &$query ) {
+// https://designwithvalerie.com/share-draft-post-in-wordpress/
 
+add_filter( 'posts_results', 'chi_set_query_to_draft', null, 2 );
+function chi_set_query_to_draft( $posts, $query ) {
+
+	if (!is_single())
+	{
+		return $posts;
+	}
     if ( sizeof( $posts ) != 1 )
         return $posts;
 
@@ -510,7 +516,7 @@ function set_query_to_draft( $posts, &$query ) {
     add_filter( 'the_posts', 'show_draft_post', null, 2 );
 }
 
-function show_draft_post( $posts, &$query ) {
+function show_draft_post( $posts, $query ) {
     remove_filter( 'the_posts', 'show_draft_post', null, 2 );
     return $query->_draft_post;
 }
