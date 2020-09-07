@@ -485,3 +485,42 @@ function kardiovaskularni_zpravodajstvi_template_file( $template ) {
     return $template;
 }
 add_filter( 'template_include', 'kardiovaskularni_zpravodajstvi_template_file', 99 );
+
+
+
+// https://www.webhostinghero.com/how-to-share-a-draft-page-in-wordpress/?fbclid=IwAR1hn_xdoMmt80d8LHgGbqFtHUMMnQd_GKG94KW_MaAPpyoUb5tdobbYA5w
+add_filter( 'posts_results', 'set_query_to_draft', null, 2 );
+function set_query_to_draft( $posts, &$query ) {
+
+    if ( sizeof( $posts ) != 1 )
+        return $posts;
+
+    $post_status_obj = get_post_status_object(get_post_status( $posts[0]));
+
+    if ( !$post_status_obj->name == 'draft' )
+        return $posts;
+
+    if (isset($_GET["key"])) {
+        if ( $_GET['key'] != 'private_preview' )
+            return $posts;
+    }
+
+    $query->_draft_post = $posts;
+
+    add_filter( 'the_posts', 'show_draft_post', null, 2 );
+}
+
+function show_draft_post( $posts, &$query ) {
+    remove_filter( 'the_posts', 'show_draft_post', null, 2 );
+    return $query->_draft_post;
+}
+
+add_filter("preview_post_link", "sctick_a_preview_link_key", 10);
+
+
+function sctick_a_preview_link_key($preview_link)
+{
+	$preview_link = $preview_link . "&key=private_preview";
+
+	return $preview_link;
+}
