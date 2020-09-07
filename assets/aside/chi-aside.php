@@ -1,5 +1,9 @@
 <?php
-$id = get_the_category()[0]->term_id;
+if ( isset( get_the_category()[0]->term_id) )
+{
+    $id = get_the_category()[0]->term_id;
+}
+
 $close_end       = false;
 $chi_choose_themes = get_option("chi_selected_articles_or_videos_page_options");
 $advertising_ids = $chi_choose_themes;
