@@ -463,7 +463,7 @@ function chi_check_for_category_single_template( $t )
 // https://markjaquith.wordpress.com/2014/02/19/template_redirect-is-not-for-loading-templates/
 function kardiovaskularni_zpravodajstvi_template_file( $template ) {
 
-    if ( is_tax() ) 
+    if ( is_tax() )
     {
 
         $term   = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
@@ -530,3 +530,5 @@ function sctick_a_preview_link_key($preview_link)
 
 	return $preview_link;
 }
+
+//session_abort()
