@@ -16,7 +16,7 @@
 </head>
 <style>
 	.chi-logo {
-		background: url("<?= wp_get_attachment_url( get_option( 'media_selector_attachment_id' ) ); ?>") left top no-repeat;
+		background: url("<?= wp_get_attachment_url( get_option( 'media_selector_attachment_id' ) ); ?>") top center no-repeat;
 	}
 </style>
 <header>

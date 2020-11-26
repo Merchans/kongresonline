@@ -65,7 +65,7 @@ if ( ( get_term_meta( $category_ID, '_chi_selected_one_options' )[0] ) == 3 )
 				<div class="col-md-6">
 					<div class="card chi-card--borner-none chi-card">
 						<div class="chi-box-1 chi-card--box-1"
-							 style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
+							 style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat  top center; background-size: cover;">
 							<a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
 							<div class="d-flex flex-row">
 								<div class="chi-tag text-uppercase">
@@ -117,7 +117,7 @@ if ( ( get_term_meta( $category_ID, '_chi_selected_one_options' )[0] ) == 3 )
 					<div class="media chi-media position-relative p-0">
 						<div
 								class="d-flex flex-row align-items-end chi-media-img justify-content-between chi-media-container"
-								style="background: url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
+								style="background: url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat  top center; background-size: cover;">
 
 							<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-75 chi-media-container_child"> </a>
                                 <?php $terms = get_the_tags(); ?>

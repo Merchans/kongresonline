@@ -82,7 +82,7 @@ if ($all_video)
 				<div class="chi-info-banner">
 					<div class="row chi-category-bg chi-pt-15">
 						<div class="col-md-6 overflow-hidden chi-pr-lg-0">
-							<div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video->post->ID) ?>) no-repeat center center; background-repeat: no-repeat; background-position: left top; background-size: cover;">
+							<div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video->post->ID) ?>) no-repeat center center; background-repeat: no-repeat; background-position:  top center; background-size: cover;">
 								<a href="<?php echo $first_video->post->guid;  ?>" class="d-block w-100 h-100"></a>
 								<div class="d-flex flex-row padding-t-p-5">
 									<div class="chi-tag text-uppercase">
@@ -127,7 +127,7 @@ if ($all_video)
                                         $GLOBALS["not_in_main_loop"][] = get_the_ID();
                                         ?>
 										<div class="col-md-12 overflow-hidden">
-											<div class="chi-box-<?php echo $i ?>" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($category_posts->post->ID) ?>)  no-repeat center center; background-repeat: no-repeat; background-position: left top; background-size: cover;">
+											<div class="chi-box-<?php echo $i ?>" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($category_posts->post->ID) ?>)  no-repeat center center; background-repeat: no-repeat; background-position:  top center; background-size: cover;">
 												<a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
 												<div class="d-flex flex-row padding-t-p-5">
                                                     <?php $terms = get_the_terms(get_the_ID(), "congress"); ?>

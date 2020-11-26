@@ -18,7 +18,7 @@ $first_video_ID = $first_video->posts[0]->ID;
             <div class="chi-info-banner">
                 <div class="row">
 					<div class="col-md-6 overflow-hidden chi-pr-lg-0">
-						<div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video->post->ID) ?>) no-repeat center center; background-repeat: no-repeat; background-position: left top; background-size: cover;">
+						<div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video->post->ID) ?>) no-repeat top center; background-repeat: no-repeat; background-position:  top center; background-size: cover;">
 							<a href="<?php echo get_permalink($first_video_ID); ?>" class="d-block w-100 h-100"></a>
 							<div class="d-flex flex-row padding-t-p-5">
 								<div class="chi-tag text-uppercase">
@@ -55,7 +55,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                     $category_posts->the_post();
                                     ?>
 									<div class="col-md-12 overflow-hidden">
-										<div class="chi-box-<?php echo $i ?>" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($category_posts->post->ID) ?>) no-repeat center center; background-repeat: no-repeat; background-position: left top; background-size: cover;">
+										<div class="chi-box-<?php echo $i ?>" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($category_posts->post->ID) ?>) no-repeat top center; background-repeat: no-repeat; background-position: top center; background-size: cover;">
 											<a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
 											<div class="d-flex flex-row padding-t-p-5">
                                                 <?php $terms = get_the_terms(get_the_ID(), "congress"); ?>
@@ -112,7 +112,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                 ?>
 								<div class="col-md-6">
 									<div class="card chi-card--borner-none chi-card">
-										<div class="chi-box-1 chi-card--box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
+										<div class="chi-box-1 chi-card--box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat top center; background-size: cover;">
 											<a href="<?php echo  get_permalink()  ?>" class="d-block w-100 h-100"></a>
 											<div class="d-flex flex-row">
 												<div class="chi-tag text-uppercase">
@@ -157,7 +157,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                     {echo 'mt-5';}
                                     ?> border-bottom">
 										<div class="media chi-media position-relative p-0">
-											<div class="d-flex flex-row align-items-end chi-media-img justify-content-between chi-media-container" style="background: url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
+											<div class="d-flex flex-row align-items-end chi-media-img justify-content-between chi-media-container" style="background: url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat top center; background-size: cover;">
 												<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-70 !!chi-media-container_child!!">
 												</a>
 												<div class="chi-category text-uppercase !!chi-media-container_child!!">

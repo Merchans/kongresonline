@@ -320,8 +320,9 @@ $alert = __("všechna videa", "chi");
 	}
 </style>
 <?php
-} ?>
-<body class="chi-claim--kavaz">
+}?>
+
+<body <?php has_category("kardiovaskularni-zpravodajstvi") ? 'class="chi-claim--kavaz"' : '' ?>>
 <header>
 	<div class="navbar navbar-light chi-bg-light chi-navbar-height">
 
