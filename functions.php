@@ -21,7 +21,7 @@ require_once THEME_DIRECTORY ."/inc/mtb/mtb_catagory_select.php";
 
 /*
  * EXCERPT EDITOR
- * */
+* */
 require_once THEME_DIRECTORY ."/inc/excerpt-editor.php";
 $excerpt = new Excerpt();
 
@@ -511,6 +511,12 @@ function chi_set_query_to_draft( $posts, $query ) {
             return $posts;
     }
 
+    if (!isset($_GET['key'] ))
+	{
+		return $posts;
+	}
+
+
     $query->_draft_post = $posts;
 
     add_filter( 'the_posts', 'show_draft_post', null, 2 );
@@ -531,4 +537,288 @@ function sctick_a_preview_link_key($preview_link)
 	return $preview_link;
 }
 
-//session_abort()
+
+// Add a <sup> and <sub> index to TinyMC
+// from: https://wptavern.com/how-to-add-subscript-and-superscript-characters-in-wordpress
+function chi_mce_buttons_2($buttons) {
+    /**
+     * Add in a core button that's disabled by defaultmce_buttons_2
+	 *
+	 */
+    $buttons[] = 'Special character';
+    $buttons[] = 'superscript';
+    $buttons[] = 'subscript';
+
+
+    return $buttons;
+
+
+}
+
+
+function chi_mce_buttons( $buttons )
+{
+    $buttons = "count";
+	return $buttons;
+}
+//add_filter('mce_buttons_4', 'chi_mce_buttons');
+//add_filter('mce_buttons_3', 'chi_mce_buttons');
+add_filter('mce_buttons_2', 'chi_mce_buttons_2');
+//add_filter('mce_buttons', 'chi_mce_buttons');
+
+function lt_html_excerpt($text) { // Fakes an excerpt if needed
+	global $post;
+	if ( '' == $text ) {
+		$text = get_the_content('');
+		$text = apply_filters('the_content', $text);
+		$text = str_replace('\]\]\>', ']]&gt;', $text);
+		/*just add all the tags you want to appear in the excerpt --
+		be sure there are no white spaces in the string of allowed tags */
+		$text = strip_tags($text,'<p><br><b><a><em>');
+		/* you can also change the length of the excerpt here, if you want */
+		$excerpt_length = 15;
+		$words = explode(' ', $text, $excerpt_length + 1);
+		if (count($words)> $excerpt_length) {
+			array_pop($words);
+			array_push($words, '[...]');
+			$text = implode(' ', $words);
+		}
+
+		$text = closetags( $text);
+	}
+	return $text;
+}
+
+
+
+/* remove the default filter */
+//remove_filter('get_the_excerpt', 'wp_trim_excerpt');
+
+/* now, add your own filter */
+//add_filter('get_the_excerpt', 'lt_html_excerpt');
+
+/* Plugin Name: My TinyMCE Buttons */
+//add_action( 'admin_init', 'my_tinymce_button' );
+
+function my_tinymce_button() {
+    if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
+        //add_filter( 'mce_buttons', 'my_register_tinymce_button' );
+        //add_filter( 'mce_external_plugins', 'my_add_tinymce_button' );
+    }
+}
+
+function my_register_tinymce_button( $buttons ) {
+    array_push( $buttons, "chi_stats", "button_green" );
+    return $buttons;
+}
+
+function my_add_tinymce_button( $plugin_array ) {
+    $plugin_array['my_button_script'] = THEME_DIRECTORY_URI . '/mybuttons.js';
+    return $plugin_array;
+}
+
+
+/*
+echo '<pre>';
+print_r( $post->post_type );
+echo '</pre>';
+echo '<pre>';
+print_r( mb_strlen( wp_strip_all_tags($post->post_content)) );
+echo '</pre>';
+*/
+
+add_action( 'admin_print_footer_scripts', 'check_textarea_length' );
+function check_textarea_length() {  ?>
+
+	<script type="text/javascript">
+		// jQuery ready fires too early, use window.onload instead
+
+		window.onload = function () {
+
+
+			// are we using visual editor?
+			var visual = (typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden()?true:false;
+
+			if(visual)
+			{
+				title_content = $("#title").val().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length ;
+				editor_content = tinymce.get("content").getContent().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length;
+				html_excerpt = tinymce.get("htmlExcerpt").getContent().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length;
+				sum = title_content + editor_content + html_excerpt;
+
+
+				jQuery('.mce-statusbar .mce-container-body')
+					.append('<span class="word-count-message">' +
+						'titulek: '+ title_content +' perex: '+ html_excerpt  +' hlavní obsah: '+ editor_content  +' SUM('+ sum +')'+
+						'</span>');
+
+				$("#title").on("keyup", function () {
+
+					title_content = $("#title").val().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length ;
+					editor_content = tinymce.get("content").getContent().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length;
+					html_excerpt = tinymce.get("htmlExcerpt").getContent().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length;
+					sum = title_content + editor_content + html_excerpt;
+
+					jQuery('.word-count-message').remove();
+					jQuery('.mce-statusbar .mce-container-body')
+						.append('<span class="word-count-message">' +
+							'titulek: '+ title_content +' perex: '+ html_excerpt  +' hlavní obsah: '+ editor_content  +' SUM('+ sum +')'+
+							'</span>');
+
+				});
+
+				tinyMCEExcerpt = tinymce.get("htmlExcerpt");
+				tinyMCEExcerpt.on('keyup', function(ed,e) {
+
+					title_content = $("#title").val().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length ;
+					editor_content = tinymce.get("content").getContent().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length;
+					html_excerpt = tinymce.get("htmlExcerpt").getContent().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length;
+					sum = title_content + editor_content + html_excerpt;
+
+					jQuery('.word-count-message').remove();
+					jQuery('.mce-statusbar .mce-container-body')
+						.append('<span class="word-count-message">' +
+							'titulek: '+ title_content +' perex: '+ html_excerpt  +' hlavní obsah: '+ editor_content  +' SUM('+ sum +')'+
+							'</span>');
+				});
+
+				tinyMCE.activeEditor.on('keyup', function(ed,e) {
+
+					title_content = $("#title").val().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length ;
+					editor_content = tinymce.get("content").getContent().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length;
+					html_excerpt = tinymce.get("htmlExcerpt").getContent().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/g, '').length;
+					sum = title_content + editor_content + html_excerpt;
+
+					jQuery('.word-count-message').remove();
+					jQuery('.mce-statusbar .mce-container-body')
+						.append('<span class="word-count-message">' +
+							'titulek: '+ title_content +' perex: '+ html_excerpt  +' hlavní obsah: '+ editor_content  +' SUM('+ sum +')'+
+							'</span>');
+
+				});
+			}
+
+		}
+	</script>
+	<style type="text/css">
+		.wp_themeSkin .word-count-message { font-size:0.7em; display:none; float:right; color:#fff; font-weight:bold; margin-top:2px; }
+		.wp_themeSkin .toomanychars .mce-statusbar { background:red; }
+
+		.wp_themeSkin .toomanychars .word-count-message { display:block; }
+
+	</style>
+	<script>
+		var clipboard = new ClipboardJS('#copy-url-button', {
+			target: function() {
+				return document.querySelector('a[data-clipboard-text]');
+			}
+		});
+		var clipboardView = new ClipboardJS('#copy-url-button-view', {
+			target: function() {
+				return document.querySelector('a[data-clipboard-text]');
+			}
+		});
+		clipboard.on('success', function(e) {
+			console.log(e);
+		});
+
+		clipboard.on('error', function(e) {
+			console.log(e);
+		});
+
+		clipboardView.on('success', function(e) {
+			console.log(e);
+		});
+
+		clipboardView.clipboard.on('error', function(e) {
+			console.log(e);
+		});
+
+	</script>
+    <?php
+
+}
+?>
+
+<?php
+
+
+add_filter('get_sample_permalink_html', 'add_copyurl_to_clipboard');
+add_action( 'admin_init', 'copy_to_clipboard_init' );
+add_action('admin_enqueue_scripts', 'add_clipboard_path');
+
+function copy_to_clipboard_init() {
+    /* Register our script. */
+    wp_register_script( 'zero-clipboard', THEME_DIRECTORY_URI . '/js/ZeroClipboard.min.js' );
+    wp_register_script( 'zero-clipboard-main',  THEME_DIRECTORY_URI . '/js/main.js');
+    wp_enqueue_script( 'zero-clipboard' );
+    wp_enqueue_script( 'zero-clipboard-main', 'jquery' );
+
+}
+
+function add_clipboard_path(){
+    wp_localize_script( 'zero-clipboard-main', 'ZeroClipboardSettings', array( 'path' => THEME_DIRECTORY_URI . '/js/clipboard.min.js',));
+}
+
+function add_copyurl_to_clipboard($return){
+    global $post;
+    if (get_post_status($post) == "publish" ) {
+       $return .= sprintf("<span id='copy-url-btn'><a href='#' id=\"copy-url-button\" data-clipboard-text='%s' class='button button-small'>Kopírovat odkaz</a></span> ", get_permalink($post->ID));
+    }
+    $return .= sprintf("<span id='copy-url-btn-view'><a href='#' id=\"copy-url-button-view\" data-clipboard-text='%s' class='button button-small'>Kopírovat náhledový odkaz</a></span> ", get_site_url("","", "https") ."?p=$post->ID&preview=true&key=private_preview");
+
+    return $return;
+}
+
+// Need to add filters for posts and pages.
+//add_filter('page_row_actions','row_action_copy', 10, 2);
+//add_filter('post_row_actions','row_action_copy', 10, 2);
+
+function row_action_copy($actions, $post){
+    $actions['copy_url'] = '<a href="#" data-clipboard-text="' . get_permalink($post->ID) . '" class="row-action-copy-url">Copy URL</a>';
+    $actions['show_url'] = '<a href="#" data-clipboard-text="' . get_permalink($post->ID) . '" class="row-action-copy-url">W Copy URL</a>';
+    return $actions;
+}
+
+
+/*
+
+function draft_permalink( $post) {
+    if (in_array($post->post_status, array('draft', 'pending', 'auto-draft'))) {
+        $my_post = clone $post;
+        $my_post->post_status = 'published';
+        $my_post->post_name = sanitize_title($my_post->post_name ? $my_post->post_name : $my_post->post_title, $my_post->ID);
+        $permalink = get_permalink($my_post);
+    } else {
+        $permalink = get_permalink();
+    }
+
+    return $permalink;
+}
+
+function get_draft_permalink( $url, $post, $leavename=false ) {
+
+    if ( $post->post_status == 'draft' )
+        $url = draft_permalink($post);
+
+    return $url;
+}
+add_filter( 'post_link', 'get_draft_permalink', 10, 3 );
+*/
+
+add_filter( 'tiny_mce_before_init', 'tinymce_add_chars' );
+function tinymce_add_chars( $settings ) {
+    $new_chars = json_encode( array(
+        array( '37;', '%' ),
+        array( '8224', 'Dagger' ),
+        array( '8230', 'Horizontal ellipsis' ),
+        array( '8539', '1/8 Fraction' ),
+        array( '8730', 'Square Root' ),
+        array( '8818', 'Less than or equivalent to' ),
+        array( '8819', 'Greater than or equivalent to' ),
+        array( '0963', 'Sigma' ),
+        array( '0956', 'Mu' ),
+    ) );
+    $settings['charmap_append'] = $new_chars;
+    return $settings;
+}

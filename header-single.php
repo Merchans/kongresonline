@@ -19,7 +19,6 @@
         justify-content: flex-end;
     }
 
-    <style>
      .navbar-collapse {
          justify-content: flex-end;
      }
@@ -292,14 +291,14 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
 }
 
 
-$alert = "ostatní články";
+$alert = "čtěte také";
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
 if ($url_segments[1] == "video" or $all_video)
 {
 $active_video = "chi-active";
 $category = $url_segments[2];
-$alert = __("všechny videa", "chi");
+$alert = __("všechna videa", "chi");
 ?>
 <style>
 	/*.chi-claim
@@ -344,3 +343,5 @@ $alert = __("všechny videa", "chi");
 <div <?php body_class("chi-claim"); ?>>
     <?php get_template_part("chi-category-nav-content"); ?>
 <?php get_template_part("/assets/confirms/chi-confirm"); ?>
+    <?php get_template_part("/assets/confirms/pfizer-confirm"); ?>
+

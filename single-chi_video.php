@@ -26,7 +26,6 @@ wp_head();
 	{
 		font-style: normal;
 		font-weight: normal;
-		text-align: justify;
 		font-size: 16px;
 		line-height: 26px;
 	}

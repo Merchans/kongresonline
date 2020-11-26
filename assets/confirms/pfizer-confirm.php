@@ -10,9 +10,10 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<strong>Opouštíte prostředí společnosti Pfizer PFE, spol. s r.o.</strong>
 					<p>
-						Společnost Pfizer PFE, spol. s r.o. neručí za obsah stránek, které hodláte navštívit. Přejete si pokračovat?
+						<strong>Opouštíte prostředí společnosti Pfizer, spol. s r. o.</strong><br>
+						Společnost Pfizer, spol. s r. o., neručí za&nbsp;obsah stránek, které hodláte navštívit.<br>
+						<strong>Přejete si pokračovat?</strong>
 					</p>
 				</div>
 				<div class="modal-footer d-flex justify-content-between">

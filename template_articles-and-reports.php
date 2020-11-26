@@ -42,7 +42,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                     <div class="image-credit-wrapper chi-othes-articles">
                                     <span class="image-credit chi-category-credit">
 
-                 <a href="<?php echo get_category_link( get_the_category( get_the_ID() )[0] ); ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug ?></a>
+                 <a href="<?php echo get_category_link( get_the_category( get_the_ID() )[0] ); ?>" class="chi-category__link"><?php echo get_the_category()[0]->name ?></a>
             </span>
 										<a href="<?php echo get_permalink() ?>"><?php the_post_thumbnail("medium") ?></a>
                                     </div>

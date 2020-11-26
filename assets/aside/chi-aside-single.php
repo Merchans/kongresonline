@@ -121,7 +121,7 @@ $close_end = true;
                 <div class="card-body chi-card-body">
                     <a href="<?php echo get_permalink($advert->ID)  ?>"><h6 class="card-title chi-card-title"><?php echo $advert->post_title ?></h6></a>
                     <strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name", $advert->ID)?><time class="chi-time" datetime> - <?php echo get_the_date(get_option( 'date_format' ), $advert->ID )  ?></time></strong>
-                    <p class="chi-card-text"><?php echo wp_trim_words( get_the_content("","",$advert->ID), 19) ?></p>
+                    <p class="chi-card-text"><?php echo excerpt(30); ?></p>
                 </div>
             </div>
             <?php

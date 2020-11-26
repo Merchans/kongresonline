@@ -29,7 +29,7 @@ $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 if ($url_segments[1] == "video" or $all_video) {
     $active_video = "chi-active";
     $category_slug     = $url_segments[2];
-    $alert        = __("všechny videa", "chi");
+    $alert        = __("všechna videa", "chi");
 }
 
 
@@ -127,11 +127,18 @@ if ($all_video)
 								<a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
                                 <div class="d-flex flex-row">
                                     <div class="chi-tag text-uppercase">
-                                        <a href="" class="chi-tag_link">2:23</a>
+										<a href="<?php echo get_permalink(); ?>" class="chi-tag_link"><?php echo chi_video_time()[0]; ?></a>
                                     </div>
-                                    <div class="chi-category text-uppercase">
-                                        <a href="#" class="chi-category__link">dianews.cz</a>
-                                    </div>
+									<?php $terms = get_the_tags(); ?>
+									<?php if (! empty($terms) ) { ?>
+										<?php if (is_array($terms) && ! empty($terms)) { ?>
+											<div class="chi-category text-uppercase chi-media-container_child">
+												<?php $url = get_tag_link($terms[0]->term_id); ?>
+												<a href="<?php echo $url; ?>"
+												   class="chi-category__link"><?php echo $terms[0]->name; ?></a>
+											</div>
+										<?php } ?>
+									<?php } ?>
                                 </div>
                             </div>
                             <div class="card-body chi-card-body">
@@ -151,6 +158,10 @@ if ($all_video)
                     </div>
 					<div class="col-md-6">
                         <?php
+						$args_one_video_or_post = array("post_type" => array("chi_video", "post"), "posts_per_page" => 1, "category_name" => $category_slug, "post_status" => "publish");
+						$first_video_or_post_or_post = new  WP_Query($args_one_video_or_post);
+						$not_in_main_loop[] = $first_video_or_post_or_post->posts[0]->ID ;
+						
                         $args = array(
                             'post_type'      => 'chi_video',
                             'post__not_in'   => $not_in_main_loop,
@@ -203,7 +214,7 @@ if ($all_video)
 					</div>
 					<a href="<?php echo $video ?>" class="chi-more-videos-btn">
 		<span class="chi-more-videos-btn__text">
-			<?php _e("další videa") ?>
+			<?php _e("Další videa") ?>
 		</span>
 					</a>
                 </div>
@@ -240,7 +251,7 @@ if ($all_video)
 									<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
 										<time class="chi-time"><?php the_time(get_option("date_format")) ?></time>
 									</strong>
-									<p class="chi-card-text"><?php echo excerpt(25) ?></p>
+									<p class="chi-card-text"><?php echo excerpt(30) ?></p>
 								</div>
 							</li>
                         <?php endwhile ?>
@@ -275,6 +286,7 @@ if ($all_video)
                         'hide_empty' => false,
                         'hide_empty' => 0,
                         'parent' => $kvaz_id,
+						'exclude' => array( 51 ),
                     ) );
                     ?>
                     <?php if ( $kavaz_childs && !empty($kavaz_childs)) {?>

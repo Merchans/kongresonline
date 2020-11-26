@@ -31,7 +31,6 @@ wp_head();
 	{
 		font-style: normal;
 		font-weight: normal;
-		text-align: justify;
 		font-size: 16px;
 		line-height: 26px;
 	}
@@ -132,7 +131,7 @@ wp_head();
 					<div class="others-articles">
 						<div class="d-flex h-20 mt-5">
 							<div class="chi-tag text-uppercase mr-auto p-2">
-								<span class="chi-tag_link">ostatní články</span>
+								<span class="chi-tag_link">čtěte také</span>
 							</div>
 						</div>
 						<hr class="divider mt-0">

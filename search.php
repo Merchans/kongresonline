@@ -52,7 +52,7 @@ $num = 0;
 							<li class="media">
 								<div class="image-credit-wrapper chi-othes-articles">
                                     <span class="image-credit chi-category-credit">
-                <a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug; ?></a>
+                <a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->name; ?></a>
             </span>
 									<?php 	if (has_post_thumbnail()) { ?> <a href="<?php echo get_permalink() ?>"> <?php the_post_thumbnail( 'full' ); } ?> </a>
 								</div>
@@ -86,7 +86,7 @@ $num = 0;
 									<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-75 chi-media-container_child">
 									</a>
 									<div class="chi-category text-uppercase chi-media-container_child">
-										<a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug; ?></a>
+										<a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->name; ?></a>
 									</div>
 									<div class="chi-tag text-uppercase chi-media-container_child">
 										<a href="<?php echo get_permalink(); ?>" class="chi-tag_link"><?php echo chi_video_time()[0];  ?></a>
@@ -118,7 +118,7 @@ $num = 0;
 								<li class="media">
 									<div class="image-credit-wrapper chi-othes-articles">
                                     <span class="image-credit chi-category-credit">
-                <a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug; ?></a>
+                <a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category()[0]->name; ?></a>
             </span>
                                         <?php 	if (has_post_thumbnail()) { ?> <a href="<?php echo get_permalink() ?>"> <?php the_post_thumbnail( 'full' ); } ?> </a>
 									</div>

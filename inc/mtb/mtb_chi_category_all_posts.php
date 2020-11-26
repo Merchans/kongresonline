@@ -42,9 +42,7 @@ add_action('edited_category', 'chi_selected_thems_in_category_save');
 function chi_selected_thems_in_category_save( $term_id  )
 {
 
-
     if (isset( $_POST['chi_selected_thems_in_category'] ) && '' !== $_POST['chi_selected_thems_in_category']  ) {
-
         $sanitized_data_posts = array();
         delete_term_meta( $term_id, 'chi_selected_thems_in_category');
         $data_posts = (array)$_POST['chi_selected_thems_in_category'];

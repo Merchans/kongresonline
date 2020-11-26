@@ -24,7 +24,9 @@ function ticket_directors_to_movies_meta_options($post)
     $ticket_directors_loop = get_posts($args);
 
 
-	(array)$chi_advertising_horizontal_values = get_post_meta($post->ID, '_chi_advertising_horizontals', true); ?>
+	(array)$chi_advertising_horizontal_values = get_post_meta($post->ID, '_chi_advertising_horizontals', true);
+
+	?>
 
     <br>
     <p><strong>Vyberte všechny horizontální inzerce</strong></p>
@@ -34,7 +36,17 @@ function ticket_directors_to_movies_meta_options($post)
         foreach ($ticket_directors_loop as $ticket_director) {
             $dir_id = $ticket_director->ID;
 			$print = true;
-			$selected = in_array($dir_id, $chi_advertising_horizontal_values) ? 'selected="selected"' : '';
+
+            if ( empty($chi_advertising_horizontal_values) )
+            {
+                $selected = '';
+            }
+            else
+			{
+                $selected = in_array($dir_id, $chi_advertising_horizontal_values) ? 'selected="selected"' : '';
+			}
+
+
             ?>
             <option <?php echo $selected?> value="<?php echo $dir_id ?>">
                 <?php echo $ticket_director->post_title; ?>
@@ -56,7 +68,16 @@ function ticket_directors_to_movies_meta_options($post)
             $dir_id = $ticket_actor->ID;
             $print = true;
 
-			$selected = (in_array($dir_id, $chi_advertising_vertical_values)) ? 'selected="selected"' : '';
+
+
+            if ( empty($chi_advertising_vertical_values) )
+            {
+                $selected = '';
+            }
+            else
+            {
+                $selected = (in_array($dir_id, $chi_advertising_vertical_values)) ? 'selected="selected"' : '';
+            }
             ?>
             <option <?php echo $selected;?> value="<?php echo $dir_id ?>">
                 <?php echo $ticket_actor->post_title; ?>
@@ -69,6 +90,7 @@ function ticket_directors_to_movies_meta_options($post)
 }
 
 
+
 /**
  * Hooks into WordPress' save_post function
  */
@@ -76,16 +98,20 @@ add_action('save_post', 'ticket_movies_save_post');
 //add_action('pre_get_scheduled_event', 'ticket_movies_save_post');
 
 // https://wordpress.stackexchange.com/questions/288501/meta-value-does-not-save-for-scheduled-posts
-function die_bitch()
-{
-	die("I am DEATH!!");
-}
+
 function ticket_movies_save_post(  )
 {
     global $post;
 
-	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
-        return $post->ID;
+    $nonce = $_POST['ticket_directors_to_movies_meta_options_nonce'];
+    if ( !wp_verify_nonce( $nonce, 'ticket_directors_to_movies_meta_options' ) )
+        return;
+
+    if ( !isset( $_POST['chi_advertising_horizontal']) && !isset( $_POST['chi_advertising_vertical']  ) )
+        return;
+
+    if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
+        return;
     }
 
     if ( isset( $_POST['chi_advertising_horizontal'] ) && !empty($_POST['chi_advertising_horizontal'] )) {

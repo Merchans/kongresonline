@@ -33,7 +33,7 @@ wp_head();
                         ?>
                         <?php if (have_posts()) : ?>
                             <?php while (have_posts()) : the_post() ?>
-                                <?php $categories = get_the_category()[0]->slug; ?>
+                                <?php $categories = get_the_category()[0]->name; ?>
                                 <div class="col-md-4">
                                     <div class="chi-video-box">
 										<div class="chi-video position-relative" >

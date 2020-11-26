@@ -839,13 +839,11 @@ figcaption {
   font-size: 16px;
   line-height: 26px;
   color: #626262;
-  text-align: justify;
 }
 
 .chi-paragrapg {
   font-style: normal;
   font-weight: normal;
-  text-align: justify;
   font-size: 16px;
   line-height: 26px;
   color: #626262;
@@ -933,7 +931,7 @@ figcaption {
 
 .chi-absolute {
   position: absolute;
-  top: -350px;
+  top: -338px;
 }
 @media screen and (max-width: 991px) {
   .chi-absolute {

@@ -78,7 +78,7 @@
 					<div class="">
 						<ul class="list-inline m-0">
 							<li class="list-inline-item"><span >Videa ze speciálů</span></li>
-							<li class="list-inline-item "><span class="chi-active-link">Všechny videa</span></li>
+							<li class="list-inline-item "><span class="chi-active-link">všechna videa</span></li>
 						</ul>
 					</div>
 				</div>
@@ -177,7 +177,7 @@
 				<div class="others-articles">
 					<div class="d-flex h-20 mt-5">
 						<div class="chi-tag text-uppercase mr-auto p-2">
-							<a href="#" class="chi-tag_link">ostatní články</a>
+							<a href="#" class="chi-tag_link">čtěte také</a>
 						</div>
 					</div>
 					<hr class="divider mt-0">

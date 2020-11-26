@@ -8,7 +8,7 @@ function chi_selected_articles_or_video()
     add_meta_box
     (
         "all-posts-thems-meta",
-        "Vhodné témata",
+        "Vhodná témata",
         "chi_selected_articles_or_videos_meta_options",
         $screen,
         "side",
@@ -34,7 +34,16 @@ function chi_selected_articles_or_videos_meta_options($post)
         foreach ($chi_posts_loop as $chi_post) {
             $dir_id = $chi_post->ID;
 
-            $selected = (in_array($dir_id, $chi_selected_articles_or_videos_values)) ? 'selected="selected"' : '';  $print = true;
+           $print = true;
+
+            if ( empty($chi_selected_articles_or_videos_values) )
+            {
+                $selected = '';
+            }
+            else
+            {
+                $selected = (in_array($dir_id, $chi_selected_articles_or_videos_values)) ? 'selected="selected"' : '';
+            }
             ?>
             <option <?php echo $selected;?> value="<?php echo $dir_id ?>">
                 <?php echo $chi_post->post_title; ?>
@@ -51,8 +60,16 @@ function chi_selected_articles_or_videos_meta_options($post)
  * Hooks into WordPress' save_post function
  */
 add_action('save_post', 'chi_selected_articles_or_video_save');
-function chi_selected_articles_or_video_save( $post_id )
+function chi_selected_articles_or_video_save(  )
 {
+
+	global $post;
+
+	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
+		return $post;
+	}
+
+
     if ( isset( $_POST['chi_selected_articles_or_videos'] ) && !empty($_POST['chi_selected_articles_or_videos']) ) {
 
         $sanitized_data_posts = array();
@@ -63,11 +80,15 @@ function chi_selected_articles_or_video_save( $post_id )
             $sanitized_data_posts[$key] = (int)strip_tags(stripslashes($value));
         }
 
-        update_post_meta($post_id, '_chi_selected_articles_or_videoss', $sanitized_data_posts);
+        update_post_meta($post->ID, '_chi_selected_articles_or_videoss', $sanitized_data_posts);
     }
+    else if (!isset( $_POST['chi_selected_articles_or_videos'] ) && empty($_POST['chi_selected_articles_or_videos']))
+    {
+		return;
+	}
     else
     {
-        delete_post_meta( $post_id, '_chi_selected_articles_or_videoss');
+        delete_post_meta( $post->ID, '_chi_selected_articles_or_videoss');
     }
 
 }

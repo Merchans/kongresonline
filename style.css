@@ -329,7 +329,7 @@ label {
 	font-size: 12px;
 	font-weight: 700;
 	padding: 0 10px;
-	height: 20px;
+	min-height: 20px;
 	text-align: center;
 	background: #E30613;
 	justify-content: center;
@@ -369,24 +369,26 @@ label {
 
 .chi-category {
 	display: inline-block;
-	padding: 0 10px;
-	height: 20px;
+	padding: 0 8px;
+	min-height: 20px;
 	left: 468px;
 	top: 526px;
 	background: #FFFFFF;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	max-width: 120px;
 }
 
 .chi-category__link {
-	height: 15px;
+	min-height: 15px;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 12px;
 	line-height: 15px;
 	text-transform: uppercase;
 	color: #E30613;
+	/*text-align: center;*/
 }
 
 .chi-category__link a:hover {
@@ -413,6 +415,9 @@ label {
 	height: 20px;
 }
 
+.h-70{
+	height: 70%!important;
+}
 .chi-active-link {
 	font-weight: 700;
 	color: black;
@@ -1095,6 +1100,11 @@ a.next.page-numbers:hover {
 	text-decoration: underline;
 }
 
+.post_content a
+{
+	text-decoration: underline;
+}
+
 .chi-paragrapg a:hover {
 	text-decoration: none;
 }
@@ -1459,7 +1469,7 @@ input[type=checkbox]:checked:after {
 	margin-bottom: 3px;
 	line-height: 1em;
 	font-size: 1.06599999em;
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 
 .news-from-congress__item a
@@ -1560,7 +1570,7 @@ a.chi-title-white:hover
 
 .congress-box
 {
-	padding: 28px 37px;
+	/*padding: 28px 37px;*/
 	height: 250px;
 	overflow: auto;
 }

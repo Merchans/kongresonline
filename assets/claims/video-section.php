@@ -15,7 +15,7 @@ if (strpos($only_articles, "?clanky-a-reportaze")) {
 
 $first_video = new  WP_Query();
 
-$alert = __("všechny videa", "chi");
+$alert = __("všechna videa", "chi");
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
 $show_diw = 1;
@@ -150,7 +150,7 @@ if ( ( get_term_meta( $category_ID, '_chi_selected_one_options' )[0] ) == 3 )
     </div>
 	<a href="<?php echo $video ?>" class="chi-more-videos-btn">
 		<span class="chi-more-videos-btn__text">
-			<?php _e("další videa") ?>
+			<?php _e("Další videa") ?>
 		</span>
 	</a>
 	<?php  if($show_diw)

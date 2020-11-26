@@ -2,7 +2,7 @@
 
 if (isset($_GET["company"]) && $_GET["company"] == "pfizer"  )
 {
-	$url = "/?company=pfizer";
+	$url = "?company=pfizerOK";
 }
 else
 {
@@ -24,7 +24,7 @@ else
 				<input type="checkbox"  id="customCheck1" checked required >
 				<label  for="customCheck1" class="chi-lable">Jsem odborníkem ve zdravotnictví</label>
 			</div>
-			<a href="<?php echo $url ?>" id="chi-submit" type="submit" class="btn chi-btn-more-acticle mx-auto w-100">Potvrzuji</a>
+			<a href="#" id="chi-submit" type="submit" class="btn chi-btn-more-acticle mx-auto w-100">Potvrzuji</a>
 		</form>
 	</div>
 </div>

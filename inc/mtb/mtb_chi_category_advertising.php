@@ -21,7 +21,15 @@ function chi_selected_in_category_advertising_horizontal($post)
                 foreach ($chi_posts_loop as $chi_post) {
                     $dir_id = $chi_post->ID;
 
-                    $selected = (in_array($dir_id, $chi_selected_in_category_advertising_horizontal_values)) ? 'selected="selected"' : '';  $print = true;
+                    $print = true;
+                    if ( empty($chi_selected_in_category_advertising_horizontal_values) )
+                    {
+                        $selected = '';
+                    }
+                    else
+                    {
+                        $selected = (in_array($dir_id, $chi_selected_in_category_advertising_horizontal_values)) ? 'selected="selected"' : '';
+                    }
                     ?>
                     <option <?php echo $selected;?> value="<?php echo $dir_id ?>">
                         <?php echo $chi_post->post_title; ?>
@@ -40,13 +48,19 @@ function chi_selected_in_category_advertising_horizontal($post)
  * Hooks into WordPress' save_post function
  */
 add_action('edited_category', 'chi_selected_in_category_advertising_horizontal_save');
-function chi_selected_in_category_advertising_horizontal_save( $term_id  )
+
+function chi_selected_in_category_advertising_horizontal_save( $post  )
 {
+	//global $post;
+
+	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
+		return $post;
+	}
 
     if (isset( $_POST['chi_selected_in_category_advertising_horizontal'] ) && '' !== $_POST['chi_selected_in_category_advertising_horizontal']  ) {
 
         $sanitized_data_posts = array();
-        delete_term_meta( $term_id, 'chi_selected_in_category_advertising_horizontal');
+        delete_term_meta( $post, 'chi_selected_in_category_advertising_horizontal');
         $data_posts = (array)$_POST['chi_selected_in_category_advertising_horizontal'];
 
         foreach ( $data_posts as $key => $value) {
@@ -54,11 +68,11 @@ function chi_selected_in_category_advertising_horizontal_save( $term_id  )
         }
 
         $image = $_POST['chi_selected_in_category_advertising_horizontal'];
-        add_term_meta( $term_id, 'chi_selected_in_category_advertising_horizontal', $image, true );
+        add_term_meta( $post, 'chi_selected_in_category_advertising_horizontal', $image, true );
     }
     else
     {
-        delete_term_meta( $term_id, 'chi_selected_in_category_advertising_horizontal');
+        delete_term_meta( $post, 'chi_selected_in_category_advertising_horizontal');
     }
 
 }
@@ -104,13 +118,18 @@ function chi_selected_in_category_advertising_vertical($post)
  * Hooks into WordPress' save_post function
  */
 add_action('edited_category', 'chi_selected_in_category_advertising_vertical_save');
-function chi_selected_in_category_advertising_vertical_save( $term_id  )
+function chi_selected_in_category_advertising_vertical_save( $post  )
 {
+	//global $post;
+
+	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
+		return $post;
+	}
 
     if (isset( $_POST['chi_selected_in_category_advertising_vertical'] ) && '' !== $_POST['chi_selected_in_category_advertising_vertical']  ) {
 
         $sanitized_data_posts = array();
-        delete_term_meta( $term_id, 'chi_selected_in_category_advertising_vertical');
+        delete_term_meta($post , 'chi_selected_in_category_advertising_vertical');
         $data_posts = (array)$_POST['chi_selected_in_category_advertising_vertical'];
 
         foreach ( $data_posts as $key => $value) {
@@ -118,11 +137,11 @@ function chi_selected_in_category_advertising_vertical_save( $term_id  )
         }
 
         $image = $_POST['chi_selected_in_category_advertising_vertical'];
-        add_term_meta( $term_id, 'chi_selected_in_category_advertising_vertical', $image, true );
+        add_term_meta( $post, 'chi_selected_in_category_advertising_vertical', $image, true );
     }
     else
     {
-        delete_term_meta( $term_id, 'chi_selected_in_category_advertising_vertical');
+        delete_term_meta( $post, 'chi_selected_in_category_advertising_vertical');
     }
 
 }

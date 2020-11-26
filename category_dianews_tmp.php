@@ -24,13 +24,13 @@ if (strpos($only_articles, "?clanky-a-reportaze")) {
 }
 
 
-$alert = __("všechny videa", "chi");
+$alert = __("všechna videa", "chi");
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
 if ($url_segments[1] == "video" or $all_video) {
     $active_video = "chi-active";
     $category     = $url_segments[2];
-    $alert        = __("všechny videa", "chi");
+    $alert        = __("všechna videa", "chi");
     ?>
 	<style>
 		.chi-claim {
@@ -114,8 +114,7 @@ $first_video = new  WP_Query();
 													<time class="chi-time"><?php the_time(get_option("date_format")) ?></time>
 												</strong>
                                                 <?php $moreLink = '<a href="' . get_permalink() . '">...</a>'; ?>
-												<p class="chi-card-text"><?php echo wp_trim_words(get_the_content(), 28,
-                                                        $moreLink) ?></p>
+												<p class="chi-card-text"><?php echo excerpt(30); ?></p>
 											</div>
 										</div>
 									</div>
@@ -203,8 +202,7 @@ $first_video = new  WP_Query();
 											<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
 												<time class="chi-time"><?php the_time(get_option("date_format")) ?></time>
 											</strong>
-											<p class="chi-card-text"><?php echo wp_trim_words(get_the_content(),
-                                                    25) ?></p>
+											<p class="chi-card-text"><?php echo excerpt(30); ?></p>
 										</div>
 									</li>
                                 <?php endwhile ?>

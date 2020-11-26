@@ -50,7 +50,7 @@ $close_end = true;
                         <div class="image-credit-wrapper">
                                         <span class="image-credit chi-category-credit">
 
-                <a href="<?php echo get_chi_make_specilal_form_category($advert->ID); ?>" class="chi-category__link"><?php echo get_the_category($advert->ID)[0]->slug ?></a>
+                <a href="<?php echo get_chi_make_specilal_form_category($advert->ID); ?>" class="chi-category__link"><?php echo get_the_category($advert->ID)[0]->name ?></a>
             </span>
 							<a href="<?php echo get_permalink($advert->ID); ?>"> <?php
                             echo get_the_post_thumbnail($advert->ID,"small");
@@ -87,7 +87,7 @@ $close_end = true;
                 <hr class="divider mt-0">
                 <div class="card chi-card--borner-none chi-card">
                     <div class="chi-box-1 chi-card--box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($advert->ID) ?>) no-repeat center center; background-size: cover;">
-						<a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
+						<a href="<?php echo get_permalink($advert->ID); ?>" class="d-block w-100 h-100"></a>
                         <div class="d-flex flex-row">
                             <?php
 
@@ -102,14 +102,14 @@ $close_end = true;
 
                             ?>
                             <div class="chi-category text-uppercase">
-                                <a href="<?php echo get_chi_make_specilal_form_category($advert->ID); ?>" class="chi-category__link"><?php echo get_the_category($advert->ID)[0]->slug ?></a>
+                                <a href="<?php echo get_chi_make_specilal_form_category($advert->ID); ?>" class="chi-category__link"><?php echo get_the_category($advert->ID)[0]->name ?></a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body chi-card-body">
                         <a href="<?php echo get_permalink($advert->ID)  ?>"><h6 class="card-title chi-card-title"><?php echo $advert->post_title ?></h6></a>
                         <strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name", $advert->ID)?><time class="chi-time" datetime> <?php echo get_the_date(get_option( 'date_format' ), $advert->ID )  ?></time></strong>
-                        <p class="chi-card-text"><?php echo wp_trim_words( get_the_content("","",$advert->ID), 19) ?></p>
+                        <p class="chi-card-text"><?php echo excerpt(30); ?></p>
                     </div>
                 </div>
                 <?php

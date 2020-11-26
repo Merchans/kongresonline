@@ -1074,13 +1074,11 @@ a.next.page-numbers:hover {
   font-size: 16px;
   line-height: 26px;
   color: #212529;
-  text-align: justify;
 }
 
 .chi-paragrapg {
   font-style: normal;
   font-weight: normal;
-  text-align: justify;
   font-size: 16px;
   line-height: 26px;
   color: #212529;
@@ -1521,7 +1519,7 @@ input[type=checkbox]:checked:after {
 
 .congress-box
 {
-  padding: 28px 37px;
+  /*padding: 28px 37px;*/
   height: 250px;
   overflow: auto;
 }

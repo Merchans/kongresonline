@@ -33,7 +33,7 @@ wp_head();
                         ?>
                         <?php if (have_posts()) : ?>
                             <?php while (have_posts()) : the_post() ?>
-                                <?php $categories = get_the_category()[0]->slug; ?>
+                                <?php $categories = get_the_category()[0]->name; ?>
                                 <div class="col-md-4">
                                     <div class="chi-video-box">
                                         <div class="chi-video position-relative" >
@@ -102,7 +102,7 @@ wp_head();
 										<div class="image-credit-wrapper">
                                         <span class="image-credit chi-category-credit">
 
-                <a href="<?php echo get_chi_make_specilal_form_category($advert->ID); ?>" class="chi-category__link"><?php echo get_the_category($advert->ID)[0]->slug ?></a>
+                <a href="<?php echo get_chi_make_specilal_form_category($advert->ID); ?>" class="chi-category__link"><?php echo get_the_category($advert->ID)[0]->name ?></a>
             </span>
                                             <?php
                                             echo get_the_post_thumbnail($advert->ID,"small");
@@ -160,7 +160,7 @@ wp_head();
 									<div class="card-body chi-card-body">
 										<a href="<?php echo get_permalink($advert->ID)  ?>"><h6 class="card-title chi-card-title"><?php echo $advert->post_title ?></h6></a>
 										<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name", $advert->ID)?><time class="chi-time" datetime> - <?php echo get_the_date(get_option( 'date_format' ), $advert->ID )  ?></time></strong>
-										<p class="chi-card-text"><?php echo wp_trim_words( get_the_content("","",$advert->ID), 19) ?></p>
+										<p class="chi-card-text"><?php echo excerpt(30); ?></p>
 									</div>
 								</div>
                                 <?php

@@ -71,14 +71,18 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
     <?php echo category_description( 17 ); ?>
 </div>
 <main>
+
     <div class="container chi-bg-white">
         <div class="row row--white">
+				<div class="col-12">
+					<h3 class="text-center mt-30px"><?php echo single_term_title(); ?></h3>
+				</div>
             <?php if (have_posts()) : ?>
                 <div class="col-md-9 chi-video-section mt-30px">
                     <div class="others-articles">
                         <div class="d-flex h-20 ">
                             <div class="chi-tag text-uppercase mr-auto p-2">
-                                <span class="chi-tag_link" id="ostatni-clanky">ČLÁNKY A REPORTÁŽE</span>
+                                <span class="chi-tag_link" id="ostatni-clanky">Články a videa</span>
                             </div>
                         </div>
                         <hr class="divider mt-0">
@@ -106,12 +110,15 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
                                     <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
                                         <time class="chi-time"><?php the_time(get_option("date_format")) ?></time>
                                     </strong>
-                                    <p class="chi-card-text"><?php echo excerpt(25) ?></p>
+                                    <p class="chi-card-text"><?php echo excerpt(30) ?></p>
                                 </div>
                             </li>
                         <?php endwhile ?>
                         </ul>
                     </div>
+					<div class="others-articles mt-3">
+                        <?php get_template_part("chi-blog-pages"); ?>
+					</div>
                 </div>
                 <div class="col-md-3 mt-30px">
                     <div class="advertisment-col">
@@ -125,7 +132,8 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
                         $terms = get_terms( array(
                             'taxonomy' => 'congress',
                             'hide_empty' => false,
-                            'slug'	=> 'kardiovaskularni-zpravodajstvi'
+                            'slug'	=> 'kardiovaskularni-zpravodajstvi',
+							'exclude' => array( 51 ),
                         ) );
 
                         $kvaz_id = $terms[0]->term_taxonomy_id;
@@ -135,11 +143,13 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
                             'hide_empty' => false,
                             'hide_empty' => 0,
                             'parent' => $kvaz_id,
+							'exclude' => array( 51 ),
                         ) );
                         ?>
                         <?php if ( $kavaz_childs && !empty($kavaz_childs)) {?>
                             <ul class="news-from-congress-container">
                                 <?php  foreach ($kavaz_childs as $kavaz_child) { ?>
+
                                     <li class="news-from-congress__item">
                                         <a href="<?php echo get_term_link($kavaz_child->term_id) ?>">
                                             <?php echo $kavaz_child->name; ?>

@@ -26,7 +26,6 @@ wp_head();
         {
             font-style: normal;
             font-weight: normal;
-            text-align: justify;
             font-size: 16px;
             line-height: 26px;
         }
@@ -114,10 +113,13 @@ wp_head();
                 <?php } ?>
             </div>
             <hr class="divider mt-0">
-            <div class="embed-responsive embed-responsive-16by9 mb-3"><iframe class="embed-responsive-item" src="<?php echo get_post_meta( get_the_ID() )["video_meta_box_video-url"][0] ?>" width="960" height="540" allowfullscreen="allowfullscreen"></iframe></div>
             <h1 class="chi-article-title"><?php the_title();?></h1>
             <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
-            <?php the_content(); ?>
+			<div class="post_content">
+				<?php the_content(); ?>
+			</div>
+            <hr class="divider mt-0">
+            <div class="embed-responsive embed-responsive-16by9 mb-3"><iframe class="embed-responsive-item" src="<?php echo get_post_meta( get_the_ID() )["video_meta_box_video-url"][0] ?>" width="960" height="540" allowfullscreen="allowfullscreen"></iframe></div>
             <?php $id = get_the_ID();
             $advertising_ids = get_post_meta( $id, "_chi_advertising_horizontals");
             if ( count($advertising_ids) > 0 && ! empty($advertising_ids))
@@ -223,6 +225,7 @@ wp_head();
                 'taxonomy' => 'congress',
                 'hide_empty' => false,
                 'slug'	=> 'kardiovaskularni-zpravodajstvi'
+
             ) );
 
             $kvaz_id = $terms[0]->term_taxonomy_id;
@@ -232,6 +235,7 @@ wp_head();
                 'hide_empty' => false,
                 'hide_empty' => 0,
                 'parent' => $kvaz_id,
+                'exclude' => array( 51 ),
             ) );
             ?>
             <?php if ( $kavaz_childs && !empty($kavaz_childs)) {?>

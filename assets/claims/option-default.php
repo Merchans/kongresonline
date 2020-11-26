@@ -24,7 +24,7 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
 }
 
 
-$alert = "ostatní články";
+$alert = "čtěte také";
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
 if ($url_segments[1] == "video" or $all_video)

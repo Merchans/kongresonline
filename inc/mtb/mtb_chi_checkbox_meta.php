@@ -59,7 +59,7 @@ function add_featured_image_display_settings($content, $post_id)
         '<p><label for="%1$s"><input type="checkbox" name="%1$s" id="%1$s" value="%2$s" %3$s> %4$s</label></p>',
         $field_id, $field_value, $field_state, $field_text
     );
-    
+
     return $content .= $field_label;
 
 }
@@ -68,10 +68,27 @@ add_filter('admin_post_thumbnail_html', 'add_featured_image_display_settings', 1
 
 function save_featured_image_display_settings($post_ID, $post, $update)
 {
+    global $post;
+    $is_revision = wp_is_post_revision($post);
     $field_id    = 'show_featured_image';
+    $valuse = get_post_meta($post->ID, $field_id, true);
+
+
     $field_value = isset($_REQUEST[$field_id]) ? 1 : 0;
 
-    update_post_meta($post_ID, $field_id, $field_value);
+    if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE || $is_revision )
+    {
+        return;
+    }
+
+
+    if ( $field_value != 1 )
+    {
+        update_post_meta( $post->ID, $field_id, $field_value);
+        return;
+    }
+
+    update_post_meta( $post->ID, $field_id, $field_value);
 }
 
 add_action('save_post', 'save_featured_image_display_settings', 10, 3);

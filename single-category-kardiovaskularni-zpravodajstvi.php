@@ -31,7 +31,6 @@ wp_head();
 		{
 			font-style: normal;
 			font-weight: normal;
-			text-align: justify;
 			font-size: 16px;
 			line-height: 26px;
 		}
@@ -137,7 +136,9 @@ wp_head();
             <?php
         }
         ?>
-        <?php the_content()?>
+			<div class="post_content">
+				<?php the_content()?>
+			</div>
         <?php
 
         $id = get_the_ID();
@@ -169,7 +170,7 @@ wp_head();
 	<div class="others-articles">
 		<div class="d-flex h-20 mt-5">
 			<div class="chi-tag text-uppercase mr-auto p-2">
-				<span class="chi-tag_link">ostatní články</span>
+				<span class="chi-tag_link">čtěte také</span>
 			</div>
 		</div>
 		<hr class="divider mt-0">
@@ -250,6 +251,7 @@ wp_head();
                 'hide_empty' => false,
                 'hide_empty' => 0,
                 'parent' => $kvaz_id,
+				'exclude' => array( 51 ),
             ) );
             ?>
             <?php if ( $kavaz_childs && !empty($kavaz_childs)) {?>

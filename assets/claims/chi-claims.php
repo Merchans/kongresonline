@@ -15,14 +15,14 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
 }
 
 
-$alert = "ostatní články";
+$alert = "čtěte také";
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 
 if ($url_segments[1] == "video" or $all_video)
 {
     $active_video = "chi-active";
     $category = $url_segments[2];
-    $alert = __("všechny videa", "chi");
+    $alert = __("všechna videa", "chi");
     ?>
     <style>
         .chi-claim
@@ -65,7 +65,7 @@ if ($all_video)
     $ids_not_in_main_loop = wp_list_pluck( $first_video->posts, 'ID' );
 
     $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_page" => 2, "category_name" => $category, "post__not_in" => [$ids_not_in_main_loop[0]]);
-    
+
 
     ?>
     <?php chi_special_logo(); ?>

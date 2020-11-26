@@ -15,7 +15,7 @@ if (strpos($only_articles, "?clanky-a-reportaze"))
     $active_article = "chi-active";
 }
 
-$alert = "ostatní články";
+$alert = "čtěte také";
 $all_video = is_integer(strpos($only_articles, "?clanky-a-reportaze"));
 if ($all_video)
 {

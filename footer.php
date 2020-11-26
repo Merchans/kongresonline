@@ -48,15 +48,24 @@
 
 		document.getElementById("pfizer-confirm-yes").addEventListener("click",
 			function (e) {
-				var myNewURL = "?company=pfizerOK";//the new URL
-				window.history.pushState("object or string", "Title", "/" + myNewURL );
+				//var myNewURL = "?company=pfizerOK";//the new URL
+				//window.history.pushState("object or string", "Title", myNewURL );
 				$("#pfizerPopupContainer").fadeOut();
 			});
 
 		document.getElementById("pfizer-confirm-no").addEventListener("click",function () {
 			window.location.replace("http://google.com");
 		});
-	})
+
+	});
 </script>
 
+<!--<script>
+	jQuery(function ($) { $('h1, h2, h3, h4, h5, h6, p').each(function(index, value){
+		var str = $(this).html();
+		str = str.replace(/(\s|^)(a|i|o|u|k|s|v|z|A|I|O|U|K|S|V|Z|by|co|či|do|je|ke|ku|na|no|od|po|se|ta|to|ve|za|ze|že|aby|byl|což|jen|když|kde|kdy|který|která|které|nad|pod|pro|před|při|tak|Co|Či|Do|Je|Ke|Ku|Na|No|Od|Po|Se|Ta|To|Ve|Za|Ze|Že|Aby|Byl|Což|Jen|Když|Kde|Kdy|Který|Která|Které|Nad|Pod|Pro|Před|Při|Tak)(\s+)([^\p{Cc}\p{Cf}\p{zL}\p{Zp}]+)/gmi , '$1$2&nbsp;$4');
+		$(this).html(str);
+		console.log(str);
+	})});
+</script> -->
 </html>

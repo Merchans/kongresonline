@@ -158,12 +158,12 @@ $first_video_ID = $first_video->posts[0]->ID;
                                     ?> border-bottom">
 										<div class="media chi-media position-relative p-0">
 											<div class="d-flex flex-row align-items-end chi-media-img justify-content-between chi-media-container" style="background: url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center; background-size: cover;">
-												<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-75 chi-media-container_child">
+												<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-70 !!chi-media-container_child!!">
 												</a>
-												<div class="chi-category text-uppercase chi-media-container_child">
+												<div class="chi-category text-uppercase !!chi-media-container_child!!">
 													<a href="<?php echo get_category_link($categories_ID);  ?>" class="chi-category__link"><?php echo $categories[0]->name;?></a>
 												</div>
-												<div class="chi-tag text-uppercase chi-media-container_child">
+												<div class="chi-tag text-uppercase !!chi-media-container_child!!">
 													<a href="<?php echo get_permalink(); ?>" class="chi-tag_link"><?php echo chi_video_time()[0];  ?></a>
 												</div>
 											</div>
@@ -181,14 +181,14 @@ $first_video_ID = $first_video->posts[0]->ID;
 						</div>
 						<a href="/videa" class="chi-more-videos-btn">
 		<span class="chi-more-videos-btn__text">
-			<?php _e("další videa") ?>
+			<?php _e("Další videa") ?>
 		</span>
 						</a>
 					</div>
                     <div class="others-articles">
                         <div class="d-flex h-20">
                             <div class="chi-tag text-uppercase mr-auto p-2">
-                                <a href="/clanky-a-reportaze" class="chi-tag_link" id="ostatni-clanky">ostatní články</a>
+                                <a href="/clanky-a-reportaze" class="chi-tag_link" id="ostatni-clanky">čtěte také</a>
                             </div>
                         </div>
                         <hr class="divider mt-0">
@@ -214,7 +214,7 @@ $first_video_ID = $first_video->posts[0]->ID;
 										<div class="image-credit-wrapper chi-othes-articles">
                                     <span class="image-credit chi-category-credit">
 
-                 <a href="<?php echo get_category_link( get_the_category( get_the_ID() )[0] ); ?>" class="chi-category__link"><?php echo get_the_category()[0]->slug ?></a>
+                 <a href="<?php echo get_category_link( get_the_category( get_the_ID() )[0] ); ?>" class="chi-category__link"><?php echo get_the_category()[0]->name ?></a>
             </span>
 											<a href="<?php echo get_permalink() ?>"><?php the_post_thumbnail("medium") ?></a>
 										</div>

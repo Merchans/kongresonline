@@ -138,7 +138,7 @@ if (count($advertising_ids) > 0 && ! empty($advertising_ids)) {
 											- <?php echo get_the_date(get_option('date_format'),
                                                 $advert->ID) ?></time>
 									</strong>
-									<p class="chi-card-text"><?php echo excerpt(29); ?></p>
+									<p class="chi-card-text"><?php echo excerpt(30); ?></p>
 								</div>
 							</div>
                             <?php

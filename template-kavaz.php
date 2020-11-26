@@ -97,13 +97,23 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
                             'hide_empty' => false,
                             'hide_empty' => 0,
                             'parent' => $kvaz_id,
+							'exclude' => array( 51 ),
                         ) );
                         $colors_class =  array("congress-box--purple", "congress-box--orange", "congress-box--gray", "congress-box--dark-blue", "congress-box--blue", "congress-box--green"  );
+                        if (sizeof($kavaz_childs) > sizeof($colors_class))
+						{
+							$turns = ceil(sizeof($kavaz_childs) / sizeof($colors_class) );
+							for ( $i = 1; $i < $turns; $i++ )
+							{
+                                $colors_class  = array_merge($colors_class,  $colors_class );
+							}
+						}
                         ?>
                         <?php if ( $kavaz_childs && !empty($kavaz_childs)) { $i = 0;?>
                                 <?php  foreach ($kavaz_childs as $kavaz_child) { ?>
 									<div class="col-sm-12 col-md-6 col-lg-4 col--3n2">
-										<div class="congress-box  <?php
+										<div class="congress-box d-flex text-center justify-content-center align-items-center <?php
+
 												if ($colors_class[$i])
 												{
 													echo $colors_class[$i];
@@ -115,12 +125,9 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
 												$i++;
 										?>">
 											<h1 class="chi-title-white chi-title-white--fz30 chi-title-white--mb-20"><a class="chi-title-white" href="<?php echo get_term_link($kavaz_child->term_id) ?>"><?php echo $kavaz_child->name; ?></a></h1>
-											<p class="chi-kavaz-text chi-kavaz-text--w-292">
-                                                <?php echo get_term($kavaz_child->term_id)->description  ?>
-											</p>
-											<div class="chi-btn-kavaz">
-												<a href="<?php echo get_term_link($kavaz_child->term_id) ?>" class="chi-btn-kavaz_link kavaz_link--white"><?php _e("Zobrazit všechny příspěvky", "chi"); ?></a>
-											</div>
+											<!--<p class="chi-kavaz-text chi-kavaz-text--w-292">
+                                                <?php /*echo get_term($kavaz_child->term_id)->description  */?>
+											</p>-->
 										</div>
 									</div>
                                 <?php }?>
