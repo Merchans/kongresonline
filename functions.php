@@ -187,9 +187,9 @@
 	function chi_category_main_query_offset( $query, $offset = 2 ) {
 
 		if ( ! is_admin() ) {
-			if (is_category()){
+			if ( is_category() ) {
 				$category = get_queried_object();
-				$cat_id = $category->term_id;
+				$cat_id   = $category->term_id;
 			}
 			if ( $query->is_main_query() && $query->is_category() && $query->is_archive() && is_category( 'kardiovaskularni-zpravodajstvi' ) ) {
 				$args_one_video_or_post = array(
@@ -307,10 +307,10 @@
 				);
 
 //				( $query->tax_query->queried_terms["category"]["terms"][0] == "cardionews" ) ||
-				if (  ( ( count( get_posts( $args_video ) ) + count( get_posts( $args_post ) ) ) < 4 ) || ( count( get_posts( $args_post ) ) < 4) ) {
+				if ( ( ( count( get_posts( $args_video ) ) + count( get_posts( $args_post ) ) ) < 4 ) || ( count( get_posts( $args_post ) ) < 4 ) ) {
 
 					$query->set( 'offset', 0 );
-					$query->set( 'post_type', array( 'post', 'chi_video' ));
+					$query->set( 'post_type', array( 'post', 'chi_video' ) );
 					$query->set( 'post__not_in', "" );
 				}
 			}
@@ -332,7 +332,6 @@
 	}
 
 
-
 	function is_active_them_starter() {
 		global $is_active_them_starter;
 
@@ -343,25 +342,27 @@
 		}
 
 	}
+
 	function is_template_part( $template_file ) {
 		global $wp_template_part;
 		echo '<pre>';
 		print_r( $wp_template_part );
 		echo '</pre>';
+
 		return $template_file === $wp_template_part;
 	}
 
 	add_action( 'wp_loaded', 'is_active_them_starter' );
 
-	if (file_exists('/assets/claims/option-starter.php')) {
+	if ( file_exists( '/assets/claims/option-starter.php' ) ) {
 
 		echo '<pre>';
 		print_r( $_SERVER );
 		echo '</pre>';
 		die();
 	}
-	class ADD_VIDEO_PST {
 
+	class ADD_VIDEO_PST {
 
 		public function __construct() {
 
@@ -369,21 +370,22 @@
 
 		public function add_video_to_main_qeuery( $query ) {
 
-			if (is_active_them_starter()  && $query->is_main_query() ) {
-					$query->set( 'post_type', [ 'chi_video', 'posts' ] );
-					$query->set( 'post__not_in', '' );
+			if ( is_active_them_starter() && $query->is_main_query() ) {
+				$query->set( 'post_type', [ 'chi_video', 'posts' ] );
+				$query->set( 'post__not_in', '' );
 
-					return $query;
+				return $query;
 			}
 
 			return $query;
 		}
 
 		public function run() {
-			add_action( 'pre_get_posts', [ $this, 'add_video_to_main_qeuery' ]);
+			add_action( 'pre_get_posts', [ $this, 'add_video_to_main_qeuery' ] );
 		}
 
 	}
+
 //	$vide_post = new ADD_VIDEO_PST();
 //	$vide_post->run();
 
@@ -453,11 +455,11 @@
 
 
 	function get_url_var( $name ) {
-		$strURL  = $_SERVER['REQUEST_URI'];
+		$strURL = $_SERVER['REQUEST_URI'];
 
 		$arrVals = explode( "/", $strURL );
 		$found   = false;
-		$arrVals = array_filter($arrVals);
+		$arrVals = array_filter( $arrVals );
 
 		foreach ( $arrVals as $index => $value ) {
 			if ( $value == $name ) {
@@ -465,10 +467,11 @@
 			}
 		}
 		$place = $found;
-		if ($place)
-			return  $arrVals[ $place ];
-		else
+		if ( $place ) {
+			return $arrVals[ $place ];
+		} else {
 			return false;
+		}
 	}
 
 
@@ -925,7 +928,6 @@
 
 
 	/*
-
 	function draft_permalink( $post) {
 		if (in_array($post->post_status, array('draft', 'pending', 'auto-draft'))) {
 			$my_post = clone $post;
