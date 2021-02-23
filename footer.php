@@ -8,7 +8,7 @@
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
 
-<?php if ( !isset($_GET["company"]) && $_GET["company"] != "pfizer"  ) :  ?>
+<?php if ( isset($_GET["company"]) && $_GET["company"] != "pfizer"  ) :  ?>
 	<script>
 		$(document).ready(function () {
 
