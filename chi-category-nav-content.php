@@ -42,7 +42,7 @@ if ($url_segments[1] == "video" or $all_video)
 		}
 		.chi-info-text
 		{
-			margin: 0;
+			margin: 0 auto;
 			padding: 0 0 24px 0;
 		}
 		.white-color > p

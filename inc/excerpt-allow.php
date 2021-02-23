@@ -12,7 +12,14 @@ function excerpt($limit)
     $excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
 
     $excerpt = closetags( $excerpt );
-    return $excerpt;
+	
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if ( is_plugin_active( 'automat-nbsp/automat-nbsp.php' ) ):
+		$excerpt = add_nbsp($excerpt, false);
+		return $excerpt;
+	else:
+		return $excerpt;
+	endif;
 }
 
 

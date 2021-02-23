@@ -69,7 +69,6 @@ function ticket_directors_to_movies_meta_options($post)
             $print = true;
 
 
-
             if ( empty($chi_advertising_vertical_values) )
             {
                 $selected = '';
@@ -102,17 +101,19 @@ add_action('save_post', 'ticket_movies_save_post');
 function ticket_movies_save_post(  )
 {
     global $post;
+	$nonce = $_POST['ticket_directors_to_movies_meta_options_nonce'];
 
-    $nonce = $_POST['ticket_directors_to_movies_meta_options_nonce'];
     if ( !wp_verify_nonce( $nonce, 'ticket_directors_to_movies_meta_options' ) )
         return;
 
-    if ( !isset( $_POST['chi_advertising_horizontal']) && !isset( $_POST['chi_advertising_vertical']  ) )
-        return;
-
-    if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
+	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
         return;
     }
+
+
+//	if ( !isset( $_POST['chi_advertising_horizontal']) && !isset( $_POST['chi_advertising_vertical']  ) )
+//		return;
+
 
     if ( isset( $_POST['chi_advertising_horizontal'] ) && !empty($_POST['chi_advertising_horizontal'] )) {
 
@@ -133,7 +134,6 @@ function ticket_movies_save_post(  )
     }
 
     if ( isset( $_POST['chi_advertising_vertical'] ) && !empty($_POST['chi_advertising_vertical'] )) {
-
 
         $sanitized_data_actors    = array();
 

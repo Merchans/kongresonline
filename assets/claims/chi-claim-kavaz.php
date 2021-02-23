@@ -44,14 +44,14 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
     <div class="chi-info-banner">
         <div class="row chi-category-bg chi-pt-15">
             <div class="col-md-6 overflow-hidden chi-pr-lg-0">
-                <div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video_or_post_or_post->posts[0]->ID) ?>) no-repeat  top center; background-size: cover;">
+                <div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video_or_post_or_post->posts[0]->ID) ?>) no-repeat top center; background-size: cover;">
                     <a href="<?php echo get_permalink($first_video_or_post_or_post->posts[0]->ID) ?>" class="d-block w-100 h-100"></a>
-                    <div class="d-flex flex-row">
+                    <div class="d-flex flex-row padding-t-p-5">
                         <?php $terms = get_the_terms($first_video_or_post_or_post->posts[0]->ID, "congress"); ?>
                         <?php if (is_array($terms) && !empty($terms)) { ?>
                             <?php foreach( $terms as $term) {?>
                                 <?php $url = get_home_url() .'/'. $term->taxonomy .'/'. $term->slug;  ?>
-                                <div class="chi-tag text-uppercase">
+                                <div class="chi-tag-kavaz text-uppercase">
                                     <a href="<?php echo $url; ?>" class="chi-tag_link"><?php echo $term->name; ?></a>
                                 </div>
                             <?php }	?>

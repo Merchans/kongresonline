@@ -72,7 +72,7 @@ wp_head();
                                     $description_category = category_description($category->term_id);
                                     if (isset($description_category) && ! empty($description_category)) {
                                         ?>
-										<div class="chi-card-container white-color">
+										<div class="chi-card-container text-left white-color">
                                             <?php echo wp_trim_words($description_category, 17, '...'); ?>
 										</div>
                                         <?php
@@ -93,7 +93,7 @@ wp_head();
                                     $description_category = category_description($category->term_id);
                                     if (isset($description_category) && ! empty($description_category)) {
                                         ?>
-										<div class="chi-card-container white-color">
+										<div class="chi-card-container text-left white-color">
                                             <?php echo wp_trim_words($description_category, 17, '...'); ?>
 										</div>
                                         <?php

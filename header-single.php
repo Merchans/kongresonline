@@ -301,17 +301,13 @@ $category = $url_segments[2];
 $alert = __("všechna videa", "chi");
 ?>
 <style>
-	/*.chi-claim
-	{
-		height: 100%
-	}*/
+
 	.chi-position-botom
 	{
 		padding: 0;
 	}
 	.chi-info-text
 	{
-		margin: 0;
 		padding: 0 0 24px 0;
 	}
 	.white-color > p
@@ -320,9 +316,14 @@ $alert = __("všechna videa", "chi");
 	}
 </style>
 <?php
-}?>
+}
 
-<body <?php has_category("kardiovaskularni-zpravodajstvi") ? 'class="chi-claim--kavaz"' : '' ?>>
+if ( has_category("kardiovaskularni-zpravodajstvi") ) {
+   echo '<body class="chi-claim--kavaz">';
+} else {
+	echo '<body>';
+}
+?>
 <header>
 	<div class="navbar navbar-light chi-bg-light chi-navbar-height">
 

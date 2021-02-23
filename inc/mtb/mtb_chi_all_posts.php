@@ -82,10 +82,10 @@ function chi_selected_articles_or_video_save(  )
 
         update_post_meta($post->ID, '_chi_selected_articles_or_videoss', $sanitized_data_posts);
     }
-    else if (!isset( $_POST['chi_selected_articles_or_videos'] ) && empty($_POST['chi_selected_articles_or_videos']))
-    {
-		return;
-	}
+ //    else if (!isset( $_POST['chi_selected_articles_or_videos'] ) && empty($_POST['chi_selected_articles_or_videos']))
+ //    {
+	// 	return;
+	// }
     else
     {
         delete_post_meta( $post->ID, '_chi_selected_articles_or_videoss');

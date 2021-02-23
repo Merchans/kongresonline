@@ -12,7 +12,7 @@ body {
 }
 
 img {
-	width: 100%;
+	max-width: 100%;
 	height: auto;
 }
 
@@ -189,7 +189,7 @@ label {
 .chi-box-2,
 .chi-box-3,
 .chi-box-1 {
-	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-1.png");
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("");
 	width: 100%;
 	height: 466px;
 	background-repeat: no-repeat;
@@ -238,7 +238,7 @@ label {
 
 .chi-card--box-1 {
 	height: 199px;
-	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-main-video.png") no-repeat center center;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("") no-repeat top center;
 	background-size: cover;
 }
 
@@ -312,7 +312,7 @@ label {
 	background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-3.png");
 	background: -o-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-3.png");
 	background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-3.png");
-	background-position: top center;
+	background-position: cover;
 	margin-top: 21px;
 }
 @media only screen and (max-width: 765px) {
@@ -338,6 +338,21 @@ label {
 	margin-right: 10px;
 }
 
+
+.chi-tag-kavaz
+{
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	font-weight: 700;
+	padding: 0 10px;
+	max-height: 100px;
+	text-align: center;
+	background: #E30613;
+	line-height: 20px;
+	margin-right: 10px;
+	height: 20px;
+}
 .chi-tag--relative
 {
 	display: inline-block;
@@ -369,7 +384,7 @@ label {
 
 .chi-category {
 	display: inline-block;
-	padding: 0 8px;
+	padding: 3px 8px;
 	min-height: 20px;
 	left: 468px;
 	top: 526px;
@@ -377,7 +392,24 @@ label {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	max-width: 120px;
+	max-width: 130px;
+}
+/*
+.chi-box-1 .chi-title-white,
+.chi-box-2 .chi-title-white,
+.chi-box-3 .chi-title-white {
+	margin-top: 4px;
+}
+*/
+.chi-box-1 .chi-category,
+.chi-box-2 .chi-category,
+.chi-box-3 .chi-category {
+	max-width: 100%;
+}
+.chi-box-2 .chi-tag,
+.chi-box-1 .chi-tag,
+.chi-box-3 .chi-tag {
+	height: 100%;
 }
 
 .chi-category__link {
@@ -417,6 +449,10 @@ label {
 
 .h-70{
 	height: 70%!important;
+}
+
+.h-max-100{
+	max-height: 100%!important;
 }
 .chi-active-link {
 	font-weight: 700;
@@ -467,7 +503,7 @@ label {
 .chi-media-img {
 	height: 100%;
 	min-width: 177px;
-	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-main-video.png") no-repeat center center;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("") no-repeat top center;
 	background-size: cover;
 	margin-right: 10px;
 }
@@ -610,14 +646,17 @@ a.page-numbers:hover {
 a.next.page-numbers:hover {
 	background: none;
 }
+a#chi-submit,
 .chi-btn-more-acticle {
 	font-weight: bold;
 	font-size: 16px;
 	line-height: 39px;
 	color: #FFFFFF;
 	background: #E30613;
+	-webkit-appearance: none;
 	-webkit-box-shadow: 0px 10px 20px rgba(227, 6, 19, 0.2);
 	box-shadow: 0px 10px 20px rgba(227, 6, 19, 0.2);
+	-webkit-appearance: none;
 	border-radius: 6px;
 	width: 275px;
 	height: 50px;
@@ -851,7 +890,7 @@ a.next.page-numbers:hover {
 .chi-video-img {
 	height: 100%;
 	min-width: 177px;
-	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(img/chi-main-video.png) no-repeat top center;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(img/chi-main-video.png) no-repeat center center;
 	background-size: cover;
 }
 
@@ -1718,4 +1757,138 @@ header .d-felex
 		background-image: url("img/kavaz-bg-mobile.png");
 		background-size: contain;
 	}
+}
+
+
+/* =WordPress Core
+-------------------------------------------------------------- */
+.alignnone {
+	margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+	display: block;
+	margin: 5px auto 5px auto;
+}
+
+.alignright {
+	float:right;
+	margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+	float: left;
+	margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+	float: right;
+	margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+	margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+	float: left;
+	margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wp-caption {
+	background: #fff;
+	border: 1px solid #f0f0f0;
+	max-width: 96%; /* Image does not overflow the content area */
+	padding: 5px 3px 10px;
+	text-align: center;
+}
+
+.wp-caption.alignnone {
+	margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+	margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+	margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+	border: 0 none;
+	height: auto;
+	margin: 0;
+	max-width: 98.5%;
+	padding: 0;
+	width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+	font-size: 11px;
+	line-height: 17px;
+	margin: 0;
+	padding: 0 4px 5px;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+	background-color: #eee;
+	clip: auto !important;
+	clip-path: none;
+	color: #444;
+	display: block;
+	font-size: 1em;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+	/* Above WP toolbar. */
+}
+dl img {
+	width: auto;
+	height: auto;
+}
+
+.chi-info-banner .h-100 {
+	height:50%!important;
+}
+.chi-info-banner .chi-category {
+	margin-right:10px;
+}
+
+.col-md-8.chi-video-section img {
+    width: auto;
+	}
+
+.chi-claim.special-opl {
+    height: 570px;
+}
+
+.chi-claim.special-kardiorok  {
+	height: 620px;
 }

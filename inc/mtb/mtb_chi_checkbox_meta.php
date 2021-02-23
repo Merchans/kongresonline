@@ -50,17 +50,21 @@ function chi_checkbox_style()
 */
 function add_featured_image_display_settings($content, $post_id)
 {
-    $field_id    = 'show_featured_image';
-    $field_value = esc_attr(get_post_meta($post_id, $field_id, true));
-    $field_text  = esc_html__('Nechci zobrazovat v textu.', 'generatewp');
-    $field_state = checked($field_value, 1, false);
 
-    $field_label = sprintf(
-        '<p><label for="%1$s"><input type="checkbox" name="%1$s" id="%1$s" value="%2$s" %3$s> %4$s</label></p>',
-        $field_id, $field_value, $field_state, $field_text
-    );
+    if ( get_post_type( get_the_ID() ) == "post" ) :
+        $field_id    = 'show_featured_image';
+        $field_value = esc_attr(get_post_meta($post_id, $field_id, true));
+        $field_text  = esc_html__('Nechci zobrazovat v textu.', 'generatewp');
+        $field_state = checked($field_value, 1, false);
 
-    return $content .= $field_label;
+        $field_label = sprintf(
+            '<p><label for="%1$s"><input type="checkbox" name="%1$s" id="%1$s" value="%2$s" %3$s> %4$s</label></p>',
+            $field_id, $field_value, $field_state, $field_text
+        );
+
+        return $content .= $field_label;
+        endif;
+    return $content;
 
 }
 

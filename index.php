@@ -77,7 +77,7 @@
 					</div>
 					<div class="">
 						<ul class="list-inline m-0">
-							<li class="list-inline-item"><span >Videa ze speciálů</span></li>
+							<li class="list-inline-item"><span>Videa ze speciálů</span></li>
 							<li class="list-inline-item "><span class="chi-active-link">všechna videa</span></li>
 						</ul>
 					</div>
@@ -413,7 +413,8 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/800x400.png" class="d-block w-100" alt="img/800x400.png">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/800x400.png" class="d-block w-100"
+							 alt="img/800x400.png">
 						<div class="carousel-caption d-none d-md-block">
 							<p class="chi-carousel-text">Program digitálního kongresového zpravodajství vnímám velmi
 								pozitivně a domnívám se, že takovýto projekt, jde naproti lékařům, je velice užitečný,
@@ -426,7 +427,8 @@
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/800x400.png" class="d-block w-100" alt="img/800x400.png">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/800x400.png" class="d-block w-100"
+							 alt="img/800x400.png">
 						<div class="carousel-caption d-none d-md-block">
 							<p class="chi-carousel-text">Program digitálního kongresového zpravodajství vnímám velmi
 								pozitivně a domnívám se, že takovýto projekt, jde naproti lékařům, je velice užitečný,
@@ -439,7 +441,8 @@
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/800x400.png" class="d-block w-100" alt="img/800x400.png">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/800x400.png" class="d-block w-100"
+							 alt="img/800x400.png">
 						<div class="carousel-caption d-none d-md-block">
 							<p class="chi-carousel-text">Program digitálního kongresového zpravodajství vnímám velmi
 								pozitivně a domnívám se, že takovýto projekt, jde naproti lékařům, je velice užitečný,
@@ -452,7 +455,8 @@
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/800x400.png" class="d-block w-100" alt="">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/800x400.png" class="d-block w-100"
+							 alt="">
 						<div class="carousel-caption d-none d-md-block">
 							<p class="chi-carousel-text">Program digitálního kongresového zpravodajství vnímám velmi
 								pozitivně a domnívám se, že takovýto projekt, jde naproti lékařům, je velice užitečný,
@@ -486,14 +490,14 @@
 				<div class="chi-footer-logo">
 					<img src="<?php echo get_template_directory_uri(); ?>/img/chi-logo-1.png" alt="chi logo">
 				</div>
-				<p>Společnost <strong>CZECH HEALTH INTERACTIVE, s.r.o.</strong> se zaměřuje výhradně na digitální
-					komunikaci v oblasti zdravotnictví.</p>
+				<p>Společnost <strong>CZECH HEALTH INTERACTIVE, s.r.o.</strong> se&nbsp;zaměřuje výhradně na&nbsp;digitální
+					komunikaci v&nbsp;oblasti zdravotnictví.</p>
 				<ul style="padding-left: 15px">
-					<li>Základem naší práce je především kvalitní, odborný obsah, který šíříme pomocí moderních online
+					<li>Základem naší práce je&nbsp;především kvalitní, odborný obsah, který šíříme pomocí moderních online
 						nástrojů.
 					</li>
-					<li>Naší vizí je stát se odborným partnerem pro farmaceutické společnosti v oblasti e-commerce a
-						respektovaným médiem pro lékaře a farmaceuty.
+					<li>Naší vizí je stát se&nbsp;odborným partnerem pro farmaceutické společnosti v oblasti e-commerce a&nbsp;respektovaným
+						médiem pro lékaře a&nbsp;farmaceuty.
 					</li>
 				</ul>
 				<p>
@@ -512,7 +516,8 @@
 				<h4 class="chi-footer-title">O nás</h4>
 				<div class="chi-media-footer">
 					<div class="media chi-footer-media-title">
-						<img class="mr-3 chi-media-footer-img" src="<?php echo get_template_directory_uri(); ?>/img/vetrovsky.png" alt="Vetrovský">
+						<img class="mr-3 chi-media-footer-img"
+							 src="<?php echo get_template_directory_uri(); ?>/img/vetrovsky.png" alt="Vetrovský">
 						<div class="media-body">
 							<h5 class="mt-0">MUDr. Tomáš Větrovský</h5>
 							<h6>IDEAS AND CO-OWNER</h6>
@@ -523,7 +528,8 @@
 				</div>
 				<div class="chi-media-footer">
 					<div class="media chi-footer-media-title">
-						<img class="mr-3 chi-media-footer-img" src="<?php echo get_template_directory_uri(); ?>/img/novotny.png" alt="Novotný">
+						<img class="mr-3 chi-media-footer-img"
+							 src="<?php echo get_template_directory_uri(); ?>/img/novotny.png" alt="Novotný">
 						<div class="media-body">
 							<h5 class="mt-0">MUDr. Tomáš Novotný</h5>
 							<h6>CONTENT</h6>
@@ -535,7 +541,8 @@
 				</div>
 				<div class="chi-media-footer">
 					<div class="media chi-footer-media-title">
-						<img class="mr-3 chi-media-footer-img" src="<?php echo get_template_directory_uri(); ?>/img/gadzuk.png" alt="Gadžuk">
+						<img class="mr-3 chi-media-footer-img"
+							 src="<?php echo get_template_directory_uri(); ?>/img/gadzuk.png" alt="Gadžuk">
 						<div class="media-body">
 							<h5 class="mt-0">Jindřich Gadžuk</h5>
 							<h6>SOLUTIONS</h6>
@@ -548,7 +555,8 @@
 			<div class="col-md-4 chi-mt-50">
 				<div class="chi-media-footer">
 					<div class="media chi-footer-media-title">
-						<img class="mr-3 chi-media-footer-img" src="<?php echo get_template_directory_uri(); ?>/img/vanek.png" alt="Vaněk">
+						<img class="mr-3 chi-media-footer-img"
+							 src="<?php echo get_template_directory_uri(); ?>/img/vanek.png" alt="Vaněk">
 						<div class="media-body">
 							<h5 class="mt-0">MUDr. Martin Vaněk</h5>
 							<h6>IDEAS AND CO-OWNER</h6>
@@ -559,7 +567,8 @@
 				</div>
 				<div class="chi-media-footer">
 					<div class="media chi-footer-media-title">
-						<img class="mr-3 chi-media-footer-img" src="<?php echo get_template_directory_uri(); ?>/img/shibalova.png" alt="Novotný">
+						<img class="mr-3 chi-media-footer-img"
+							 src="<?php echo get_template_directory_uri(); ?>/img/shibalova.png" alt="Novotný">
 						<div class="media-body">
 							<h5 class="mt-0">Kateřina Shibalová</h5>
 							<h6>SOLUTIONS</h6>

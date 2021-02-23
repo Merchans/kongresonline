@@ -64,14 +64,14 @@ if (count($advertising_ids) > 0 && ! empty($advertising_ids)) {
                                         <span class="image-credit chi-category-credit">
 
                 <a href="<?php echo get_chi_make_specilal_form_category($advert->ID); ?>"
-				   class="chi-category__link"><?php echo get_the_category($advert->ID)[0]->slug ?></a>
+				   class="chi-category__link"><?php echo get_the_category($advert->ID)[0]->name ?></a>
             </span>
 										<a href="<?php echo get_permalink($advert->ID); ?>">   <?php
                                         echo get_the_post_thumbnail($advert->ID, "small");
 											?></a>
 									</div>
 									<div class="card-body chi-card-body">
-										<div class="text-left"><a href="<?php echo get_permalink($advert->ID) ?>"
+										<div class="text-left chi-card-text"><a href="<?php echo get_permalink($advert->ID) ?>"
 																  class="chi-name--min-title"><?php echo $advert->post_title ?></a>
 										</div>
 										<strong class="chi-name-title">
@@ -100,14 +100,14 @@ if (count($advertising_ids) > 0 && ! empty($advertising_ids)) {
                             ?>
 							<div class="d-flex h-20">
 								<div class="chi-tag text-uppercase mr-auto p-2">
-									<span class="chi-tag_link">VIDEA</span>
+									<span class="chi-tag_link">VIDEO</span>
 								</div>
 							</div>
 							<hr class="divider mt-0">
 							<div class="card chi-card--borner-none chi-card">
 								<div class="chi-box-1 chi-card--box-1"
-									 style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($advert->ID) ?>) no-repeat center center; background-size: cover;">
-									<a href="<?php echo get_permalink() ?>" class="d-block w-100 h-100"></a>
+									 style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($advert->ID) ?>) no-repeat top center; background-size: cover;">
+									<a href="<?php echo get_permalink($advert->ID) ?>" class="d-block w-100 h-100"></a>
 									<div class="d-flex flex-row">
                                         <?php
 
@@ -123,7 +123,7 @@ if (count($advertising_ids) > 0 && ! empty($advertising_ids)) {
 										<div class="chi-category text-uppercase">
 											<a href="<?php echo get_chi_make_specilal_form_category($advert->ID); ?>"
 											   class="chi-category__link">
-                                                <?php echo get_the_category($advert->ID)[0]->slug ?>
+                                                <?php echo get_the_category($advert->ID)[0]->name ?>
 											</a>
 										</div>
 									</div>
@@ -132,11 +132,14 @@ if (count($advertising_ids) > 0 && ! empty($advertising_ids)) {
 									<a href="<?php echo get_permalink($advert->ID) ?>">
 										<h6 class="card-title chi-card-title"><?php echo $advert->post_title ?></h6>
 									</a>
-									<strong class="chi-name-title"><?php echo get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name",
-                                            $advert->ID) ?>
+									<strong class="chi-name-title">
+										<?php echo get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name", $advert->ID) ?>
 										<time class="chi-time" datetime>
-											- <?php echo get_the_date(get_option('date_format'),
-                                                $advert->ID) ?></time>
+											<?php if (  get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name", $advert->ID) ):?>
+											-
+											<?php endif;?>
+											<?php echo get_the_date(get_option('date_format'), $advert->ID) ?>
+										</time>
 									</strong>
 									<p class="chi-card-text"><?php echo excerpt(30); ?></p>
 								</div>

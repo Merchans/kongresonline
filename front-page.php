@@ -18,7 +18,7 @@ $first_video_ID = $first_video->posts[0]->ID;
             <div class="chi-info-banner">
                 <div class="row">
 					<div class="col-md-6 overflow-hidden chi-pr-lg-0">
-						<div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video->post->ID) ?>) no-repeat top center; background-repeat: no-repeat; background-position:  top center; background-size: cover;">
+						<div class="chi-box-1" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($first_video->post->ID) ?>) no-repeat top center; background-repeat: no-repeat; background-position: top center; background-size: cover;">
 							<a href="<?php echo get_permalink($first_video_ID); ?>" class="d-block w-100 h-100"></a>
 							<div class="d-flex flex-row padding-t-p-5">
 								<div class="chi-tag text-uppercase">
@@ -30,7 +30,7 @@ $first_video_ID = $first_video->posts[0]->ID;
 							</div>
 							<a href="<?php echo get_permalink($first_video_ID); ?>"><h1 class="chi-title-white"><?php echo $first_video->post->post_title ?></h1></a>
                             <?php $chi_title_meta_box = get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name")?>
-							<strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
+							<strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php echo get_the_date(get_option("date_format"),$first_video_ID) ?></time></strong>
 						</div>
 					</div>
 					<?php  ?>
@@ -67,6 +67,7 @@ $first_video_ID = $first_video->posts[0]->ID;
 														</div>
                                                     <?php }	?>
                                                 <?php } ?>
+												<div class="padding-t-p-5"></div>
 												<div class="chi-category text-uppercase">
 													<a href="<?php echo get_chi_make_specilal_form_category() ?>" class="chi-category__link"><?php echo get_the_category($category_posts->post->ID)[0]->name ?></a>
 												</div>
@@ -104,6 +105,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                             $i= 2;
 
                             while($category_posts->have_posts()) :
+
                                 $category_posts->the_post();
 
                                 $categories = get_the_category($category_posts->post->ID);
@@ -127,7 +129,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                             <?php $chi_title_meta_box = get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name")?>
 											<a href="<?php echo get_permalink() ?>"><h5 class="card-title chi-card-title"><?php the_title(); ?></h5></a>
 											<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
-											<p class="chi-card-text"><?php echo excerpt(30); ?></p>
+											<p class="chi-card-text"><?php echo excerpt(25); ?></p>
 										</div>
 									</div>
 								</div>
@@ -158,12 +160,12 @@ $first_video_ID = $first_video->posts[0]->ID;
                                     ?> border-bottom">
 										<div class="media chi-media position-relative p-0">
 											<div class="d-flex flex-row align-items-end chi-media-img justify-content-between chi-media-container" style="background: url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat top center; background-size: cover;">
-												<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-70 !!chi-media-container_child!!">
+												<a href="<?php echo get_permalink(); ?>" class="text-uppercase w-100 h-75 chi-media-container_child">
 												</a>
-												<div class="chi-category text-uppercase !!chi-media-container_child!!">
+												<div class="chi-category text-uppercase chi-media-container_child">
 													<a href="<?php echo get_category_link($categories_ID);  ?>" class="chi-category__link"><?php echo $categories[0]->name;?></a>
 												</div>
-												<div class="chi-tag text-uppercase !!chi-media-container_child!!">
+												<div class="chi-tag text-uppercase chi-media-container_child">
 													<a href="<?php echo get_permalink(); ?>" class="chi-tag_link"><?php echo chi_video_time()[0];  ?></a>
 												</div>
 											</div>
@@ -181,14 +183,14 @@ $first_video_ID = $first_video->posts[0]->ID;
 						</div>
 						<a href="/videa" class="chi-more-videos-btn">
 		<span class="chi-more-videos-btn__text">
-			<?php _e("Další videa") ?>
+			<?php _e("další videa") ?>
 		</span>
 						</a>
 					</div>
                     <div class="others-articles">
                         <div class="d-flex h-20">
                             <div class="chi-tag text-uppercase mr-auto p-2">
-                                <a href="/clanky-a-reportaze" class="chi-tag_link" id="ostatni-clanky">čtěte také</a>
+                                <a href="/clanky-a-reportaze" class="chi-tag_link" id="ostatni-clanky">ostatní články</a>
                             </div>
                         </div>
                         <hr class="divider mt-0">
@@ -223,7 +225,7 @@ $first_video_ID = $first_video->posts[0]->ID;
 											<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
 												<time class="chi-time" datetime><?php the_time(get_option("date_format")); ?></time>
 											</strong>
-											<p class="chi-card-text"><?php echo excerpt(30); ?></p>
+											<p class="chi-card-text"><?php echo excerpt(25); ?></p>
 										</div>
 									</li>
                                 <?php endwhile ?>
@@ -235,7 +237,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                     </div>
 
                 </div>
-				<?php get_template_part("assets/aside/chi-aside"); ?>
+				<?php get_template_part("chi-aside"); ?>
                 </div>
             </div>
         </div>
@@ -248,12 +250,12 @@ $first_video_ID = $first_video->posts[0]->ID;
                     <div class="chi-footer-logo">
                         <img src="<?php echo get_template_directory_uri(); ?>/img/chi-logo-1.png" alt="chi logo">
                     </div>
-                    <p>Společnost <strong>CZECH HEALTH INTERACTIVE, s.r.o.</strong> se zaměřuje výhradně na digitální
-                        komunikaci v oblasti zdravotnictví.</p>
+                    <p>Společnost <strong>CZECH HEALTH INTERACTIVE, s.r.o.</strong> se&nbsp;zaměřuje výhradně na&nbsp;digitální
+                        komunikaci v&nbsp;oblasti zdravotnictví.</p>
                 </div>
                 <div class="col-md-4">
 					<p>Základem naší práce je především kvalitní, odborný obsah, který šíříme pomocí moderních online nástrojů.	</p>
-					<p>Naší vizí je stát se odborným partnerem pro farmaceutické společnosti v oblasti e-commerce a respektovaným médiem pro lékaře a farmaceuty.</p>
+					<p>Naší vizí je stát se odborným partnerem pro farmaceutické společnosti v&nbsp;oblasti e-commerce a&nbsp;respektovaným médiem pro lékaře a&nbsp;farmaceuty.</p>
                 </div>
                 <div class="col-md-4">
 					<p>

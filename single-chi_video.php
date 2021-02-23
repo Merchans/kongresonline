@@ -18,7 +18,7 @@ wp_head();
 	{
 		text-decoration: underline;
 	}
-	p,h2,h3,h4,h6,h7
+	p,h2,h3,h4,h6
 	{
 		color: #212529;
 	}
@@ -104,6 +104,31 @@ wp_head();
             <div class="navigation"><p><?php posts_nav_link(); ?></p></div>
             <?php posts_nav_link('separator','prelabel','nextlabel'); ?>
             <?php get_template_part("chi-next-prev-links"); ?>
+			<?php
+				$chi_exclude_ids = array();
+
+				$prev_post = get_previous_post(true);
+				if ( ! empty($prev_post->ID)) {
+					$prev_post_ID = $prev_post->ID;
+				} else {
+					$prev_post_ID = "";
+				}
+				$next_post = get_next_post(true);
+				if ( ! empty($next_post->ID)) {
+					$next_post_ID = $next_post->ID;
+				} else {
+					$next_post_ID = "";
+				}
+
+				$current_post_ID = get_the_ID();
+
+				array_push($chi_exclude_ids, $prev_post_ID, $next_post_ID, $current_post_ID);
+				$category = get_the_category()[0]->slug;
+				$args_two_posts = array("post_type" => "chi_video", "posts_per_page" => 6, "category_name" => $category, "post_status" => "publish", "post__not_in" => $chi_exclude_ids );
+            	$category_posts = new WP_Query($args_two_posts);
+
+			?>
+			<?php if ($category_posts->post_count > 3): ?>
             <div class="others-articles">
                 <div class="d-flex h-20 mt-5">
                     <div class="chi-tag text-uppercase mr-auto p-2">
@@ -113,27 +138,6 @@ wp_head();
                 <hr class="divider mt-0">
                 <div class="row">
                     <?php
-                    $chi_exclude_ids = array();
-
-                    $prev_post = get_previous_post(true);
-                    if ( ! empty($prev_post->ID)) {
-                        $prev_post_ID = $prev_post->ID;
-                    } else {
-                        $prev_post_ID = "";
-                    }
-                    $next_post = get_next_post(true);
-                    if ( ! empty($next_post->ID)) {
-                        $next_post_ID = $next_post->ID;
-                    } else {
-                        $next_post_ID = "";
-                    }
-
-                    $current_post_ID = get_the_ID();
-
-                    array_push($chi_exclude_ids, $prev_post_ID, $next_post_ID, $current_post_ID);
-                    $category = get_the_category()[0]->slug;
-                    $args_two_posts = array("post_type" => "chi_video", "posts_per_page" => 6, "category_name" => $category, "post_status" => "publish", "post__not_in" => $chi_exclude_ids );
-                    $category_posts = new WP_Query($args_two_posts);
 
                     if($category_posts->have_posts()) :
                         $i= 2;
@@ -170,6 +174,7 @@ wp_head();
                     <?php endif; ?>
                 </div>
             </div>
+			<?php endif; ?>
 
         </div>
         <div class="col-md-4">
