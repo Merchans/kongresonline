@@ -38,14 +38,17 @@
 	);
 
 
+	if ( ( count( get_posts( $args_video ) )  < 1  ) ) {
+		$option = 4;
+		update_term_meta($category_ID, '_chi_selected_one_options', 2 );
+	}
+
 	if ( ( count( get_posts( $args_video ) ) + count( get_posts( $args_post ) ) ) < 4 || count( get_posts( $args_post ) ) < 4 ) {
 		$option = 0;
 	}
-
-
 	switch ( $option ) {
 		case 0:
-			// one video two posts
+			// starter theme
 			$GLOBALS["chi_option"] = 0;
 			get_template_part( "assets/claims/option-starter" );
 			die();

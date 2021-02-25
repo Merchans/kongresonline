@@ -31,6 +31,18 @@
         margin-bottom: 0;
     }
 </style>
+<?php
+	$size = get_term_meta( get_the_category()[0]->term_id, 'sliderArticle', true );
+	if ( ! empty( $size ) ) {
+		?>
+		<style>
+			.chi-claim.special-<?php echo get_the_category()[0]->slug ?>  {
+				height: <?php echo $size ?>px;
+			}
+		</style>
+		<?php
+	}
+?>
 <style>
     .nv-post-navigation,
     .nv-single-post-wrap .nv-tags-list,

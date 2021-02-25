@@ -18,7 +18,12 @@
 
 	$show_div = 0;
 
-	$not_in_main_loop = $GLOBALS["not_in_main_loop"];
+	global $not_in_main_loop;
+	global $chi_option;
+
+	if ($chi_option == 3) {
+		$not_in_main_loop = get_term_meta($category_ID, 'chi_selected_in_claim_posts', true);
+	}
 
 
 //	$not_in_main_loop = chi_claims();
@@ -54,6 +59,11 @@
 					"post_status"   => "publish"
 			);
 	$video_and_post_not_in = new  WP_Query( $args_all_videos );
+	global $ids_not_in_main_loop;
+	if ($chi_option == 3) {
+		$ids_not_in_main_loop = get_term_meta($category_ID, 'chi_selected_in_claim_posts', true);
+	}
+
 
 ?>
 <?php if ( $url_segments[1] != "video" and ! $all_video ) {
@@ -63,7 +73,7 @@
 			"posts_per_page" => 1,
 			"category_name"  => $category_slug,
 			"post_status"    => "publish",
-			"post__not_in"   => $not_in_main_loop
+			"post__not_in"   => $ids_not_in_main_loop
 
 	);
 	$category_posts        = new WP_Query( $args_one_offset_video );
@@ -75,7 +85,7 @@
 
 	$args           = array(
 			'post_type'      => 'chi_video',
-			'post__not_in'   => $not_in_main_loop,
+			'post__not_in'   => $post__not_in,
 			'posts_per_page' => 4,
 			"category_name"  => $category_slug,
 	);
@@ -84,9 +94,9 @@
 		$categories = get_the_category()[0]->slug;
 		while ( $category_posts->have_posts() ) :
 			$category_posts->the_post();
-			$not_in_main_loop[] = get_the_ID();
-			?>
+			$first_video_in_video_section_id= get_the_ID();
 
+			?>
 			<div class="d-flex h-20">
 				<div class="chi-tag text-uppercase mr-auto p-2">
 					<span class="chi-tag_link">
@@ -97,11 +107,9 @@
 			<hr class="divider mt-0">
 			<div class="row">
 			<?php
-			global $chi_option;
-
 			if ( count( get_posts( $args ) ) == 1 ) {
 				$show_div = 1;
-				if ($chi_option == 2) {
+				if ($chi_option == 2 or $chi_option == 1 ) {
 					$show_div = 0;
 				}
 				get_template_part( 'assets/claims/one-video' );
@@ -153,9 +161,12 @@
 				</div>
 				<div class="col-md-6">
 					<?php
+
+						$ids_not_in_main_loop[] = $first_video_in_video_section_id;
+
 						$args           = array(
 								'post_type'      => 'chi_video',
-								'post__not_in'   => $not_in_main_loop,
+								'post__not_in'   => $ids_not_in_main_loop,
 								'posts_per_page' => 3,
 								"category_name"  => $category_slug,
 						);

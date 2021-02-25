@@ -62,7 +62,7 @@
 
 ?>
 <?php get_template_part( 'assets/claims/chi-claims' ); ?>
-
+<?php global $ids_not_in_main_loop; ?>
 	<main class="chi-position-botom chi-category-bg">
 		<div class="container">
 			<div class="row  pt-5"></div>

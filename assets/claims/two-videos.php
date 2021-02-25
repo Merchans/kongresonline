@@ -1,12 +1,11 @@
 <?php
-	global $not_in_main_loop;
+	global $ids_not_in_main_loop;
 	$category_slug = get_the_category()[0]->slug;
-
 
 
 	$args           = array(
 		'post_type'      => 'chi_video',
-		'post__not_in'   => $not_in_main_loop,
+		'post__not_in'   => $ids_not_in_main_loop,
 		'posts_per_page' => 2,
 		"category_name"  => $category_slug,
 	);

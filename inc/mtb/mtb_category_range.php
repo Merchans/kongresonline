@@ -18,6 +18,30 @@
 				add_action( 'category_edit_form_fields', array( $this, 'height_specials' ), 10, 2 );
 				add_action( 'edited_category', array( $this, 'update_range' ), 10, 2 );
 				add_action( 'admin_footer', array( $this, 'add_script' ) );
+				add_action('admin_enqueue_scripts', 'unload_all_jquery');
+				function unload_all_jquery() {
+					//wp_enqueue_script("jquery");
+					$jquery_ui = array(
+//							"jquery-ui-widget",
+//							"jquery-ui-mouse",
+//							"jquery-ui-accordion",
+//							"jquery-ui-autocomplete",
+							"jquery-ui-slider",
+//							"jquery-ui-tabs",
+//							"jquery-ui-draggable",
+//							"jquery-ui-droppable",
+//							"jquery-ui-selectable",
+//							"jquery-ui-position",
+//							"jquery-ui-datepicker",
+//							"jquery-ui-resizable",
+//							"jquery-ui-dialog",
+//							"jquery-ui-button"
+					);
+
+					foreach($jquery_ui as $script){
+						wp_deregister_script($script);
+					}
+				}
 			}
 
 			/*
@@ -63,15 +87,7 @@
 				<?php $term = get_term_meta( $_GET['tag_ID'], 'slider', true ); ?>
 
 				<?php $termArticle = get_term_meta( $_GET['tag_ID'], 'sliderArticle', true ); ?>
-				<?php
 
-				echo '<pre>';
-				print_r( $term );
-				echo '</pre>';
-				echo '<pre>';
-				print_r(  $termArticle );
-				echo '</pre>';
-				?>
 				<script>
 					jQuery(document).ready(function ($) {
 
@@ -140,8 +156,6 @@
 			 */
 			public function add_script() {
 				if ( isset( $_GET['tag_ID'] ) ) {
-
-
 					?>
 					<link rel="stylesheet"
 						  href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"

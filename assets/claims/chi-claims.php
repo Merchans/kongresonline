@@ -62,6 +62,8 @@ if ($all_video)
     $args_one_video = array("post_type" => array("chi_video", "post"), "posts_per_page" => 1, "category_name" => $category, "post_status" => "publish");
 
     $first_video = new  WP_Query($args_one_video);
+
+    global $ids_not_in_main_loop;
     $ids_not_in_main_loop = wp_list_pluck( $first_video->posts, 'ID' );
 
     $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_page" => 2, "category_name" => $category, "post__not_in" => [$ids_not_in_main_loop[0]]);
@@ -143,7 +145,7 @@ if ($all_video)
                                             <strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
                                         </div>
                                     </div>
-                                    <?php $i++;endwhile; wp_reset_postdata();  else: ?>
+                                    <?php $ids_not_in_main_loop[] = get_the_ID(); $i++;endwhile; wp_reset_postdata();  else: ?>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -152,4 +154,3 @@ if ($all_video)
         <?php } ?>
     </div>
 </div>
-

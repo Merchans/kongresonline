@@ -71,7 +71,7 @@ if ($all_video)
 
         $first_video = new  WP_Query($args_one_video);
 
-        $GLOBALS["not_in_main_loop"][] = $first_video->post->ID;
+        $GLOBALS["ids_not_in_main_loop"][] = $first_video->post->ID;
 
         ?>
         <?php chi_special_logo(); ?>
@@ -116,7 +116,7 @@ if ($all_video)
 							<div class="row">
                                 <?php
 
-                                $args_two_posts = array("post_type" => array("post"), "posts_per_page" => 2, "category_name" => $category, "post_status" => "publish", "post__not_in" => $GLOBALS["not_in_main_loop"]);
+                                $args_two_posts = array("post_type" => array("post"), "posts_per_page" => 2, "category_name" => $category, "post_status" => "publish", "post__not_in" => $GLOBALS["ids_not_in_main_loop"]);
                                 $category_posts = new WP_Query($args_two_posts);
 
                                 if($category_posts->have_posts()) :
@@ -124,7 +124,7 @@ if ($all_video)
                                     $categories = get_the_category()[0]->slug;
                                     while($category_posts->have_posts()) :
                                         $category_posts->the_post();
-                                        $GLOBALS["not_in_main_loop"][] = get_the_ID();
+                                        $GLOBALS["ids_not_in_main_loop"][] = get_the_ID();
                                         ?>
 										<div class="col-md-12 overflow-hidden">
 											<div class="chi-box-<?php echo $i ?>" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url($category_posts->post->ID) ?>)  no-repeat top center; background-repeat: no-repeat; background-position: top center; background-size: cover;">

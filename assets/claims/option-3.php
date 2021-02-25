@@ -75,7 +75,6 @@ if ($all_video)
         $args_one_video = array("post_type" => "any", "p" => $chi_selected_in_claim_posts_values[0], "category_name" => $category);
         $args_two_posts = array("post_type" => "any", "post__in" => [$chi_selected_in_claim_posts_values[1], $chi_selected_in_claim_posts_values[2]], "category_name" => $category);
 
-
         $first_video = new  WP_Query($args_one_video);
 
         ?>
