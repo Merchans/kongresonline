@@ -5,35 +5,35 @@
 
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
-<?php if ( isset($_GET["company"]) && $_GET["company"] != "pfizer"  ) :  ?>
-	<script>
-		$(document).ready(function () {
+<?php if ( !isset($_GET["company"]) && $_GET["company"] != "pfizer"  ) :  ?>
+<script>
+	$(document).ready(function () {
 
-			document.getElementById("chi-close").addEventListener("click", function () {
-				window.location.replace("http://google.com");
-			});
-			var chiConfirm = localStorage.getItem("chi-confirm");
-			setTimeout(function () {
-				if (!chiConfirm) {
-					/*document.querySelector(".chi-bg-modal").style.display = "flex".hide();*/
-					$("#popupContainer")
-							.css("display", "flex")
-							.hide()
-							.fadeIn();
+		document.getElementById("chi-close").addEventListener("click", function () {
+			window.location.replace("http://google.com");
+		});
+		var chiConfirm = localStorage.getItem("chi-confirm");
+		setTimeout(function () {
+			if (!chiConfirm) {
+				/*document.querySelector(".chi-bg-modal").style.display = "flex".hide();*/
+				$("#popupContainer")
+					.css("display", "flex")
+					.hide()
+					.fadeIn();
+			}
+		}, 100)
+		document.getElementById("chi-submit").addEventListener("click",
+			function (e) {
+				if ($('#customCheck1').is(':checked')) {
+					document.querySelector(".chi-bg-modal#popupContainer").style.display = "none";
+					localStorage.setItem('chi-confirm', 'true');
 				}
-			}, 100)
-			document.getElementById("chi-submit").addEventListener("click",
-					function (e) {
-						if ($('#customCheck1').is(':checked')) {
-							document.querySelector(".chi-bg-modal#popupContainer").style.display = "none";
-							localStorage.setItem('chi-confirm', 'true');
-						}
-					});
-		})
-	</script>
+			});
+	})
+</script>
 <?php endif; ?>
 <script>
 	$(document).ready(function () {
@@ -44,17 +44,17 @@
 		setTimeout(function () {
 			/*document.querySelector(".chi-bg-modal").style.display = "flex".hide();*/
 			$("#pfizerPopupContainer")
-					.css("display", "flex")
-					.hide()
-					.fadeIn();
+				.css("display", "flex")
+				.hide()
+				.fadeIn();
 		}, 200);
 
 		document.getElementById("pfizer-confirm-yes").addEventListener("click",
-				function (e) {
-					//var myNewURL = "?company=pfizerOK";//the new URL
-					//window.history.pushState("object or string", "Title", myNewURL );
-					$("#pfizerPopupContainer").fadeOut();
-				});
+			function (e) {
+				//var myNewURL = "?company=pfizerOK";//the new URL
+				//window.history.pushState("object or string", "Title", myNewURL );
+				$("#pfizerPopupContainer").fadeOut();
+			});
 
 		document.getElementById("pfizer-confirm-no").addEventListener("click",function () {
 			window.location.replace("http://google.com");

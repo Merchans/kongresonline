@@ -971,7 +971,6 @@
 
 	function chi_post_types_admin_order( $wp_query ) {
 		if (is_admin()) {
-
 			// Get the post type from the query
 			$post_type = $wp_query->query['post_type'];
 

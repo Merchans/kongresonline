@@ -73,7 +73,7 @@
 				</tr>
 				<tr class="form-field term-group-wrap">
 					<th scope="row">
-						<label for="sliderArticle"><?php _e( 'Výška záhlaví clanku/videa', 'chi-templates' ); ?></label>
+						<label for="sliderArticle"><?php _e( 'Výška záhlaví článku / videa', 'chi-templates' ); ?></label>
 					</th>
 					<td>
 						<div id="sliderArticle" name="sliderArticle">
