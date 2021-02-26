@@ -29,6 +29,11 @@ wp_head();
 		font-size: 16px;
 		line-height: 26px;
 	}
+	h3
+	{
+		font-weight: normal;
+		font-size: 1.4em;
+	}
 </style>
 <?php chi_special_background(); ?>
 <?php if (have_posts()) : ?>

@@ -35,6 +35,11 @@ wp_head();
             background-image: none;
             height: 100%!important;
         }
+		h3
+		{
+			font-weight: normal;
+			font-size: 1.4em;
+		}
     </style>
 <?php  $chi_special_background = wp_get_attachment_image_src (  get_term_meta ( get_the_category()[0]->term_id , "category-backgound-id", true ), 'small')[0]; ?>
     <style>

@@ -14,6 +14,11 @@ wp_head();
 		{
 			margin-bottom: 0;
 		}
+		h3
+		{
+			font-weight: normal;
+			font-size: 1.4em;
+		}
 	</style>
 	<style>
 		.nv-post-navigation,
