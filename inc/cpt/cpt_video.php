@@ -15,7 +15,7 @@ function chi_videos_custom_post_type()
         'new_item'           => __( 'Nové video', 'chi-templates' ),
         'edit_item'          => __( 'Upravit video', 'chi-templates' ),
         'view_item'          => __( 'Podívejte se na video', 'chi-templates' ),
-        'all_items'          => __( 'všechna videa', 'chi-templates' ),
+        'all_items'          => __( 'Všechna videa', 'chi-templates' ),
         'search_items'       => __( 'Hledat videa', 'chi-templates' ),
         'parent_item_colon'  => __( 'Rodičovská videa:', 'chi-templates' ),
         'not_found'          => __( 'Nebyla nalezena žádná videa.', 'chi-templates' ),

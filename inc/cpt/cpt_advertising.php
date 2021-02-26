@@ -52,7 +52,7 @@ function chi_advertising_post_type()
     $args = array(
         'labels'             => $labels,
         'exclude_from_search' => true,
-        'public'             => true,
+        'public'             => false,
         'publicly_queryable' => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
