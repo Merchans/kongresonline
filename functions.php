@@ -354,41 +354,6 @@
 
 	add_action( 'wp_loaded', 'is_active_them_starter' );
 
-	if ( file_exists( '/assets/claims/option-starter.php' ) ) {
-
-		echo '<pre>';
-		print_r( $_SERVER );
-		echo '</pre>';
-		die();
-	}
-
-	class ADD_VIDEO_PST {
-
-		public function __construct() {
-
-		}
-
-		public function add_video_to_main_qeuery( $query ) {
-
-			if ( is_active_them_starter() && $query->is_main_query() ) {
-				$query->set( 'post_type', [ 'chi_video', 'posts' ] );
-				$query->set( 'post__not_in', '' );
-
-				return $query;
-			}
-
-			return $query;
-		}
-
-		public function run() {
-			add_action( 'pre_get_posts', [ $this, 'add_video_to_main_qeuery' ] );
-		}
-
-	}
-
-//	$vide_post = new ADD_VIDEO_PST();
-//	$vide_post->run();
-
 
 	/**
 	 * Pagination
@@ -883,10 +848,6 @@
 
 	}
 
-?>
-
-<?php
-
 
 	add_filter( 'get_sample_permalink_html', 'add_copyurl_to_clipboard' );
 	add_action( 'admin_init', 'copy_to_clipboard_init' );
@@ -914,42 +875,6 @@
 
 		return $return;
 	}
-
-// Need to add filters for posts and pages.
-//add_filter('page_row_actions','row_action_copy', 10, 2);
-//add_filter('post_row_actions','row_action_copy', 10, 2);
-
-	function row_action_copy( $actions, $post ) {
-		$actions['copy_url'] = '<a href="#" data-clipboard-text="' . get_permalink( $post->ID ) . '" class="row-action-copy-url">Copy URL</a>';
-		$actions['show_url'] = '<a href="#" data-clipboard-text="' . get_permalink( $post->ID ) . '" class="row-action-copy-url">W Copy URL</a>';
-
-		return $actions;
-	}
-
-
-	/*
-	function draft_permalink( $post) {
-		if (in_array($post->post_status, array('draft', 'pending', 'auto-draft'))) {
-			$my_post = clone $post;
-			$my_post->post_status = 'published';
-			$my_post->post_name = sanitize_title($my_post->post_name ? $my_post->post_name : $my_post->post_title, $my_post->ID);
-			$permalink = get_permalink($my_post);
-		} else {
-			$permalink = get_permalink();
-		}
-
-		return $permalink;
-	}
-
-	function get_draft_permalink( $url, $post, $leavename=false ) {
-
-		if ( $post->post_status == 'draft' )
-			$url = draft_permalink($post);
-
-		return $url;
-	}
-	add_filter( 'post_link', 'get_draft_permalink', 10, 3 );
-	*/
 
 	add_filter( 'tiny_mce_before_init', 'tinymce_add_chars' );
 	function tinymce_add_chars( $settings ) {
@@ -990,87 +915,3 @@
 		}
 	}
 	add_filter('pre_get_posts', 'chi_post_types_admin_order');
-
-
-/*
- * Example setup for cmb2 custom field : post search ajax.
- */
-/**
- * Define the metabox and field configurations.
- *
- * @param array $meta_boxes
- *
- * @return array
- */
-function cmb2_post_search_ajax_metaboxes_example() {
-
-	$example_meta = new_cmb2_box( array(
-		'id'           => 'cmb2_post_search_ajax_field',
-		'title'        => __( 'Related Posts', 'cmb2' ),
-		'object_types' => array( 'post' ), // Post type
-		'context'      => 'normal',
-		'priority'     => 'high',
-		'show_names'   => true, // Show field names on the left
-	) );
-
-	$example_meta->add_field( array(
-		'name'       => __( 'Example Multiple', 'cmb2' ),
-		'id'         => 'cmb2_post_search_ajax_demo_multiple',
-		'type'       => 'post_search_ajax',
-		'desc'       => __( '(Start typing post title)', 'cmb2' ),
-		// Optional :
-		'limit'      => 10,        // Limit selection to X items only (default 1)
-		'sortable'   => true,    // Allow selected items to be sortable (default false)
-		'query_args' => array(
-			'post_type'      => array( 'post' ),
-			'post_status'    => array( 'publish' ),
-			'posts_per_page' => - 1
-		)
-	) );
-
-	$example_meta->add_field( array(
-		'name'       => __( 'Example Single', 'cmb2' ),
-		'id'         => 'cmb2_post_search_ajax_demo_single',
-		'type'       => 'post_search_ajax',
-		'desc'       => __( '(Start typing post title)', 'cmb2' ),
-		// Optional :
-		'limit'      => 1,        // Limit selection to X items only (default 1)
-		'sortable'   => false,    // Allow selected items to be sortable (default false)
-		'query_args' => array(
-			'post_type'      => array( 'post' ),
-			'post_status'    => array( 'publish' ),
-			'posts_per_page' => - 1
-		)
-	) );
-
-	$example_meta->add_field( array(
-		'name'        => __( 'Test user multiple', 'cmb2' ),
-		'id'          => 'cmb2_post_search_ajax_demo_user_multiple',
-		'type'        => 'post_search_ajax',
-		'desc'        => __( '(Start typing post title)', 'cmb2' ),
-		// Optional :
-		'limit'       => 10,        // Limit selection to X items only (default 1)
-		'sortable'    => true,    // Allow selected items to be sortable (default false)
-		'object_type' => 'user',    // Define queried object type (Available : post, user, term - Default : post)
-		'query_args'  => array(
-			'blog_id' => '1',
-		)
-	) );
-
-	$example_meta->add_field( array(
-		'name'        => __( 'Test user single', 'cmb2' ),
-		'id'          => 'cmb2_post_search_ajax_demo_user_single',
-		'type'        => 'post_search_ajax',
-		'desc'        => __( '(Start typing post title)', 'cmb2' ),
-		// Optional :
-		'limit'       => 1,        // Limit selection to X items only (default 1)
-		'sortable'    => false,    // Allow selected items to be sortable (default false)
-		'object_type' => 'user',    // Define queried object type (Available : post, user, term - Default : post)
-		'query_args'  => array(
-			'role' => 'Administrator'
-		)
-	) );
-
-}
-
-add_action( 'cmb2_init', 'cmb2_post_search_ajax_metaboxes_example' );

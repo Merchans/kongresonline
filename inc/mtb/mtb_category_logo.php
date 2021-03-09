@@ -156,8 +156,8 @@
 
 		}
 
-//		$CHI_CATEGORY_LOGO = new CHI_CATEGORY_LOGO();
-//		$CHI_CATEGORY_LOGO->init();
+		$CHI_CATEGORY_LOGO = new CHI_CATEGORY_LOGO();
+		$CHI_CATEGORY_LOGO->init();
 
 	}
 
