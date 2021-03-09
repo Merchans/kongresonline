@@ -848,7 +848,6 @@
 
 	}
 
-
 	add_filter( 'get_sample_permalink_html', 'add_copyurl_to_clipboard' );
 	add_action( 'admin_init', 'copy_to_clipboard_init' );
 	add_action( 'admin_enqueue_scripts', 'add_clipboard_path' );
@@ -895,23 +894,24 @@
 	}
 
 	function chi_post_types_admin_order( $wp_query ) {
-		if (is_admin()) {
+		if ( is_admin() ) {
 			// Get the post type from the query
 			$post_type = $wp_query->query['post_type'];
 
-			if ( $post_type == 'chi_video' && empty($_GET['orderby'])  ) {
+			if ( $post_type == 'chi_video' && empty( $_GET['orderby'] ) ) {
 
-				$wp_query->set('orderby', 'date');
+				$wp_query->set( 'orderby', 'date' );
 
-				$wp_query->set('order', 'DESC');
+				$wp_query->set( 'order', 'DESC' );
 			}
 
-			if ( $post_type == 'chi_inzerce' && empty($_GET['orderby'])  ) {
+			if ( $post_type == 'chi_inzerce' && empty( $_GET['orderby'] ) ) {
 
-				$wp_query->set('orderby', 'title');
+				$wp_query->set( 'orderby', 'title' );
 
-				$wp_query->set('order', 'ASC');
+				$wp_query->set( 'order', 'ASC' );
 			}
 		}
 	}
-	add_filter('pre_get_posts', 'chi_post_types_admin_order');
+
+	add_filter( 'pre_get_posts', 'chi_post_types_admin_order' );
