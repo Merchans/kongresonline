@@ -1,3 +1,16 @@
+/*
+Theme Name: CHI Kongres Online
+Theme URI: http://kongres-online.cz/
+Author: Richard Markovič
+Author URI: https://www.facebook.com/markovic.richard
+Version: 0.3
+Tested up to: 5.4
+Requires PHP: 7.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: kongres-online
+*/
+
 html
 {
 	scroll-behavior: smooth;

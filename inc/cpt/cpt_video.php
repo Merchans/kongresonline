@@ -47,18 +47,19 @@ function chi_videos_custom_post_type()
 add_action('init', 'chi_videos_custom_post_type');
 
 
-/*
- * REGISTER TAXONIMY "kongres"
- * */
-add_action( 'init', 'chi_create_tax' );
-function chi_create_tax() {
-    register_taxonomy('congress', array('post', 'chi_video'),
-        array(
-            'hierarchical'  => true,
-            'label'         => __( 'Kongresy', 'chi-templates' ),
-            'singular_name' => __( 'Kongres', 'chi-templates' ),
-            'rewrite'       => true,
-            'query_var'     => true
-        )
-    );
-}
+	/*
+	 * REGISTER TAXONIMY "kongres"
+	 * */
+	add_action( 'init', 'chi_create_tax' );
+	function chi_create_tax() {
+		register_taxonomy('congress', array('post', 'chi_video'),
+			array(
+				'hierarchical'  => true,
+				'label'         => __( 'Kongresy', 'chi-templates' ),
+				'singular_name' => __( 'Kongres', 'chi-templates' ),
+				'rewrite'       => true,
+				'query_var'     => true
+			)
+		);
+	}
+

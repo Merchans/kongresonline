@@ -250,12 +250,12 @@ $first_video_ID = $first_video->posts[0]->ID;
                     <div class="chi-footer-logo">
                         <img src="<?php echo get_template_directory_uri(); ?>/img/chi-logo-1.png" alt="chi logo">
                     </div>
-                    <p>Společnost <strong>CZECH HEALTH INTERACTIVE, s.r.o.</strong> se&nbsp;zaměřuje výhradně na&nbsp;digitální
-                        komunikaci v&nbsp;oblasti zdravotnictví.</p>
+                    <p>Společnost <strong>CZECH HEALTH INTERACTIVE, s.r.o.</strong> se zaměřuje výhradně na digitální
+                        komunikaci v oblasti zdravotnictví.</p>
                 </div>
                 <div class="col-md-4">
 					<p>Základem naší práce je především kvalitní, odborný obsah, který šíříme pomocí moderních online nástrojů.	</p>
-					<p>Naší vizí je stát se odborným partnerem pro farmaceutické společnosti v&nbsp;oblasti e-commerce a&nbsp;respektovaným médiem pro lékaře a&nbsp;farmaceuty.</p>
+					<p>Naší vizí je stát se odborným partnerem pro farmaceutické společnosti v oblasti e-commerce a respektovaným médiem pro lékaře a farmaceuty.</p>
                 </div>
                 <div class="col-md-4">
 					<p>
