@@ -20,8 +20,9 @@
 				add_action( 'admin_footer', array( $this, 'add_script' ) );
 				add_action('admin_enqueue_scripts', 'unload_all_jquery');
 				function unload_all_jquery() {
-					//wp_enqueue_script("jquery");
-					$jquery_ui = array(
+					if ( isset($_GET['taxonomy'] ) && $_GET['taxonomy'] == 'category') {
+						//wp_enqueue_script("jquery");
+						$jquery_ui = array(
 //							"jquery-ui-widget",
 //							"jquery-ui-mouse",
 //							"jquery-ui-accordion",
@@ -36,10 +37,12 @@
 //							"jquery-ui-resizable",
 //							"jquery-ui-dialog",
 //							"jquery-ui-button"
-					);
+						);
+
 
 					foreach($jquery_ui as $script){
 						wp_deregister_script($script);
+					}
 					}
 				}
 			}

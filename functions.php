@@ -355,6 +355,7 @@
 	add_action( 'wp_loaded', 'is_active_them_starter' );
 
 
+
 	/**
 	 * Pagination
 	 */
@@ -420,23 +421,17 @@
 
 
 	function get_url_var( $name ) {
-		$strURL = $_SERVER['REQUEST_URI'];
-
+		$strURL  = $_SERVER['REQUEST_URI'];
 		$arrVals = explode( "/", $strURL );
-		$found   = false;
-		$arrVals = array_filter( $arrVals );
-
+		$found   = 0;
 		foreach ( $arrVals as $index => $value ) {
 			if ( $value == $name ) {
 				$found = $index;
 			}
 		}
-		$place = $found;
-		if ( $place ) {
-			return $arrVals[ $place ];
-		} else {
-			return false;
-		}
+		$place = $found + 1;
+
+		return $arrVals[ $place ];
 	}
 
 
@@ -657,10 +652,9 @@
 		return $buttons;
 	}
 
-//add_filter('mce_buttons_4', 'chi_mce_buttons');
-//add_filter('mce_buttons_3', 'chi_mce_buttons');
+
 	add_filter( 'mce_buttons_2', 'chi_mce_buttons_2' );
-//add_filter('mce_buttons', 'chi_mce_buttons');
+
 
 	function lt_html_excerpt( $text ) { // Fakes an excerpt if needed
 		global $post;
@@ -687,22 +681,6 @@
 	}
 
 
-	/* remove the default filter */
-//remove_filter('get_the_excerpt', 'wp_trim_excerpt');
-
-	/* now, add your own filter */
-//add_filter('get_the_excerpt', 'lt_html_excerpt');
-
-	/* Plugin Name: My TinyMCE Buttons */
-//add_action( 'admin_init', 'my_tinymce_button' );
-
-	function my_tinymce_button() {
-		if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
-			//add_filter( 'mce_buttons', 'my_register_tinymce_button' );
-			//add_filter( 'mce_external_plugins', 'my_add_tinymce_button' );
-		}
-	}
-
 	function my_register_tinymce_button( $buttons ) {
 		array_push( $buttons, "chi_stats", "button_green" );
 
@@ -715,15 +693,6 @@
 		return $plugin_array;
 	}
 
-
-	/*
-	echo '<pre>';
-	print_r( $post->post_type );
-	echo '</pre>';
-	echo '<pre>';
-	print_r( mb_strlen( wp_strip_all_tags($post->post_content)) );
-	echo '</pre>';
-	*/
 
 	add_action( 'admin_print_footer_scripts', 'check_textarea_length' );
 	function check_textarea_length() { ?>
@@ -848,6 +817,7 @@
 
 	}
 
+
 	add_filter( 'get_sample_permalink_html', 'add_copyurl_to_clipboard' );
 	add_action( 'admin_init', 'copy_to_clipboard_init' );
 	add_action( 'admin_enqueue_scripts', 'add_clipboard_path' );
@@ -874,6 +844,7 @@
 
 		return $return;
 	}
+
 
 	add_filter( 'tiny_mce_before_init', 'tinymce_add_chars' );
 	function tinymce_add_chars( $settings ) {
