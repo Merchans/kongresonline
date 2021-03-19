@@ -355,6 +355,7 @@
 	add_action( 'wp_loaded', 'is_active_them_starter' );
 
 
+
 	/**
 	 * Pagination
 	 */
@@ -581,7 +582,7 @@
 
 	function chi_view_posts() {
 
-		/// !!!! Function segment Is not add in wp theme !!!
+		/// !!!! Function segment Is not add in wp theme !!!!
 		$catinfo = get_category_by_slug( segment( 3 ) );
 
 		if ( 1 == 1 ) {
