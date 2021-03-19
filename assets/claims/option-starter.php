@@ -10,7 +10,7 @@
 
 	wp_head();
 	chi_special_background();
-	$alert = "Články";
+	$alert = "Obsah";
 ?>
 
 <style>

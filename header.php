@@ -55,21 +55,6 @@
                     ));
 
                 ?>
-				<!--<ul class="navbar-nav">
-					<li class="nav-item chi-nav-item active ">
-						<a class="nav-link chi-nav-link chi-active" href="#">SPECIÁLY<span
-									class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item chi-nav-item">
-						<a class="nav-link chi-nav-link" href="#">VIDEA</a>
-					</li>
-					<li class="nav-item chi-nav-item">
-						<a class="nav-link chi-nav-link" href="#">ROZHOVORY</a>
-					</li>
-					<li class="nav-item chi-nav-item">
-						<a class="nav-link chi-nav-link" href="#">TÉMATA</a>
-					</li>
-				</ul>-->
 			</div>
 		</div>
 	</nav>

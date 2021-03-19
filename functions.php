@@ -420,23 +420,17 @@
 
 
 	function get_url_var( $name ) {
-		$strURL = $_SERVER['REQUEST_URI'];
-
+		$strURL  = $_SERVER['REQUEST_URI'];
 		$arrVals = explode( "/", $strURL );
-		$found   = false;
-		$arrVals = array_filter( $arrVals );
-
+		$found   = 0;
 		foreach ( $arrVals as $index => $value ) {
 			if ( $value == $name ) {
 				$found = $index;
 			}
 		}
-		$place = $found;
-		if ( $place ) {
-			return $arrVals[ $place ];
-		} else {
-			return false;
-		}
+		$place = $found + 1;
+
+		return $arrVals[ $place ];
 	}
 
 
@@ -582,9 +576,63 @@
 	add_filter( 'template_include', 'kardiovaskularni_zpravodajstvi_template_file', 99 );
 
 
+	// slow function!!!
+	//	add_action( 'wp_head', 'chi_view_posts' );
+
+	function chi_view_posts() {
+
+		/// !!!! Function segment Is not add in wp theme !!!
+		$catinfo = get_category_by_slug( segment( 3 ) );
+
+		if ( 1 == 1 ) {
+//			$cat_id  = $catinfo->term_id;
+
+			if ( isset( $_GET["key"] ) ) {
+				if ( $_GET['key'] == 'private_preview' ) {
+					$args = array(
+							'posts_per_page' => - 1,
+							'post_type'      => array( 'post', 'chi_video' ),
+							'post_status'    => array( 'draft' ),
+							'category_name'  => segment( 6 ),
+							'fields'         => 'ids'
+					);
+
+					$posts = new WP_Query( $args );
+
+					if ( ! empty( $posts->posts ) ) {
+						update_option( 'special_urologum', $posts->posts );
+						$temperary_published = get_option( 'special_urologum' );
+
+						if ( ! empty( $temperary_published ) ) {
+							foreach ( $temperary_published as $post_id ) {
+								$data = array(
+										'ID'          => $post_id,
+										'post_status' => 'publish',
+								);
+								wp_update_post( $data );
+								flush_rewrite_rules();
+							}
+						}
+					}
+				}
+			} else {
+				if ( $temperary_published = get_option( 'special_urologum' ) ) {
+					foreach ( $temperary_published as $post_id ) {
+						$data = array(
+								'ID'          => $post_id,
+								'post_status' => 'draft',
+						);
+						wp_update_post( $data );
+						delete_option( 'special_urologum' );
+						flush_rewrite_rules();
+					}
+				}
+			}
+		}
+	}
+
 // https://www.webhostinghero.com/how-to-share-a-draft-page-in-wordpress/?fbclid=IwAR1hn_xdoMmt80d8LHgGbqFtHUMMnQd_GKG94KW_MaAPpyoUb5tdobbYA5w
 // https://designwithvalerie.com/share-draft-post-in-wordpress/
-
 	add_filter( 'posts_results', 'chi_set_query_to_draft', null, 2 );
 	function chi_set_query_to_draft( $posts, $query ) {
 
@@ -657,10 +705,9 @@
 		return $buttons;
 	}
 
-//add_filter('mce_buttons_4', 'chi_mce_buttons');
-//add_filter('mce_buttons_3', 'chi_mce_buttons');
+
 	add_filter( 'mce_buttons_2', 'chi_mce_buttons_2' );
-//add_filter('mce_buttons', 'chi_mce_buttons');
+
 
 	function lt_html_excerpt( $text ) { // Fakes an excerpt if needed
 		global $post;
@@ -687,22 +734,6 @@
 	}
 
 
-	/* remove the default filter */
-//remove_filter('get_the_excerpt', 'wp_trim_excerpt');
-
-	/* now, add your own filter */
-//add_filter('get_the_excerpt', 'lt_html_excerpt');
-
-	/* Plugin Name: My TinyMCE Buttons */
-//add_action( 'admin_init', 'my_tinymce_button' );
-
-	function my_tinymce_button() {
-		if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
-			//add_filter( 'mce_buttons', 'my_register_tinymce_button' );
-			//add_filter( 'mce_external_plugins', 'my_add_tinymce_button' );
-		}
-	}
-
 	function my_register_tinymce_button( $buttons ) {
 		array_push( $buttons, "chi_stats", "button_green" );
 
@@ -715,15 +746,6 @@
 		return $plugin_array;
 	}
 
-
-	/*
-	echo '<pre>';
-	print_r( $post->post_type );
-	echo '</pre>';
-	echo '<pre>';
-	print_r( mb_strlen( wp_strip_all_tags($post->post_content)) );
-	echo '</pre>';
-	*/
 
 	add_action( 'admin_print_footer_scripts', 'check_textarea_length' );
 	function check_textarea_length() { ?>
@@ -848,6 +870,7 @@
 
 	}
 
+
 	add_filter( 'get_sample_permalink_html', 'add_copyurl_to_clipboard' );
 	add_action( 'admin_init', 'copy_to_clipboard_init' );
 	add_action( 'admin_enqueue_scripts', 'add_clipboard_path' );
@@ -870,10 +893,11 @@
 		if ( get_post_status( $post ) == "publish" ) {
 			$return .= sprintf( "<span id='copy-url-btn'><a href='#' id=\"copy-url-button\" data-clipboard-text='%s' class='button button-small'>Kopírovat odkaz</a></span> ", get_permalink( $post->ID ) );
 		}
-		$return .= sprintf( "<span id='copy-url-btn-view'><a href='#' id=\"copy-url-button-view\" data-clipboard-text='%s' class='button button-small'>Kopírovat náhledový odkaz</a></span> ", get_site_url( "", "", "https" ) . "?p=$post->ID&preview=true&key=private_preview" );
+		$return .= sprintf( "<span id='copy-url-btn-view'><a href='#' id=\"copy-url-button-view\" data-clipboard-text='%s' class='button button-small'>Kopírovat náhledový odkaz</a></span> ", get_site_url( "", "", "https" ) . "/?post_type=" . get_post_type( $post->ID ) . "&p=$post->ID&preview=true&key=private_preview" );
 
 		return $return;
 	}
+
 
 	add_filter( 'tiny_mce_before_init', 'tinymce_add_chars' );
 	function tinymce_add_chars( $settings ) {
