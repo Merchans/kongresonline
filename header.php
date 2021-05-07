@@ -59,5 +59,5 @@
 		</div>
 	</nav>
 </header>
-<?php get_template_part("/assets/confirms/pfizer-confirm"); ?>
-<?php get_template_part("/assets/confirms/chi-confirm"); ?>
+<?php //get_template_part("/assets/confirms/pfizer-confirm"); ?>
+<?php //get_template_part("/assets/confirms/chi-confirm"); ?>
