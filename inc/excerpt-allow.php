@@ -1,8 +1,13 @@
 <?php
 
-function excerpt($limit)
+function excerpt($limit, $id = null)
 {
-    $excerpt = explode(' ', get_the_excerpt(), $limit);
+	if ($id) {
+		$excerpt = explode(' ', get_the_excerpt($id), $limit);
+	}
+	else {
+		$excerpt = explode(' ', get_the_excerpt(), $limit);
+	}
     if (count($excerpt)>=$limit) {
         array_pop($excerpt);
         $excerpt = implode(" ",$excerpt).'<a href="'. get_permalink() . '">' . '&hellip;' . '</a>'; ;
@@ -13,8 +18,10 @@ function excerpt($limit)
 
     $excerpt = closetags( $excerpt );
 	
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if ( is_plugin_active( 'automat-nbsp/automat-nbsp.php' ) ):
+
+
+	if ( is_automat_nbsp_active() ):
+
 		$excerpt = add_nbsp($excerpt, false);
 		return $excerpt;
 	else:
