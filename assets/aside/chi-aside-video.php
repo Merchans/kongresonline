@@ -41,7 +41,7 @@ if ( $videos_ids ) {
 						?>
 						<div class="chi-category text-uppercase">
 							<a href="<?php echo get_chi_make_specilal_form_category( $video->ID ); ?>"
-							   class="chi-category__link"><?php echo get_the_category( $video->ID )[0]->slug ?></a>
+							   class="chi-category__link"><?php echo get_the_category( $video->ID )[0]->name ?></a>
 						</div>
 					</div>
 				</div>
