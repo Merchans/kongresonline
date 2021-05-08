@@ -1,6 +1,11 @@
 <?php
-$id         = get_the_ID();
-$videos_ids = get_post_meta( $id, "_chi_selected_articles_or_videoss", true );
+if ( $args['is_single'] ) {
+	$videos_ids = get_post_meta( $args['content_id'], "_chi_selected_articles_or_videoss", true );
+}
+else {
+	$videos_ids = get_term_meta( $args['content_id'], "chi_selected_thems_in_category", true );
+}
+
 if ( $videos_ids ) {
 	$videos_args = array(
 		"post_type" => array(
@@ -52,12 +57,12 @@ if ( $videos_ids ) {
 							</strong>
 						<?php else : ?>
 							<h6 class="card-title chi-card-title"><?php echo $video->post_title ?></h6>
+							<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
+									$video->ID ) ?>
+								<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
+										$video->ID ) ?></time>
+							</strong>
 						<?php endif ?>
-						<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
-								$video->ID ) ?>
-							<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
-									$video->ID ) ?></time>
-						</strong>
 					</a>
 					<p class="chi-card-text"><?php echo excerpt( 30, $video->ID ); ?></p>
 				</div>

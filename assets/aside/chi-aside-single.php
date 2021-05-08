@@ -23,5 +23,7 @@ if ( count( $advertising_ids ) > 0 && ! empty( $advertising_ids ) ) {
 }
 ?>
 </div>
-<?php get_template_part('/assets/aside/chi-aside-article'); ?>
-<?php get_template_part('/assets/aside/chi-aside-video'); ?>
+
+<?php get_template_part( '/assets/aside/chi-aside', 'article',
+	array( "content_id" => $id, "is_single" => is_single() ) ); ?>
+<?php get_template_part( '/assets/aside/chi-aside', 'video', array( "content_id" => $id, "is_single" => is_single() ) ); ?>

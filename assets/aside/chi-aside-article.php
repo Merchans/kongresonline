@@ -1,6 +1,11 @@
 <?php
-$id              = get_the_ID();
-$posts_ids = get_post_meta( $id, "_chi_selected_articles_or_videoss", true );
+if ( $args['is_single'] ) {
+	$posts_ids = get_post_meta( $args['content_id'], "_chi_selected_articles_or_videoss", true );
+}
+else {
+	$posts_ids = get_term_meta( $args['content_id'], "chi_selected_thems_in_category", true );
+}
+
 if ( $posts_ids ) {
 	$posts_args = array(
 		"post_type" => array(
@@ -20,7 +25,7 @@ if ( $posts_ids ) {
 			<hr class="divider mt-0">
 			<div class="card chi-card--borner-none chi-card">
 				<div class="chi-box-1 chi-card--box-1"
-				     style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url( $post->ID ) ?>) no-repeat top center; background-size: cover;">
+					 style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url(<?php echo get_the_post_thumbnail_url( $post->ID ) ?>) no-repeat top center; background-size: cover;">
 					<a href="<?php echo get_permalink( $post->ID ) ?>" class="d-block w-100 h-100"></a>
 					<div class="d-flex flex-row">
 						<?php
@@ -47,14 +52,14 @@ if ( $posts_ids ) {
 							<h6 class="card-title chi-card-title"><?php echo add_nbsp( $post->post_title,
 									false ) ?></h6>
 							<strong class="chi-name-title"><?php echo add_nbsp( get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
-									$post->ID ), false )?>
+									$post->ID ), false ) ?>
 								<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
 										$post->ID ) ?></time>
 							</strong>
 						<?php else : ?>
 							<h6 class="card-title chi-card-title"><?php echo $post->post_title ?></h6>
 							<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
-									$post->ID )?>
+									$post->ID ) ?>
 								<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
 										$post->ID ) ?></time>
 							</strong>
