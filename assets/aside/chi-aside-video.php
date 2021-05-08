@@ -1,7 +1,7 @@
 <?php
-$id              = get_the_ID();
+$id         = get_the_ID();
 $videos_ids = get_post_meta( $id, "_chi_selected_articles_or_videoss", true );
-if ( $videos_ids  ) {
+if ( $videos_ids ) {
 	$videos_args = array(
 		"post_type" => array(
 			"chi_video",
@@ -33,7 +33,6 @@ if ( $videos_ids  ) {
 							</div>
 							<?php
 						}
-
 						?>
 						<div class="chi-category text-uppercase">
 							<a href="<?php echo get_chi_make_specilal_form_category( $video->ID ); ?>"
@@ -46,15 +45,20 @@ if ( $videos_ids  ) {
 						<?php if ( is_automat_nbsp_active() ) : ?>
 							<h6 class="card-title chi-card-title"><?php echo add_nbsp( $video->post_title,
 									false ) ?></h6>
+							<strong class="chi-name-title"><?php echo add_nbsp( get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
+									$video->ID ), false ) ?>
+								<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
+										$video->ID ) ?></time>
+							</strong>
 						<?php else : ?>
 							<h6 class="card-title chi-card-title"><?php echo $video->post_title ?></h6>
 						<?php endif ?>
+						<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
+								$video->ID ) ?>
+							<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
+									$video->ID ) ?></time>
+						</strong>
 					</a>
-					<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
-							$video->ID ) ?>
-						<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
-								$video->ID ) ?></time>
-					</strong>
 					<p class="chi-card-text"><?php echo excerpt( 30, $video->ID ); ?></p>
 				</div>
 			</div>
