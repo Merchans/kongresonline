@@ -228,7 +228,33 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 				if ( $page == 1 ) {
 					$page = 2;
 				} else {
-					$page = ( ( $page - 1 ) * get_option( "posts_per_page" ) ) + 2;
+					if ( $cat_id ) {
+						$args  = array(
+							"post_type"      => array( "chi_video", "post" ),
+							"posts_per_page" => 3,
+							"cat"            => $cat_id,
+							"post_status"    => "publish"
+						);
+						$posts_number = 0;
+						$posts = new WP_Query( $args );
+						// The Loop
+						if ( $posts->have_posts() ) :
+							while ( $posts->have_posts() ) : $posts->the_post();
+								// Do Stuff
+							if	(get_post_type(get_the_ID()) == "post") {
+								$posts_number++;
+							}
+
+							endwhile;
+						endif;
+
+						// Reset Post Data
+						wp_reset_postdata();
+
+
+					}
+
+					$page = ( ( $page - 1 ) * get_option( "posts_per_page" ) ) + ( $posts_number ? $posts_number : 2);
 				}
 				$query->set( 'offset', $page );
 			} else if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze" ) or in_array( "video", $text ) ) {
