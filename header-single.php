@@ -356,6 +356,6 @@ if ( has_category("kardiovaskularni-zpravodajstvi") ) {
 </header>
 <div <?php body_class("chi-claim"); ?>>
     <?php get_template_part("chi-category-nav-content"); ?>
-<?php get_template_part("/assets/confirms/chi-confirm"); ?>
-    <?php get_template_part("/assets/confirms/pfizer-confirm"); ?>
+<?php //get_template_part("/assets/confirms/chi-confirm"); ?>
+<!--    --><?php //get_template_part("/assets/confirms/pfizer-confirm"); ?>
 
