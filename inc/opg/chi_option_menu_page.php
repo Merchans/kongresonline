@@ -253,3 +253,4 @@ if ( !function_exists( 'admin_menu_links_to_all_edit_post_type_custom_css' ) ) {
     }
     add_action('admin_head', 'admin_menu_links_to_all_edit_post_typecustom_css');
 }
+*/
