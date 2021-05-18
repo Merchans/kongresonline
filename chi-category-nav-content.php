@@ -9,6 +9,7 @@ if ( is_page_template( "template-kavaz.php" ) || is_page_template( "taxonomy-con
 }
 
 $article        = get_site_url() . "/" . $category;
+
 $video          = get_site_url() . "/video/" . $category;
 $active_article = "";
 $active_video   = "";
@@ -63,7 +64,7 @@ if ( $all_video ) {
 	<div class="collapse navbar-collapse" id="navbarNavDropdown">
 		<ul class="navbar-nav text-uppercase">
 			<li class="nav-item chi-nav-item">
-				<?php $all_articles_url = get_home_url() . "/" . $category . "/?clanky-a-reportaze"; ?>
+				<?php $all_articles_url = $article . "/?clanky-a-reportaze"; ?>
 				<a class='nav-link chi-nav-link <?= $active_article ?> white-color'
 				   href='<?php echo $all_articles_url ?>'>ČLÁNKY A REPORTÁŽE</a>
 			</li>
