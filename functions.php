@@ -226,24 +226,56 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 				}
 
 				if ( $page == 1 ) {
-					$page = 2;
-				} else {
-					if ( $cat_id ) {
-						$args  = array(
+					if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze&page=1" ) ) {
+						$page = 0;
+					} elseif ( $cat_id ) {
+						$args         = array(
 							"post_type"      => array( "chi_video", "post" ),
 							"posts_per_page" => 3,
 							"cat"            => $cat_id,
 							"post_status"    => "publish"
 						);
 						$posts_number = 0;
-						$posts = new WP_Query( $args );
+						$posts_id     = array();
+						$posts        = new WP_Query( $args );
 						// The Loop
 						if ( $posts->have_posts() ) :
 							while ( $posts->have_posts() ) : $posts->the_post();
 								// Do Stuff
-							if	(get_post_type(get_the_ID()) == "post") {
-								$posts_number++;
-							}
+								if ( get_post_type( get_the_ID() ) == "post" ) {
+									$posts_number ++;
+									$posts_id[] = get_the_ID();
+								}
+
+							endwhile;
+						endif;
+
+						// Reset Post Data
+
+						$page = 0;
+						$query->set( 'post__not_in', $posts_id );
+					} else {
+						$page = 2;
+					}
+				} else {
+					if ( $cat_id ) {
+						$args         = array(
+							"post_type"      => array( "chi_video", "post" ),
+							"posts_per_page" => 3,
+							"cat"            => $cat_id,
+							"post_status"    => "publish"
+						);
+						$posts_number = 0;
+						$posts_id     = array();
+						$posts        = new WP_Query( $args );
+						// The Loop
+						if ( $posts->have_posts() ) :
+							while ( $posts->have_posts() ) : $posts->the_post();
+								// Do Stuff
+								if ( get_post_type( get_the_ID() ) == "post" ) {
+									$posts_number ++;
+									$posts_id[] = get_the_ID();
+								}
 
 							endwhile;
 						endif;
@@ -254,10 +286,21 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 
 					}
 
-					$page = ( ( $page - 1 ) * get_option( "posts_per_page" ) ) + ( $posts_number ? $posts_number : 2);
+					$page     = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
+					$variable = strpos( substr( $_SERVER['REQUEST_URI'], 0, strpos( $_SERVER['REQUEST_URI'], "&" ) ),
+						"?clanky-a-reportaze" );
+					if ( $variable ) {
+						$page = $page - $posts_number;
+					}
+
+					$query->set( 'post__not_in', $posts_id );
 				}
 				$query->set( 'offset', $page );
-			} else if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze" ) or in_array( "video", $text ) ) {
+			} else if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze" ) or in_array( "video",
+					$text ) or strpos( substr( $_SERVER['REQUEST_URI'], 0, strpos( $_SERVER['REQUEST_URI'], "&" ) ),
+					"?clanky-a-reportaze" ) ) {
+
+
 				$query->set( 'offset', 0 );
 			} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 1 ) {
 
@@ -371,9 +414,6 @@ function is_active_them_starter() {
 
 function is_template_part( $template_file ) {
 	global $wp_template_part;
-	echo '<pre>';
-	print_r( $wp_template_part );
-	echo '</pre>';
 
 	return $template_file === $wp_template_part;
 }
@@ -387,6 +427,8 @@ add_action( 'wp_loaded', 'is_active_them_starter' );
 
 function get_pagination_links() {
 	global $wp_query;
+
+
 	if ( isset( $_GET["page"] ) ) {
 		$wp_query->query_vars['page'] > 1 ? $current = $wp_query->query_vars['page'] : $current = 1;
 	} else {
