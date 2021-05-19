@@ -207,6 +207,19 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 			$offset = 0;
 
 			$query->set( 'post__not_in', $post );
+
+			if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze&page=1" ) or strpos( $_SERVER['REQUEST_URI'],
+					"?clanky-a-reportaze" ) ) {
+				$query->set( 'post__not_in', '' );
+
+			}
+			if ( isset( $_GET["page"] ) ) {
+				$page = $_GET["page"];
+				$page = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
+				$query->set( 'offset', $page );
+			}
+
+			return;
 		}
 		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() ) {
 			$text = array( "empty" );
