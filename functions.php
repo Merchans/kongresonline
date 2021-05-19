@@ -190,6 +190,7 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 		if ( is_category() ) {
 			$category = get_queried_object();
 			$cat_id   = $category->term_id;
+			$option   = get_term_meta( $cat_id, "_chi_selected_one_options", true );
 		}
 		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() && is_category( 'kardiovaskularni-zpravodajstvi' ) ) {
 			$args_one_video_or_post = array(
@@ -227,6 +228,7 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 			if ( is_array( explode( "/", $_SERVER['REQUEST_URI'] ) ) ) {
 				$text = array_filter( explode( "/", $_SERVER['REQUEST_URI'] ) );
 			}
+
 			// Manipulate $query here, for instance like so
 			if ( isset( $_GET["page"] ) ) {
 				$page = $_GET["page"];
@@ -240,96 +242,58 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 
 				if ( $page == 1 ) {
 					if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze&page=1" ) ) {
+
 						$page = 0;
 					} elseif ( $cat_id ) {
-						$args         = array(
-							"post_type"      => array( "chi_video", "post" ),
-							"posts_per_page" => 3,
-							"cat"            => $cat_id,
-							"post_status"    => "publish"
-						);
-						$posts_number = 0;
-						$posts_id     = array();
-						$posts        = new WP_Query( $args );
-						// The Loop
-						if ( $posts->have_posts() ) :
-							while ( $posts->have_posts() ) : $posts->the_post();
-								// Do Stuff
-								if ( get_post_type( get_the_ID() ) == "post" ) {
-									$posts_number ++;
-									$posts_id[] = get_the_ID();
-								}
 
-							endwhile;
-						endif;
-
-						// Reset Post Data
+						$data = get_number_of_posts( 3, $cat_id, [ "chi_video", "post" ] );
+						if ( $option == 1 ) {
+							$data = get_number_of_posts( 2, $cat_id, "post" );
+						}
 
 						$page = 0;
-						$query->set( 'post__not_in', $posts_id );
+						$query->set( 'post__not_in', $data['posts_id'] );
 					} else {
 						$page = 2;
+
 					}
+
 				} else {
-					if ( $cat_id ) {
-						$args         = array(
-							"post_type"      => array( "chi_video", "post" ),
-							"posts_per_page" => 3,
-							"cat"            => $cat_id,
-							"post_status"    => "publish"
-						);
-						$posts_number = 0;
-						$posts_id     = array();
-						$posts        = new WP_Query( $args );
-						// The Loop
-						if ( $posts->have_posts() ) :
-							while ( $posts->have_posts() ) : $posts->the_post();
-								// Do Stuff
-								if ( get_post_type( get_the_ID() ) == "post" ) {
-									$posts_number ++;
-									$posts_id[] = get_the_ID();
-								}
 
-							endwhile;
-						endif;
-
-						// Reset Post Data
-						wp_reset_postdata();
-
-
+					$data = get_number_of_posts( 3, $cat_id, [ "chi_video", "post" ] );
+					if ( $option == 3 ) {
+						$data['posts_id'] = get_term_meta( $cat_id, 'chi_selected_in_claim_posts', true );
+						if ( strpos( $_SERVER['REQUEST_URI'], '?clanky-a-reportaze&page=', 0 ) ) {
+							$data['posts_id'] = '';
+						}
 					}
-
 					$page     = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
 					$variable = strpos( substr( $_SERVER['REQUEST_URI'], 0, strpos( $_SERVER['REQUEST_URI'], "&" ) ),
 						"?clanky-a-reportaze" );
+
 					if ( $variable ) {
-						$page = $page - $posts_number;
+						$page = $page - $data['posts_number'];
+						if ($option == 3 ) {
+							$page = $page + $data['posts_number'];
+						}
 					}
 
-					$query->set( 'post__not_in', $posts_id );
+					$query->set( 'post__not_in', $data['posts_id'] );
 				}
+
 				$query->set( 'offset', $page );
 			} else if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze" ) or in_array( "video",
 					$text ) or strpos( substr( $_SERVER['REQUEST_URI'], 0, strpos( $_SERVER['REQUEST_URI'], "&" ) ),
 					"?clanky-a-reportaze" ) ) {
 
-
 				$query->set( 'offset', 0 );
+
 			} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 1 ) {
 
-				$args_three_latest_post_and_videos = array(
-					"post_type"      => array( "chi_video", "post" ),
-					"posts_per_page" => 3,
-					"category_name"  => $query->query["category_name"],
-					"post_status"    => "publish"
-				);
+				$data = get_number_of_posts( 2, $cat_id, [ "post" ] );
 
-				$posts_and_videos     = new  WP_Query( $args_three_latest_post_and_videos );
-				$ids_not_in_main_loop = wp_list_pluck( $posts_and_videos->posts, 'ID' );
+				$query->set( 'post__not_in', $data['posts_id'] );
 
-
-				$exclude = get_term_meta( $cat_id, 'chi_selected_in_claim_posts', true );
-				$query->set( 'post__not_in', $ids_not_in_main_loop );
 			} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 2 ) {
 
 				$args_three_latest_post_and_videos = array(
@@ -347,8 +311,11 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 			} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 3 ) {
 
 				$exclude = get_term_meta( $cat_id, 'chi_selected_in_claim_posts', true );
-				$query->set( 'post__not_in', array( $exclude[0], $exclude[1], $exclude[2] ) );
+
+				$query->set( 'post__not_in', $exclude );
+
 			} else {
+
 				$query->set( 'offset', $offset );
 			}
 
@@ -372,6 +339,7 @@ function chi_tag_add_post_type( $query ) {
 function chi_category_add_post_type( $query, $offset = 0 ) {
 
 	if ( ! is_admin() ) {
+
 		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() ) {
 
 			$category    = get_queried_object();
@@ -1034,5 +1002,40 @@ function is_automat_nbsp_active() {
 	}
 
 	return 0;
+
+}
+
+function get_number_of_posts( $per_page = 3, $cat_id = null, $post_type = array() ) {
+
+	if ( $cat_id ) {
+		$args = array(
+			"post_type"      => $post_type,
+			"posts_per_page" => $per_page,
+			"cat"            => $cat_id,
+			"post_status"    => "publish"
+		);
+
+		$data                 = array();
+		$data['posts_number'] = 0;
+		$posts                = new WP_Query( $args );
+		// The Loop
+		if ( $posts->have_posts() ) :
+			while ( $posts->have_posts() ) : $posts->the_post();
+				// Do Stuff
+				if ( get_post_type( get_the_ID() ) == "post" ) {
+					$data['posts_number'] ++;
+					$data['posts_id'][] = get_the_ID();
+				}
+
+			endwhile;
+		endif;
+
+		// Reset Post Data
+		wp_reset_postdata();
+
+		return $data;
+	}
+
+	return - 1;
 
 }
