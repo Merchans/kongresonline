@@ -187,11 +187,7 @@ function czech_date( $dateFormat, $dateData ) {
 function chi_category_main_query_offset( $query, $offset = 2 ) {
 
 	if ( ! is_admin() ) {
-		if ( is_category() ) {
-			$category = get_queried_object();
-			$cat_id   = $category->term_id;
-			$option   = get_term_meta( $cat_id, "_chi_selected_one_options", true );
-		}
+
 		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() && is_category( 'kardiovaskularni-zpravodajstvi' ) ) {
 			$args_one_video_or_post = array(
 				"post_type"      => array( "chi_video", "post" ),
@@ -204,8 +200,6 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 			$first_video_or_post_or_post = new  WP_Query( $args_one_video_or_post );
 
 			$post = $first_video_or_post_or_post->posts;
-
-			$offset = 0;
 
 			$query->set( 'post__not_in', $post );
 
@@ -222,104 +216,190 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 
 			return;
 		}
+
+
 		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() ) {
-			$text = array( "empty" );
+			$category       = get_queried_object();
+			$cat_id         = $category->term_id;
+			$option         = get_term_meta( $cat_id, "_chi_selected_one_options", true );
+			$text           = array();
+			$posts_per_page = get_option( "posts_per_page" );
 
 			if ( is_array( explode( "/", $_SERVER['REQUEST_URI'] ) ) ) {
 				$text = array_filter( explode( "/", $_SERVER['REQUEST_URI'] ) );
 			}
 
-			// Manipulate $query here, for instance like so
-			if ( isset( $_GET["page"] ) ) {
-				$page = $_GET["page"];
 
-				if ( in_array( "video", $text ) ) {
-					$page = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
-					$query->set( 'offset', $page );
-
-					return;
-				}
-
-				if ( $page == 1 ) {
-					if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze&page=1" ) ) {
-
-						$page = 0;
-					} elseif ( $cat_id ) {
-
-						$data = get_number_of_posts( 3, $cat_id, [ "chi_video", "post" ] );
-						if ( $option == 1 ) {
-							$data = get_number_of_posts( 2, $cat_id, "post" );
-						}
-
-						$page = 0;
-						$query->set( 'post__not_in', $data['posts_id'] );
-					} else {
-						$page = 2;
-
-					}
-
-				} else {
-
-					$data = get_number_of_posts( 3, $cat_id, [ "chi_video", "post" ] );
-					if ( $option == 3 ) {
-						$data['posts_id'] = get_term_meta( $cat_id, 'chi_selected_in_claim_posts', true );
-						if ( strpos( $_SERVER['REQUEST_URI'], '?clanky-a-reportaze&page=', 0 ) ) {
-							$data['posts_id'] = '';
-						}
-					}
-					$page     = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
-					$variable = strpos( substr( $_SERVER['REQUEST_URI'], 0, strpos( $_SERVER['REQUEST_URI'], "&" ) ),
-						"?clanky-a-reportaze" );
-
-					if ( $variable ) {
-						$page = $page - $data['posts_number'];
-						if ($option == 3 ) {
-							$page = $page + $data['posts_number'];
-						}
-					}
-
-					$query->set( 'post__not_in', $data['posts_id'] );
-				}
-
-				$query->set( 'offset', $page );
-			} else if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze" ) or in_array( "video",
-					$text ) or strpos( substr( $_SERVER['REQUEST_URI'], 0, strpos( $_SERVER['REQUEST_URI'], "&" ) ),
-					"?clanky-a-reportaze" ) ) {
-
-				$query->set( 'offset', 0 );
-
-			} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 1 ) {
-
-				$data = get_number_of_posts( 2, $cat_id, [ "post" ] );
-
-				$query->set( 'post__not_in', $data['posts_id'] );
-
-			} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 2 ) {
-
-				$args_three_latest_post_and_videos = array(
-					"post_type"      => array( "chi_video", "post" ),
-					"posts_per_page" => 3,
-					"category_name"  => $query->query["category_name"],
-					"post_status"    => "publish"
-				);
-
-				$posts_and_videos     = new  WP_Query( $args_three_latest_post_and_videos );
-				$ids_not_in_main_loop = wp_list_pluck( $posts_and_videos->posts, 'ID' );
-
-
-				$query->set( 'post__not_in', $ids_not_in_main_loop );
-			} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 3 ) {
-
-				$exclude = get_term_meta( $cat_id, 'chi_selected_in_claim_posts', true );
-
-				$query->set( 'post__not_in', $exclude );
-
-			} else {
-
-				$query->set( 'offset', $offset );
+			if ( ! $option ) {
+				return;
 			}
 
+			switch ( $option ) {
+				case 1:
+					$data = get_number_of_posts( 2, $cat_id, "post" );
+					$query->set( 'post__not_in', $data['posts_id'] );
+
+					if ( isset( $_GET["page"] ) ) {
+						$page = $_GET["page"];
+						$page = ( ( $page - 1 ) * $posts_per_page );
+						$query->set( 'offset', $page );
+					}
+
+					if ( in_array( "?clanky-a-reportaze", $text ) or preg_grep( '/clanky-a-reportaze&page=\d/',
+							$text ) ) {
+						$query->set( 'post__not_in', '' );
+					}
+					break;
+				case 2:
+					$data = get_number_of_posts( 3, $cat_id, [ "chi_video", "post" ] );
+					$query->set( 'post__not_in', $data['posts_id'] );
+
+					if ( isset( $_GET["page"] ) ) {
+						$page = $_GET["page"];
+						$page = ( ( $page - 1 ) * $posts_per_page );
+						$query->set( 'offset', $page );
+					}
+
+					if ( in_array( "video", $text ) ) {
+						$query->set( 'post__not_in', '' );
+						if ( isset( $_GET["page"] ) ) {
+							$page = $_GET["page"];
+							$page = ( ( $page - 1 ) * $posts_per_page );
+							$query->set( 'offset', $page );
+						}
+						break;
+					}
+
+					if ( in_array( "?clanky-a-reportaze", $text ) or preg_grep( '/clanky-a-reportaze&page=\d/',
+							$text ) ) {
+						$query->set( 'post__not_in', '' );
+					}
+					break;
+				case 3:
+					$exclude = get_term_meta( $cat_id, 'chi_selected_in_claim_posts', true );
+					$query->set( 'post__not_in', $exclude );
+
+					if ( isset( $_GET["page"] ) ) {
+						$page = $_GET["page"];
+						$page = ( ( $page - 1 ) * $posts_per_page );
+						$query->set( 'offset', $page );
+					}
+
+
+					if ( in_array( "video", $text ) ) {
+						$query->set( 'post__not_in', '' );
+						if ( isset( $_GET["page"] ) ) {
+							$page = $_GET["page"];
+							$page = ( ( $page - 1 ) * $posts_per_page );
+							$query->set( 'offset', $page );
+						}
+						break;
+					}
+
+					if ( in_array( "?clanky-a-reportaze", $text ) or preg_grep( '/clanky-a-reportaze&page=\d/',
+							$text ) ) {
+						$query->set( 'post__not_in', '' );
+					}
+					break;
+			}
 		}
+		//if ( $query->is_main_query() && $query->is_category() && $query->is_archive() ) {
+		//	$text = array( "empty" );
+		//
+		//	if ( is_array( explode( "/", $_SERVER['REQUEST_URI'] ) ) ) {
+		//		$text = array_filter( explode( "/", $_SERVER['REQUEST_URI'] ) );
+		//	}
+		//
+		//	// Manipulate $query here, for instance like so
+		//	if ( isset( $_GET["page"] ) ) {
+		//		$page = $_GET["page"];
+		//
+		//		if ( in_array( "video", $text ) ) {
+		//			$page = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
+		//			$query->set( 'offset', $page );
+		//
+		//			return;
+		//		}
+		//
+		//		if ( $page == 1 ) {
+		//			if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze&page=1" ) ) {
+		//
+		//				$page = 0;
+		//			} elseif ( $cat_id ) {
+		//
+		//				$data = get_number_of_posts( 3, $cat_id, [ "chi_video", "post" ] );
+		//				if ( $option == 1 ) {
+		//					$data = get_number_of_posts( 2, $cat_id, "post" );
+		//				}
+		//				$page = 0;
+		//				$query->set( 'post__not_in', $data['posts_id'] );
+		//			} else {
+		//				$page = 2;
+		//
+		//			}
+		//
+		//		} else {
+		//
+		//			$data = get_number_of_posts( 3, $cat_id, [ "chi_video", "post" ] );
+		//			if ( $option == 3 ) {
+		//				$data['posts_id'] = get_term_meta( $cat_id, 'chi_selected_in_claim_posts', true );
+		//				if ( strpos( $_SERVER['REQUEST_URI'], '?clanky-a-reportaze&page=', 0 ) ) {
+		//					$data['posts_id'] = '';
+		//				}
+		//			}
+		//			$page     = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
+		//			$variable = strpos( substr( $_SERVER['REQUEST_URI'], 0, strpos( $_SERVER['REQUEST_URI'], "&" ) ),
+		//				"?clanky-a-reportaze" );
+		//
+		//			if ( $variable ) {
+		//				$page = $page - $data['posts_number'];
+		//				if ( $option == 3 ) {
+		//					$page = $page + $data['posts_number'];
+		//				}
+		//			}
+		//
+		//			$query->set( 'post__not_in', $data['posts_id'] );
+		//		}
+		//
+		//		$query->set( 'offset', $page );
+		//	} else if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze" ) or in_array( "video",
+		//			$text ) or strpos( substr( $_SERVER['REQUEST_URI'], 0, strpos( $_SERVER['REQUEST_URI'], "&" ) ),
+		//			"?clanky-a-reportaze" ) ) {
+		//
+		//		$query->set( 'offset', 0 );
+		//
+		//	} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 1 ) {
+		//
+		//		$data = get_number_of_posts( 2, $cat_id, [ "post" ] );
+		//
+		//		$query->set( 'post__not_in', $data['posts_id'] );
+		//
+		//	} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 2 ) {
+		//
+		//		$args_three_latest_post_and_videos = array(
+		//			"post_type"      => array( "chi_video", "post" ),
+		//			"posts_per_page" => 3,
+		//			"category_name"  => $query->query["category_name"],
+		//			"post_status"    => "publish"
+		//		);
+		//
+		//		$posts_and_videos     = new  WP_Query( $args_three_latest_post_and_videos );
+		//		$ids_not_in_main_loop = wp_list_pluck( $posts_and_videos->posts, 'ID' );
+		//
+		//
+		//		$query->set( 'post__not_in', $ids_not_in_main_loop );
+		//	} else if ( get_term_meta( $cat_id, "_chi_selected_one_options", true ) == 3 ) {
+		//
+		//		$exclude = get_term_meta( $cat_id, 'chi_selected_in_claim_posts', true );
+		//
+		//		$query->set( 'post__not_in', $exclude );
+		//
+		//	} else {
+		//
+		//		$query->set( 'offset', $offset );
+		//	}
+		//
+		//}
 	}
 
 }
@@ -869,22 +949,22 @@ function check_textarea_length() { ?>
 		}
 	</script>
 	<style type="text/css">
-		.wp_themeSkin .word-count-message {
-			font-size: 0.7em;
-			display: none;
-			float: right;
-			color: #fff;
-			font-weight: bold;
-			margin-top: 2px;
-		}
+        .wp_themeSkin .word-count-message {
+            font-size: 0.7em;
+            display: none;
+            float: right;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 2px;
+        }
 
-		.wp_themeSkin .toomanychars .mce-statusbar {
-			background: red;
-		}
+        .wp_themeSkin .toomanychars .mce-statusbar {
+            background: red;
+        }
 
-		.wp_themeSkin .toomanychars .word-count-message {
-			display: block;
-		}
+        .wp_themeSkin .toomanychars .word-count-message {
+            display: block;
+        }
 
 	</style>
 	<script>
@@ -1038,4 +1118,15 @@ function get_number_of_posts( $per_page = 3, $cat_id = null, $post_type = array(
 
 	return - 1;
 
+}
+
+function page_option( $needle, $string, $page, $query ) {
+	if ( in_array( $needle, $string ) ) {
+		$page = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
+		$query->set( 'offset', $page );
+
+		return 1;
+	}
+
+	return - 1;
 }
