@@ -19,7 +19,7 @@ if ( $posts_ids ) {
 			?>
 			<div class="d-flex h-20">
 				<div class="chi-tag text-uppercase mr-auto p-2">
-					<a href="#" class="chi-tag_link">téma</a>
+					<span class="chi-tag_link">DOPORUČUJEME</span>
 				</div>
 			</div>
 			<hr class="divider mt-0">
