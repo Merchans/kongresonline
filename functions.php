@@ -61,6 +61,7 @@ function chi_all_headers() {
 	elseif ( is_singular( 'chi_video' ) ) :
 		return get_header( 'single' );
 	elseif ( is_single() ) :
+
 		return get_header( 'single' );
 	else :
 		return get_header();

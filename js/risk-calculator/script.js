@@ -1,17 +1,16 @@
-$(document).ready(function () {
+
+jQuery(document).ready(function () {
   /*"use strict";*/
-
-
   var images = [
-    '../images/1.jpg',
-    '../images/2.jpg',
-    '../images/3.jpg',
-    '../images/4.jpg',
-    '../images/5.jpg',
-    '../images/8.jpg',
-    '../images/9.jpg',
-    '../images/10.jpg',
-    '../images/scroll_text.png'
+    '../../../img/risk-calculator/images/1.jpg',
+    '../../../img/risk-calculator/images/2.jpg',
+    '../../../img/risk-calculator/images/3.jpg',
+    '../../../img/risk-calculator/images/4.jpg',
+    '../../../img/risk-calculator/images/5.jpg',
+    '../../../img/risk-calculator/images/8.jpg',
+    '../../../img/risk-calculator/images/9.jpg',
+    '../../../img/risk-calculator/images/10.jpg',
+    '../../../img/risk-calculator/images/scroll_text.png'
   ];
 
   var $list = $('#imagesList');

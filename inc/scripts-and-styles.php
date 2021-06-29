@@ -71,10 +71,45 @@ function chi_hook_for_google_analytics() {
 add_action( 'wp_head', 'chi_hook_for_google_analytics' );
 
 
-add_action( 'wp_enqueue_scripts', "czech_unbranded_risk_calculator" );
-
 function czech_unbranded_risk_calculator() {
-	if ( is_single() ) {
+	if ( is_single( 'czech-unbranded-risk-calculator' ) ) {
 
+		wp_deregister_script('jquery');
+		wp_deregister_script('chi-acordeon-efect');
+		wp_deregister_style('chi-acordeon-efect');
+		//css
+		wp_enqueue_style( "risk-calculator-style", THEME_DIRECTORY_URI . "/css/risk-calculator/css/style.css" );
+
+		wp_enqueue_style( "risk-calculator-swiper-style",
+			THEME_DIRECTORY_URI . "/css/risk-calculator/css/swiper.min.css" );
+
+		//<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+		//<script type="text/javascript" src="js/iscroll.js"></script>
+		//<script src="js/script.js"></script>
+		//<script src="js/baseScript.js"></script>
+		//<script src="js/jquery.touchSwipe.min.js"></script>
+		//<script src="js/jquery.tap.js"></script>
+		//<script src="js/swiper.min.js"></script>
+                                 // js
+		wp_enqueue_script( "risk-calculator-jquery", THEME_DIRECTORY_URI . "/js/risk-calculator/jquery-3.2.1.min.js");
+
+		wp_enqueue_script( "risk-calculator-iscroll", THEME_DIRECTORY_URI . "/js/risk-calculator/iscroll.js",
+			array( "risk-calculator-jquery") );
+
+		wp_enqueue_script( "risk-calculator-script", THEME_DIRECTORY_URI . "/js/risk-calculator/script.js",
+			array( "risk-calculator-jquery"  ) );
+
+		wp_enqueue_script( "risk-calculator-baseScript", THEME_DIRECTORY_URI . "/js/risk-calculator/baseScript.js",
+			array(  ) );
+		wp_enqueue_script( "risk-calculator-touchSwipe",
+			THEME_DIRECTORY_URI . "/js/risk-calculator/jquery.touchSwipe.min.js", array( "jquery" ) );
+
+		wp_enqueue_script( "risk-calculator-jquery-tap", THEME_DIRECTORY_URI . "/js/risk-calculator/jquery.tap.js",
+			array(  ) );
+
+		wp_enqueue_script( "risk-calculator-swiper", THEME_DIRECTORY_URI . "/js/risk-calculator/swiper.min.js",
+			array(  ) );
 	}
 }
+
+add_action( 'wp_enqueue_scripts', "czech_unbranded_risk_calculator" );
