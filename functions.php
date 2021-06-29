@@ -949,22 +949,22 @@ function check_textarea_length() { ?>
 		}
 	</script>
 	<style type="text/css">
-        .wp_themeSkin .word-count-message {
-            font-size: 0.7em;
-            display: none;
-            float: right;
-            color: #fff;
-            font-weight: bold;
-            margin-top: 2px;
-        }
+		.wp_themeSkin .word-count-message {
+			font-size: 0.7em;
+			display: none;
+			float: right;
+			color: #fff;
+			font-weight: bold;
+			margin-top: 2px;
+		}
 
-        .wp_themeSkin .toomanychars .mce-statusbar {
-            background: red;
-        }
+		.wp_themeSkin .toomanychars .mce-statusbar {
+			background: red;
+		}
 
-        .wp_themeSkin .toomanychars .word-count-message {
-            display: block;
-        }
+		.wp_themeSkin .toomanychars .word-count-message {
+			display: block;
+		}
 
 	</style>
 	<script>
@@ -1129,4 +1129,20 @@ function page_option( $needle, $string, $page, $query ) {
 	}
 
 	return - 1;
+}
+
+add_filter( 'template_include', 'chi_single_post_templates' );
+function chi_single_post_templates( $template ) {
+	$post_types = array( 'post' );
+	$post_id    = get_the_ID();
+	$post = get_post($post_id);
+	$slug = $post->post_name;
+
+	if ( is_singular( $post_types ) ) {
+		if ( $slug == 'czech-unbranded-risk-calculator' ) {
+			$template = get_template_directory() . '/single-czech-unbranded-risk-calculator.php';
+		}
+	}
+
+	return $template;
 }
