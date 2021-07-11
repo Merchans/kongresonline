@@ -8,6 +8,16 @@
 
 <?php endif ?>
 </div>
+<style>
+	#layer3 {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		width: 1024px;
+		height: 768px;
+		display: none;
+	}
+</style>
 <div id="fix-center">
 	<div id="wrapper">
 		<!--  container-->
