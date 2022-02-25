@@ -1,0 +1,914 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	background: white;
+}
+a img.alignnone {
+	margin: 0;
+}
+.chi-claim.special-cardionews {
+	height: 250px!important;
+}
+
+div#popup_1 {
+	margin-top: 25px;
+	left: 14.45%;
+}
+/*body {overflow: hidden;}*/
+div {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	swipe: true;
+}
+
+#wrapper,
+#wrapper_2
+{
+	justify-content: center;
+	width: 100%;
+	display: flex;
+}
+
+#fix-center {
+	position: relative;
+	display: flex;
+	width: 100%;
+
+}
+
+
+.pinch-zoom-container {
+	width: 1024px;
+	height: 768px;
+}
+
+
+#container {
+	position: relative;
+	left: 0px;
+	width: 1024px;
+	height: 768px;
+	margin-top: 25px;
+}
+
+#home {
+	position: absolute;
+	left: 34px;
+	top: 24px;
+	width: 32px;
+	height: 32px;
+	z-index: 9;
+	cursor: pointer;
+}
+
+#next1, #next2 {
+	position: absolute;
+	left: 965px;
+	top: 402px;
+	width: 52px;
+	height: 42px;
+	z-index: 9;
+	cursor: pointer;
+}
+
+#prev2, #prev3 {
+	position: absolute;
+	right: 965px;
+	top: 402px;
+	width: 52px;
+	height: 42px;
+	z-index: 9;
+	cursor: pointer;
+}
+
+#layer1 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1024px;
+	height: 768px;
+}
+
+#layer2 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1024px;
+	height: 768px;
+	display: none;
+}
+
+#pop {
+	position: absolute;
+	width: 40px;
+	height: 41px;
+	left: 546px;
+	top: 583px;
+	cursor: pointer;
+}
+
+.home {
+	cursor: pointer;
+	position: absolute;
+	top: 5px;
+	right: 14px;
+	width: 128px;
+	height: 55px;
+}
+
+.modal-popup {
+	width: 1024px;
+	height: 768px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: none;
+}
+
+.modal-popup-img {
+	width: 1024px;
+	height: 768px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: block;
+}
+
+.wrapper {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+}
+
+.wrapper1 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper2 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper3 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper4 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper5 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper6 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper7 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper8 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper9 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper10 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper11 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper12 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper13 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper14 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper15 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper16 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper17 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper18 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper19 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper20 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper21 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper22 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper23 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper24 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper25 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper26 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper27 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper28 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper29 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper30 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+.wrapper31 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	display: none;
+}
+
+#logo {
+	position: absolute;
+	width: 186px;
+	height: 56px;
+	right: 15px;
+	bottom: 15px;
+}
+
+#bri90 {
+	position: absolute;
+	width: 405px;
+	height: 45px;
+	left: 0px;
+	top: 0px;
+}
+
+#bri60 {
+	position: absolute;
+	width: 382px;
+	height: 45px;
+	left: 440px;
+	top: 0px;
+}
+
+#setting {
+	position: absolute;
+	width: 63px;
+	height: 45px;
+	right: 108px;
+	top: 0px;
+}
+
+#refer {
+	position: absolute;
+	width: 74px;
+	height: 45px;
+	right: 0px;
+	top: 0px;
+}
+
+#intro {
+	position: absolute;
+	width: 134px;
+	height: 45px;
+	right: 0px;
+	top: 50px;
+}
+
+.pfdbox1 {
+	position: absolute;
+	width: 35px;
+	height: 35px;
+	left: 311px;
+	top: 144px;
+}
+
+.pfdbox2 {
+	position: absolute;
+	width: 35px;
+	height: 35px;
+	right: 123px;
+	top: 221px;
+}
+
+#box {
+	position: absolute;
+	top: 268px;
+	right: 630px;
+	width: 238px;
+	height: 346px;
+}
+
+#box > label:nth-child(1) {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 238px;
+	height: 54px;
+	cursor: pointer;
+}
+
+#box > label:nth-child(2) {
+	position: absolute;
+	top: 74px;
+	right: 0px;
+	width: 238px;
+	height: 54px;
+	cursor: pointer;
+}
+
+#box > label:nth-child(3) {
+	position: absolute;
+	top: 146px;
+	right: 0px;
+	width: 238px;
+	height: 54px;
+	cursor: pointer;
+}
+
+#box > label:nth-child(4) {
+	position: absolute;
+	top: 220px;
+	right: 0px;
+	width: 238px;
+	height: 54px;
+	cursor: pointer;
+}
+
+#box > label:nth-child(5) {
+	position: absolute;
+	top: 292px;
+	right: 0px;
+	width: 238px;
+	height: 54px;
+	cursor: pointer;
+}
+
+#box1, #box2, #box3, #box4, #box5 {
+	visibility: hidden;
+	cursor: pointer;
+}
+
+#close {
+	position: absolute;
+	top: 32px;
+	right: 30px;
+	width: 68px;
+	height: 54px;
+	cursor: pointer;
+}
+
+#bg0_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg0.png) no-repeat;
+	background-size: 188px 364px;
+}
+
+#bg2_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg2.png) no-repeat;
+	background-size: 188px 365px;
+}
+
+#bg3_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg3.png) no-repeat;
+	background-size: 188px 375px;
+}
+
+#bg5_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg5.png) no-repeat;
+	background-size: 188px 340px;
+}
+
+#bg12_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg12.png) no-repeat;
+	background-size: 189px 342px;
+}
+
+#bg16_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg16.png) no-repeat;
+	background-size: 188px 332px;
+}
+
+#bg8_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg8.png) no-repeat;
+	background-size: 188px 380px;
+}
+
+#bg27_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg27.png) no-repeat;
+	background-size: 188px 330px;
+}
+
+#bg4_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg4.png) no-repeat;
+	background-size: 188px 383px;
+}
+
+#bg22_graph {
+	position: absolute;
+	left: 579px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg22.png) no-repeat;
+	background-size: 188px 358px;
+}
+
+#bg25_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg25.png) no-repeat;
+	background-size: 188px 334px;
+}
+
+#bg29_graph {
+	position: absolute;
+	left: 583px;
+
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg29.png) no-repeat;
+	background-size: 188px 349px;
+}
+
+#bg20_graph {
+	position: absolute;
+	left: 585px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg20.png) no-repeat;
+	background-size: 188px 330px;
+}
+
+
+#bg13_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg13.png) no-repeat;
+	background-size: 188px 384px;
+}
+
+
+#bg17_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg17.png) no-repeat;
+	background-size: 188px 332px;
+}
+
+
+#bg14_graph {
+	position: absolute;
+	left: 584px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg14.png) no-repeat;
+	background-size: 188px 354px;
+}
+
+
+#bg23_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg23.png) no-repeat;
+	background-size: 188px 336px;
+}
+
+#bg26_graph {
+	position: absolute;
+	left: 584px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg26.png) no-repeat;
+	background-size: 188px 370px;
+}
+
+#bg7_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg7.png) no-repeat;
+	background-size: 188px 350px;
+}
+
+#bg6_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg6.png) no-repeat;
+	background-size: 188px 373px;
+}
+
+
+#bg1_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg1.png) no-repeat;
+	background-size: 188px 329px;
+}
+
+#bg9_graph {
+	position: absolute;
+	left: 584px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg9.png) no-repeat;
+	background-size: 188px 351px;
+}
+
+#bg10_graph {
+	position: absolute;
+	left: 584px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg10.png) no-repeat;
+	background-size: 188px 375px;
+}
+
+#bg11_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg11.png) no-repeat;
+	background-size: 188px 349px;
+}
+
+
+#bg15_graph {
+	position: absolute;
+	left: 584px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg15.png) no-repeat;
+	background-size: 188px 339px;
+}
+
+#bg18_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg18.png) no-repeat;
+	background-size: 188px 377px;
+}
+
+#bg19_graph {
+	position: absolute;
+	left: 579px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg19.png) no-repeat;
+	background-size: 188px 358px;
+}
+
+
+#bg21_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg21.png) no-repeat;
+	background-size: 188px 326px;
+}
+
+#bg24_graph {
+	position: absolute;
+	left: 579px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg24.png) no-repeat;
+	background-size: 188px 316px;
+}
+
+#bg28_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg28.png) no-repeat;
+	background-size: 188px 377px;
+}
+
+#bg30_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg30.png) no-repeat;
+	background-size: 188px 350px;
+}
+
+#bg31_graph {
+	position: absolute;
+	left: 583px;
+	bottom: 191px;
+	width: 210px;
+	height: 0;
+	background: url(../../../img/risk-calculator/images/bg31.png) no-repeat;
+	background-size: 188px 339px;
+}
+
+
