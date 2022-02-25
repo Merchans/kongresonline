@@ -15,7 +15,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: http://stage.kongres-online.cz/
+        server: ftp.wp-hosting.cz
         username: 5467-staging
         password: staging
         server-dir: /wp-content/themes/
