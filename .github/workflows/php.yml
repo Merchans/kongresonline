@@ -18,4 +18,4 @@ jobs:
         server: ftp.wp-hosting.cz
         username: 5467-staging
         password: staging
-        server-dir: /kongres-online.cz/stage/wp-content/themes/kongresonline/
+        server-dir: /wp-content/themes/kongresonline/
