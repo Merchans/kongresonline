@@ -336,6 +336,7 @@ if ( has_category("kardiovaskularni-zpravodajstvi") ) {
 	echo '<body>';
 }
 ?>
+  <?php wp_body_open(); ?>
 <header>
 	<div class="navbar navbar-light chi-bg-light chi-navbar-height">
 

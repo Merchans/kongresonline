@@ -266,6 +266,7 @@
 
 </style>
 <body>
+<?php wp_body_open(); ?>
 <header>
     <div class="navbar navbar-light chi-bg-light chi-navbar-height">
         <div class="chi-logo-sentens">

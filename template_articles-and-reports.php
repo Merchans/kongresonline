@@ -9,6 +9,7 @@ $first_video_ID = $first_video->posts[0]->ID;
 
 ?>
 <body>
+<?php wp_body_open(); ?>
 <main>
     <div class="container">
         <div class="row">

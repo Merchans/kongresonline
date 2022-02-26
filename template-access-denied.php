@@ -5,6 +5,7 @@ wp_head();
 
 ?>
 <body>
+<?php wp_body_open(); ?>
 <main>
     <div class="container">
         <div class="row">

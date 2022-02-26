@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
 	<!--Favicon-->
 	<link rel="shortcut icon" href="<?php echo get_site_icon_url(); ?>"/>
+	<?php wp_head(); ?>
 </head>
 
 <?php
@@ -37,6 +38,7 @@
 	}
 </style>
 <body>
+<?php wp_body_open(); ?>
 <header>
 	<div class="navbar navbar-light chi-bg-light chi-navbar-height">
 
