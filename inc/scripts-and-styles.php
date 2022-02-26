@@ -52,30 +52,6 @@ add_action( 'wp_enqueue_scripts', 'add_chi_custom_css' );
 
 function chi_hook_for_google_analytics() {
 	?>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-69849523-45"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-
-		gtag('js', new Date());
-
-		gtag('config', 'UA-69849523-45');
-	</script>
-
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCD20BJPWY"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'G-TCD20BJPWY');
-	</script>
-
 	<!-- Google Tag Manager -->
 	<script>
 		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
