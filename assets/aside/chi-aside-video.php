@@ -53,14 +53,18 @@ if ( $videos_ids ) {
 							<strong class="chi-name-title"><?php echo add_nbsp( get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
 									$video->ID ), false ) ?>
 								<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
-										$video->ID ) ?></time>
+										$video->ID ) ?>
+									<span class="reading-time"><?php echo display_read_time(300, $video->ID); ?></span>	
+								</time>
 							</strong>
 						<?php else : ?>
 							<h6 class="card-title chi-card-title"><?php echo $video->post_title ?></h6>
 							<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
 									$video->ID ) ?>
 								<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
-										$video->ID ) ?></time>
+										$video->ID ) ?>
+										<span class="reading-time"><?php echo display_read_time(300, $video->ID); ?></span>
+								</time>
 							</strong>
 						<?php endif ?>
 					</a>

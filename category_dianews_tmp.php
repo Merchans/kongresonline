@@ -111,7 +111,12 @@ $first_video = new  WP_Query();
 															class="card-title chi-card-title"><?php the_title(); ?></h5>
 												</a>
 												<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
-													<time class="chi-time"><?php the_time(get_option("date_format")) ?></time>
+												<time class="chi-time" >
+													<?php the_time(get_option("date_format")); ?>
+													<span class="reading-time">
+														<?php echo display_read_time(); ?>
+													</span>
+												</time>
 												</strong>
                                                 <?php $moreLink = '<a href="' . get_permalink() . '">...</a>'; ?>
 												<p class="chi-card-text"><?php echo excerpt(30); ?></p>
@@ -151,8 +156,12 @@ $first_video = new  WP_Query();
 													<a href="<?php echo get_permalink(); ?>"><h5
 																class="mt-0 chi-sub-title"><?php the_title(); ?></h5>
 													</a>
-													<time class="chi-time"
-														  datetime><?php the_time(get_option("date_format")); ?></time>
+													<time class="chi-time" >
+														<?php the_time(get_option("date_format")); ?>
+														<span class="reading-time">
+															<?php echo display_read_time(); ?>
+														</span>
+													</time>
 												</div>
 											</div>
 										</div>
@@ -200,7 +209,12 @@ $first_video = new  WP_Query();
 														class="mt-0 mb-1 card-title chi-card-title"><?php the_title() ?></h5>
 											</a>
 											<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
-												<time class="chi-time"><?php the_time(get_option("date_format")) ?></time>
+												<time class="chi-time" >
+													<?php the_time(get_option("date_format")); ?>
+													<span class="reading-time">
+														<?php echo display_read_time(); ?>
+													</span>
+												</time>
 											</strong>
 											<p class="chi-card-text"><?php echo excerpt(30); ?></p>
 										</div>
@@ -298,7 +312,9 @@ $first_video = new  WP_Query();
 											<strong class="chi-name-title">
 												<time class="chi-time"
 													  datetime><?php echo get_the_date(get_option('date_format'),
-                                                        $advert->ID) ?></time>
+                                                        $advert->ID) ?>
+														<span class="reading-time"><?php echo display_read_time(); ?></span>
+												</time>
 											</strong>
 										</div>
 									</div>
@@ -356,7 +372,9 @@ $first_video = new  WP_Query();
                                                 $advert->ID) ?>
 											<time class="chi-time" datetime>
 												- <?php echo get_the_date(get_option('date_format'),
-                                                    $advert->ID) ?></time>
+                                                    $advert->ID) ?>
+													<span class="reading-time"><?php echo display_read_time(); ?></span>
+											</time>
 										</strong>
 										<p class="chi-card-text"><?php echo wp_trim_words(get_the_content("", "",
                                                 $advert->ID), 29) ?></p>

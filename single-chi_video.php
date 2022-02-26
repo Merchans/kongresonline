@@ -83,7 +83,8 @@ wp_head();
             <hr class="divider mt-0">
             <div class="embed-responsive embed-responsive-16by9 mb-3"><iframe class="embed-responsive-item" src="<?php echo get_post_meta( get_the_ID() )["video_meta_box_video-url"][0] ?>" width="960" height="540" allowfullscreen="allowfullscreen"></iframe></div>
             <h1 class="chi-article-title"><?php the_title();?></h1>
-			<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
+			<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?>
+            <span class="reading-time"><?php echo display_read_time(); ?></span></time></strong>
             <?php the_content(); ?>
             <?php $id = get_the_ID();
             $advertising_ids = get_post_meta( $id, "_chi_advertising_horizontals");
@@ -171,7 +172,9 @@ wp_head();
                                     </div>
                                     <div class="chi-video-body">
                                         <a href="<?php echo get_permalink(); ?>"><h5 class="mt-0 chi-sub-title"><?php the_title(); ?></h5></a>
-                                        <time class="chi-time" datetime><?php the_time(get_option("date_format")); ?></time>
+                                        <time class="chi-time" datetime><?php the_time(get_option("date_format")); ?>
+                                            <span class="reading-time"><?php echo display_read_time(); ?></span>    
+                                        </time>
                                     </div>
                                 </div>
                             </div>

@@ -34,7 +34,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                 <h1 class="chi-title-white"><?php echo $first_video->post->post_title ?></h1>
                             </a>
                             <?php $chi_title_meta_box = get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name") ?>
-                            <strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php echo get_the_date(get_option("date_format"), $first_video_ID) ?></time></strong>
+                            <strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php echo get_the_date(get_option("date_format"), $first_video_ID) ?><span class="reading-time"><?php echo display_read_time(); ?></span></time></strong>
                         </div>
                     </div>
                     <?php  ?>
@@ -80,7 +80,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                                 <h1 class="chi-title-white"><?php the_title() ?></h1>
                                             </a>
                                             <?php $chi_title_meta_box = get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name") ?>
-                                            <strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
+                                            <strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?><span class="reading-time"><?php echo display_read_time(); ?></span></time></strong>
                                         </div>
                                     </div>
                                 <?php $i++;
@@ -138,7 +138,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                             <a href="<?php echo get_permalink() ?>">
                                                 <h5 class="card-title chi-card-title"><?php the_title(); ?></h5>
                                             </a>
-                                            <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
+                                            <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?><span class="reading-time"><?php echo display_read_time(); ?></span></time></strong>
                                             <p class="chi-card-text"><?php echo excerpt(25); ?></p>
                                         </div>
                                     </div>
@@ -186,7 +186,7 @@ $first_video_ID = $first_video->posts[0]->ID;
                                                 <a href="<?php echo get_permalink(); ?>">
                                                     <h5 class="mt-0 chi-sub-title"><?php the_title(); ?></h5>
                                                 </a>
-                                                <time class="chi-time" datetime><?php the_time(get_option("date_format")); ?></time>
+                                                <time class="chi-time" datetime><?php the_time(get_option("date_format")); ?><span class="reading-time"><?php echo display_read_time(); ?></span></time>
                                             </div>
                                         </div>
                                     </div>
@@ -239,7 +239,9 @@ $first_video_ID = $first_video->posts[0]->ID;
                                                 <h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title(); ?></h5>
                                             </a>
                                             <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
-                                                <time class="chi-time" datetime><?php the_time(get_option("date_format")); ?></time>
+                                                <time class="chi-time" datetime><?php the_time(get_option("date_format")); ?>
+                                                    <span class="reading-time"><?php echo display_read_time(); ?></span>
+                                                </time>
                                             </strong>
                                             <p class="chi-card-text"><?php echo excerpt(25); ?></p>
                                         </div>

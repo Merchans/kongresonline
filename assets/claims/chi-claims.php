@@ -65,9 +65,12 @@ if ($all_video)
 
     global $ids_not_in_main_loop;
     $ids_not_in_main_loop = wp_list_pluck( $first_video->posts, 'ID' );
-
-    $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_page" => 2, "category_name" => $category, "post__not_in" => [$ids_not_in_main_loop[0]]);
-
+    
+    if ($ids_not_in_main_loop) {
+        $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_page" => 2, "category_name" => $category, "post__not_in" => [$ids_not_in_main_loop[0]]);
+    } else {
+        $ids_not_in_main_loop = 0;
+    }
 
     ?>
     <?php chi_special_logo(); ?>
@@ -102,7 +105,7 @@ if ($all_video)
                             </div>
                             <a href="<?php echo $first_video->post->guid ?>"><h1 class="chi-title-white"><?php echo $first_video->post->post_title ?></h1></a>
                             <?php $chi_title_meta_box = get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name", $first_video->post->ID  );	?>
-							<time class="chi-time" ><strong><?php echo has_title_meta_box($chi_title_meta_box) ?></strong> <?php echo czech_date( get_option('date_format'), strtotime($first_video->post->post_date) )?></time>
+							<time class="chi-time" ><strong><?php echo has_title_meta_box($chi_title_meta_box) ?></strong> <?php echo czech_date( get_option('date_format'), strtotime($first_video->post->post_date) )?><span class="reading-time"><?php echo display_read_time(); ?></span></time>
                         </div>
                     </div>
                     <div class="col-md-6 overflow-hidden">
@@ -142,7 +145,7 @@ if ($all_video)
 											</div>
                                             <a href="<?php echo get_permalink() ?>"><h1 class="chi-title-white"><?php the_title() ?></h1></a>
                                             <?php $chi_title_meta_box = get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name")?>
-                                            <strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
+                                            <strong class="chi-time"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?><span class="reading-time"><?php echo display_read_time(); ?></span></time></strong>
                                         </div>
                                     </div>
                                     <?php $ids_not_in_main_loop[] = get_the_ID(); $i++;endwhile; wp_reset_postdata();  else: ?>

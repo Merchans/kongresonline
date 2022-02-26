@@ -1130,3 +1130,31 @@ function page_option( $needle, $string, $page, $query ) {
 
 	return - 1;
 }
+
+
+/**
+ * Returns the average reading time of content in post type
+ *
+ * @param integer $pre_minut
+ * @return string
+ */
+function display_read_time(int $pre_minut = 300, int $post_id = null) : string {
+	
+
+	if ($post_id  == null) {
+		global $post;
+		$post_id = $post->ID;
+	}
+
+    $content = get_post_field( 'post_content', $post_id  );
+    $count_words = str_word_count( strip_tags( $content ) );
+	
+    $read_time = ceil($count_words / $pre_minut);
+	
+	$prefix = " <i class='fas fa-clock'></i> ";
+    $suffix = " min čtení";
+	
+    $read_time_output = $prefix . $read_time . $suffix;
+
+    return $read_time_output;
+}

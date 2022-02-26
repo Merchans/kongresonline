@@ -108,7 +108,8 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
                                     </a>
                                     <?php $chi_title_meta_box = get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name", get_the_ID() );	?>
                                     <strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?>
-                                        <time class="chi-time"><?php the_time(get_option("date_format")) ?></time>
+                                        <time class="chi-time"><?php the_time(get_option("date_format")) ?>
+                                        <span class="reading-time"><?php echo display_read_time(); ?></span></time>
                                     </strong>
                                     <p class="chi-card-text"><?php echo excerpt(30) ?></p>
                                 </div>

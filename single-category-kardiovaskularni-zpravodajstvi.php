@@ -122,7 +122,9 @@
 				<hr class="divider mt-0">
 				<h1 class="chi-article-title"><?php the_title(); ?></h1>
 				<strong class="chi-name-title"><?php echo has_title_meta_box( $chi_title_meta_box ) ?>
-					<time class="chi-time"><?php the_time( get_option( "date_format" ) ) ?></time>
+					<time class="chi-time"><?php the_time( get_option( "date_format" ) ) ?>
+						<span class="reading-time"><?php echo display_read_time(); ?></span>
+					</time>
 				</strong>
 				<?php
 					$field_id                 = 'show_featured_image';
@@ -227,7 +229,9 @@
 														class="mt-0 mb-1 card-title chi-card-title"><?php the_title(); ?></h5>
 											</a>
 											<strong class="chi-name-title"><?php echo has_title_meta_box( $chi_title_meta_box ) ?>
-												<time class="chi-time"><?php the_time( get_option( "date_format" ) ) ?></time>
+												<time class="chi-time"><?php the_time( get_option( "date_format" ) ) ?>
+													<span class="reading-time"><?php echo display_read_time(); ?></span>
+												</time>
 											</strong>
 											<p class="chi-card-text"><?php echo excerpt( 30 ); ?></p>
 										</div>

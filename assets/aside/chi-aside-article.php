@@ -54,14 +54,16 @@ if ( $posts_ids ) {
 							<strong class="chi-name-title"><?php echo add_nbsp( get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
 									$post->ID ), false ) ?>
 								<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
-										$post->ID ) ?></time>
+										$post->ID ) ?>
+										<span class="reading-time"><?php echo display_read_time(); ?></span></time>
 							</strong>
 						<?php else : ?>
 							<h6 class="card-title chi-card-title"><?php echo $post->post_title ?></h6>
 							<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name",
 									$post->ID ) ?>
 								<time class="chi-time" datetime> <?php echo get_the_date( get_option( 'date_format' ),
-										$post->ID ) ?></time>
+										$post->ID ) ?>
+										<span class="reading-time"><?php echo display_read_time(); ?></span></time>
 							</strong>
 						<?php endif ?>
 					</a>

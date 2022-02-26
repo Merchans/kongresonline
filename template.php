@@ -37,7 +37,8 @@ if ( $the_query->have_posts() ) :
                 </div>
                 <div class="media-body">
                     <a href="<?php echo get_permalink(); ?>"><h5 class="mt-0 chi-sub-title"><?php the_title();?></h5></a>
-                    <time class="chi-time" datetime><?php the_date(); ?></time>
+                    <time class="chi-time" datetime><?php the_date(); ?>
+                    <span class="reading-time"><?php echo display_read_time(); ?></span></time>
                 </div>
             </div>
         </div>

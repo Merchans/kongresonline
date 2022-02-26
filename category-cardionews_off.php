@@ -47,7 +47,8 @@ $alert = "Články";
 										</div>
 										<div class="media-body">
 											<a href="<?php echo get_permalink();  ?>"><h5 class="mt-0 mb-1 card-title chi-card-title"><?php the_title() ?></h5></a>
-											<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?></time></strong>
+											<strong class="chi-name-title"><?php echo has_title_meta_box($chi_title_meta_box) ?> <time class="chi-time"><?php the_time(get_option("date_format")) ?>
+											<span class="reading-time"><?php echo display_read_time(); ?></span></time></strong>
 											<p class="chi-card-text"><?php echo excerpt(25); ?></p>
 										</div>
 									</li>
@@ -171,7 +172,7 @@ $alert = "Články";
 										</div>
 										<div class="card-body chi-card-body">
 											<div class="text-left"><a href="<?php echo get_permalink($advert->ID)  ?>" class="chi-name--min-title"><?php echo $advert->post_title ?></a></div>
-											<strong class="chi-name-title"><time class="chi-time" datetime><?php echo get_the_date(get_option( 'date_format' ), $advert->ID )  ?></time></strong>
+											<strong class="chi-name-title"><time class="chi-time" datetime><?php echo get_the_date(get_option( 'date_format' ), $advert->ID )  ?><span class="reading-time"><?php echo display_read_time(); ?></span></time></strong>
 										</div>
 									</div>
                                     <?php
@@ -221,7 +222,7 @@ $alert = "Články";
 									</div>
 									<div class="card-body chi-card-body">
 										<a href="<?php echo get_permalink($advert->ID)  ?>"><h6 class="card-title chi-card-title"><?php echo $advert->post_title ?></h6></a>
-										<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name", $advert->ID)?><time class="chi-time" datetime> - <?php echo get_the_date(get_option( 'date_format' ), $advert->ID )  ?></time></strong>
+										<strong class="chi-name-title"><?php echo get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name", $advert->ID)?><time class="chi-time" datetime> - <?php echo get_the_date(get_option( 'date_format' ), $advert->ID )  ?></time><span class="reading-time"><?php echo display_read_time(); ?></span></strong>
 										<p class="chi-card-text"><?php echo excerpt(25); ?></p>
 									</div>
 								</div>

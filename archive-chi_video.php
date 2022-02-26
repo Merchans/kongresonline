@@ -47,7 +47,12 @@ wp_head();
 										</div>
 										<div class="chi-video-body">
 											<a href="<?php echo get_permalink() ?>"><h5 class="mt-0 chi-sub-title"><?php the_title()?></h5></a>
-											<time class="chi-time" ><?php the_time(get_option("date_format")); ?></time>
+											<time class="chi-time" >
+												<?php the_time(get_option("date_format")); ?>
+												<span class="reading-time">
+													<?php echo display_read_time(); ?>
+												</span>
+											</time>
 										</div>
 									</div>
 								</div>

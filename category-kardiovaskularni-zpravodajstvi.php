@@ -39,13 +39,14 @@
 			"post_status"    => "publish"
 	);
 	$first_video_or_post_or_post = new  WP_Query( $args_one_video_or_post );
+	$first_video_or_post_or_post = isset($first_video_or_post_or_post->posts[0]->ID) ? $first_video_or_post_or_post->posts[0]->ID : 0;
 
 	$chi_special_logo = wp_get_attachment_image_src( get_term_meta( $category_id, "category-image-id", true ), 'full' )[0];
 
 	$args_two_posts = array( "post_type"      => array( "post", "chi_video" ),
 							 "posts_per_page" => 2,
 							 "category_name"  => $category_slug,
-							 "post__not_in"   => $first_video_or_post_or_post->posts[0]->ID
+							 "post__not_in"   => $first_video_or_post_or_post
 	);
 
 
@@ -95,7 +96,7 @@
 </style>
 <body class="chi-claim--kavaz">
 <?php chi_special_logo(); ?>
-<?php $link = $first_video_or_post_or_post->posts[0]->ID; ?>
+<?php $link = isset($first_video_or_post_or_post->posts[0]->ID) ? $first_video_or_post_or_post->posts[0]->ID : null; ?>
 <main>
 	<?php get_template_part( "assets/claims/chi-claim-kavaz" ); ?>
 	<div class="container chi-bg-white">
@@ -157,7 +158,9 @@
 											</a>
 
 											<strong class="chi-name-title"><?php echo has_title_meta_box( $chi_title_meta_box ) ?>
-												<time class="chi-time"><?php the_time( get_option( "date_format" ) ) ?></time>
+												<time class="chi-time"><?php the_time( get_option( "date_format" ) ) ?>
+													<span class="reading-time"><?php echo display_read_time(); ?></span>
+												</time>
 											</strong>
 											<p class="chi-card-text"><?php echo excerpt( 30 ); ?></p>
 										</div>
@@ -219,7 +222,9 @@
 																class="mt-0 chi-sub-title"><?php the_title(); ?></h5>
 													</a>
 													<time class="chi-time"
-														  datetime><?php the_time( get_option( "date_format" ) ); ?></time>
+														  datetime><?php the_time( get_option( "date_format" ) ); ?>
+														  <span class="reading-time"><?php echo display_read_time(); ?></span>
+													</time>
 												</div>
 											</div>
 										</div>
@@ -268,7 +273,9 @@
 										</a>
 										<?php $chi_title_meta_box = get_post_field( "doctoral_degrees_and_name_doctoral_degrees_and_name", get_the_ID() ); ?>
 										<strong class="chi-name-title"><?php echo has_title_meta_box( $chi_title_meta_box ) ?>
-											<time class="chi-time"><?php the_time( get_option( "date_format" ) ) ?></time>
+											<time class="chi-time"><?php the_time( get_option( "date_format" ) ) ?>
+												<span class="reading-time"><?php echo display_read_time(); ?></span>
+											</time>
 										</strong>
 										<p class="chi-card-text"><?php echo excerpt( 30 ) ?></p>
 									</div>

@@ -77,7 +77,8 @@ if (count($advertising_ids) > 0 && ! empty($advertising_ids)) {
 										<strong class="chi-name-title">
 											<time class="chi-time"
 												  datetime><?php echo get_the_date(get_option('date_format'),
-                                                    $advert->ID) ?></time>
+                                                    $advert->ID) ?>
+                                                    <span class="reading-time"><?php echo display_read_time(); ?></span></time>
 										</strong>
 									</div>
 								</div>
@@ -139,6 +140,7 @@ if (count($advertising_ids) > 0 && ! empty($advertising_ids)) {
 											-
 											<?php endif;?>
 											<?php echo get_the_date(get_option('date_format'), $advert->ID) ?>
+                                            <span class="reading-time"><?php echo display_read_time(); ?></span>
 										</time>
 									</strong>
 									<p class="chi-card-text"><?php echo excerpt(30); ?></p>

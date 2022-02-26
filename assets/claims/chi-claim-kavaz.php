@@ -69,7 +69,7 @@ $args_two_posts = array("post_type" => array("post", "chi_video"), "posts_per_pa
 
                     <a href="<?php echo get_permalink($first_video_or_post_or_post->posts[0]->ID) ?>"><h1 class="chi-title-white"><?php echo $first_video_or_post_or_post->posts[0]->post_title ?></h1></a>
                     <?php $chi_title_meta_box = get_post_field("doctoral_degrees_and_name_doctoral_degrees_and_name", $first_video_or_post_or_post->posts[0]->ID  );	?>
-                    <time class="chi-time" ><strong><?php echo has_title_meta_box($chi_title_meta_box) ?></strong> <?php echo czech_date( get_option('date_format'), strtotime($first_video_or_post_or_post->posts[0]->post_date) )?></time>
+                    <time class="chi-time" ><strong><?php echo has_title_meta_box($chi_title_meta_box) ?></strong> <?php echo czech_date( get_option('date_format'), strtotime($first_video_or_post_or_post->posts[0]->post_date) )?><span class="reading-time"><?php echo display_read_time(); ?></span></time>
                 </div>
             </div>
             <div class="col-md-6 overflow-hidden">
