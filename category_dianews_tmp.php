@@ -225,8 +225,7 @@ $first_video = new  WP_Query();
                             <?php endif ?>
 						</ul>
                         <?php echo '<nav class="d-flex justify-content-end"><ul class="pagination chi-pagination">'; ?>
-                        <?php echo get_pagination_links();
-                        ?>
+                        <?php echo get_pagination_links();?>
                         <?php echo '</ul></nav>'; ?>
                         <?php
                         if ($url_segments[1] == "video") {
