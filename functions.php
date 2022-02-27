@@ -1158,3 +1158,21 @@ function display_read_time(int $pre_minut = 300, int $post_id = null) : string {
 
     return $read_time_output;
 }
+
+
+add_filter( 'the_content', 'add_data_analytics_cookiecategory', );
+
+/**
+ * Check if the content has "<iframe",
+ * if so, replace that part of the string with
+ * "<iframe data-cookiecategory="analytics""
+ * @param string $content
+ * @return string
+ */
+function add_data_analytics_cookiecategory( $content ) : string {
+
+	$content = str_replace('<iframe','<iframe data-cookiecategory="analytics"', $content);
+
+	return $content;
+}
+
