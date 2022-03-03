@@ -8,7 +8,17 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <!-- COKIEAS -->
-
+<script>
+    $('#c-p-bn').click(function() {
+  var oldSrc = $(".embed-responsive-item").attr("src");
+  var newSrc = oldSrc.replace("dnt=1", "dnt=0");
+  
+  $(".embed-responsive-item").attr("src", newSrc);
+  
+  console.log("Old Src: " + oldSrc);
+  console.log("New Src: " + newSrc);
+});
+</script>
 
 <?php //if ( isset($_GET["company"]) && $_GET["company"] == "pfizer"  ) :  ?>
 <!--<script>-->
