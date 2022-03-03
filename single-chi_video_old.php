@@ -300,7 +300,7 @@ wp_head();
                         <?php } ?>
 					</div>
 					<hr class="divider mt-0">
-					<div class="embed-responsive embed-responsive-16by9 mb-3"><iframe class="embed-responsive-item" src="<?php echo get_post_meta( get_the_ID() )["video_meta_box_video-url"][0] ?>" width="960" height="540" allowfullscreen="allowfullscreen" data-cookiecategory="analytics"></iframe></div>
+					<div class="embed-responsive embed-responsive-16by9 mb-3"><iframe class="embed-responsive-item" src="<?php echo get_post_meta( get_the_ID() )["video_meta_box_video-url"][0] ?>?dnt=1" width="960" height="540" allowfullscreen="allowfullscreen" data-cookiecategory="analytics"></iframe></div>
 					<h1 class="chi-article-title"><?php the_title();?></h1>
 					<strong class="chi-name-title"><?php if (!empty($chi_title_meta_box) && $chi_title_meta_box != ""){ echo $chi_title_meta_box; } ?> <time class="chi-time">-<?php the_time(get_option("date_format"))?>
 					<span class="reading-time"><?php echo display_read_time(); ?></span></time></strong>
