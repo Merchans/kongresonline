@@ -9,7 +9,7 @@
         crossorigin="anonymous"></script>
 <!-- COKIEAS -->
 <script>
-    $('#c-p-bn').click(function() {
+    $('#c-p-bn').on('click', function() {
   var oldSrc = $(".embed-responsive-item").attr("src");
   var newSrc = oldSrc.replace("dnt=1", "dnt=0");
   
