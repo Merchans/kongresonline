@@ -199,10 +199,12 @@ function chi_hook_for_playlist()
 ?>
 	<script>
 		setTimeout(function(){
-			let playlist = document.getElementsByClassName('wp-playlist')[0];
-			let windowsWidth = window.innerWidth - 100;
-			let windowsWidthPX = windowsWidth + 'px';
-			playlist.style.width = windowsWidthPX;
+			if (window.innerWidth < 768) {
+				let playlist = document.getElementsByClassName('wp-playlist')[0];
+				let windowsWidth = window.innerWidth - 100;
+				let windowsWidthPX = windowsWidth + 'px';
+				playlist.style.width = windowsWidthPX;
+			}
 		}, 1000)
 	</script>
 <?php
