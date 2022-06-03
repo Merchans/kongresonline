@@ -189,3 +189,23 @@ function czech_unbranded_risk_calculator()
 }
 
 add_action('wp_enqueue_scripts', "czech_unbranded_risk_calculator");
+
+
+function chi_hook_for_playlist()
+{
+	if (!is_single())
+		return;
+
+?>
+	<script>
+		setTimeout(function(){
+			let playlist = document.getElementsByClassName('wp-playlist')[0];
+			let windowsWidth = window.innerWidth - 100;
+			let windowsWidthPX = windowsWidth + 'px';
+			playlist.style.width = windowsWidthPX;
+		}, 1000)
+	</script>
+<?php
+}
+
+add_action('wp_enqueue_scripts', 'chi_hook_for_playlist');

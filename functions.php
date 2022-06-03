@@ -1176,3 +1176,39 @@ function add_data_analytics_cookiecategory( $content ) : string {
 	return $content;
 }
 
+
+/*
+Plugin Name: Gutenberg Blocks
+Description: A simple demonstration of creating a block in the Gutenberg environment.
+Author: Richard Markovič
+Version: 0.0.1
+Author URI: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/
+*/
+
+function chi_gutenberg_block_editor_assets() {
+    wp_enqueue_script(
+        'chi-gutenberg/blockquote-with-image-editor',
+        plugins_url("/build/index.js",__FILE__),
+        ['wp-blocks', 'wp-editor', 'wp-element']
+    );
+
+    wp_enqueue_style(
+        'chi-gutenberg/blockquote-with-image-editor',
+        plugins_url("/gutenberg/blocks/blockquote-with-image/editor.css",__FILE__),
+        ['wp-edit-blocks']
+    );
+}
+
+add_action('enqueue_block_editor_assets', 'chi_gutenberg_block_editor_assets');
+
+function chi_gutenberg_block_assets() {
+    if (!is_admin()) {
+        wp_enqueue_style(
+            'chi-gutenberg/blockquote-with-image',
+            plugins_url('/gutenberg/blocks/blockquote-with-image/view.css', __FILE__)
+        );
+    }
+}
+
+add_action('enqueue_block_assets', 'chi_gutenberg_block_assets');
+
