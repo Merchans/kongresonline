@@ -31,7 +31,9 @@ function chi_videos_custom_post_type()
         'show_in_menu'       => true,
         'nav_menu_item'      => true,
         'query_var'          => true,
-        'rewrite'            => array('slug' => 'video/%category%'),
+        'rewrite'            => array(
+            'slug' => 'video/%category%',
+        ),
         'capability_type'    => 'post',
         'has_archive'        => 'video',
         'hierarchical'       => true,

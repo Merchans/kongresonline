@@ -125,7 +125,7 @@ wp_head();
 				<?php the_content(); ?>
 			</div>
             <hr class="divider mt-0">
-            <div class="embed-responsive embed-responsive-16by9 mb-3"><iframe class="embed-responsive-item" src="<?php echo get_post_meta( get_the_ID() )["video_meta_box_video-url"][0] ?>?dnt=1" width="960" height="540" allowfullscreen="allowfullscreen" data-cookiecategory="analytics"></iframe></div>
+            <div class="embed-responsive embed-responsive-16by9 mb-3"><iframe class="embed-responsive-item" src="<?php echo get_post_meta( get_the_ID() )["video_meta_box_video-url"][0] ?>" width="960" height="540" allowfullscreen="allowfullscreen" data-cookiecategory="analytics"></iframe></div>
             <?php $id = get_the_ID();
             $advertising_ids = get_post_meta( $id, "_chi_advertising_horizontals");
             if ( count($advertising_ids) > 0 && ! empty($advertising_ids))

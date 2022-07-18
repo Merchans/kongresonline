@@ -76,7 +76,7 @@ if ($all_video)
     <?php chi_special_logo(); ?>
     <div class="container">
         <?php
-        if ($url_segments[1] != "video" and !$all_video )
+        if ($url_segments[1] != "video" and !$all_video and $url_segments[1] != "podcast" )
         {?>
             <div class="chi-info-banner">
                 <div class="row chi-category-bg chi-pt-15">

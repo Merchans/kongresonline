@@ -66,7 +66,7 @@
 
 
 ?>
-<?php if ( $url_segments[1] != "video" and ! $all_video ) {
+<?php if ( $url_segments[1] != "video" and ! $all_video and $url_segments[1] != "podcast") {
 
 	$args_one_offset_video = array(
 			"post_type"      => array( "chi_video" ),

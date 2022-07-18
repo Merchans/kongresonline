@@ -217,8 +217,8 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 			return;
 		}
 
-
 		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() ) {
+			
 			$category       = get_queried_object();
 			$cat_id         = $category->term_id;
 			$option         = get_term_meta( $cat_id, "_chi_selected_one_options", true );
@@ -229,10 +229,12 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 				$text = array_filter( explode( "/", $_SERVER['REQUEST_URI'] ) );
 			}
 
+			
 
 			if ( ! $option ) {
 				return;
 			}
+
 
 			switch ( $option ) {
 				case 1:
@@ -261,14 +263,17 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 					}
 
 					if ( in_array( "video", $text ) ) {
+						
 						$query->set( 'post__not_in', '' );
 						if ( isset( $_GET["page"] ) ) {
 							$page = $_GET["page"];
 							$page = ( ( $page - 1 ) * $posts_per_page );
 							$query->set( 'offset', $page );
 						}
+
 						break;
 					}
+
 
 					if ( in_array( "?clanky-a-reportaze", $text ) or preg_grep( '/clanky-a-reportaze&page=\d/',
 							$text ) ) {
@@ -543,6 +548,16 @@ add_action( 'pre_get_posts', function ( $query ) {
 					$query->set( 'post_type', 'post' );
 				}
 			}
+		}
+
+		if ( in_array( "podcast", $text ) ) {			
+			
+			$query->set( 'tag', 'podcasty' );
+			/*$query->set( 'offset', 0 );*/
+			if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze" ) ) {
+				$query->set( 'post_type', 'post' );
+			}
+		
 		}
 	}
 } );
@@ -1160,7 +1175,7 @@ function display_read_time(int $pre_minut = 300, int $post_id = null) : string {
 }
 
 
-add_filter( 'the_content', 'add_data_analytics_cookiecategory', );
+// add_filter( 'the_content', 'add_data_analytics_cookiecategory', );
 
 /**
  * Check if the content has "<iframe",
@@ -1177,38 +1192,19 @@ function add_data_analytics_cookiecategory( $content ) : string {
 }
 
 
-/*
-Plugin Name: Gutenberg Blocks
-Description: A simple demonstration of creating a block in the Gutenberg environment.
-Author: Richard Markovič
-Version: 0.0.1
-Author URI: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/
-*/
+add_action( 'init',  function() {
+    add_rewrite_rule( 'podcast/([a-z0-9-]+)[/]?$', 'index.php?category_name=$matches[1]', 'top' );
+} );
 
-function chi_gutenberg_block_editor_assets() {
-    wp_enqueue_script(
-        'chi-gutenberg/blockquote-with-image-editor',
-        plugins_url("/build/index.js",__FILE__),
-        ['wp-blocks', 'wp-editor', 'wp-element']
-    );
+add_filter( 'query_vars', function( $query_vars ) {
+    $query_vars[] = 'podcast';
+    return $query_vars;
+} );
 
-    wp_enqueue_style(
-        'chi-gutenberg/blockquote-with-image-editor',
-        plugins_url("/gutenberg/blocks/blockquote-with-image/editor.css",__FILE__),
-        ['wp-edit-blocks']
-    );
-}
-
-add_action('enqueue_block_editor_assets', 'chi_gutenberg_block_editor_assets');
-
-function chi_gutenberg_block_assets() {
-    if (!is_admin()) {
-        wp_enqueue_style(
-            'chi-gutenberg/blockquote-with-image',
-            plugins_url('/gutenberg/blocks/blockquote-with-image/view.css', __FILE__)
-        );
+add_action( 'template_include', function( $template ) {
+    if ( get_query_var( 'podcast' ) == false || get_query_var( 'podcast' ) == '' ) {
+        return $template;
     }
-}
-
-add_action('enqueue_block_assets', 'chi_gutenberg_block_assets');
-
+ 
+    // return get_template_directory() . '/template-name.php';
+} );

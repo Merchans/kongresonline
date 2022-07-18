@@ -11,8 +11,11 @@ if ( is_page_template( "template-kavaz.php" ) || is_page_template( "taxonomy-con
 $article        = get_site_url() . "/" . $category;
 
 $video          = get_site_url() . "/video/" . $category;
+
+$podcasty          = get_site_url() . "/podcast/" . $category;
 $active_article = "";
 $active_video   = "";
+$active_podcasty   = "";
 $url_segments   = array_filter( explode( "/", $_SERVER['REQUEST_URI'] ) );
 $only_articles  = ( $_SERVER['REQUEST_URI'] );
 
@@ -52,6 +55,36 @@ if ( $url_segments[1] == "video" or $all_video ) {
 	</style>
 	<?php
 }
+
+if ( $url_segments[1] == "podcast"  ) {
+	if ( ! is_single() ) {
+		$active_podcasty = "chi-active";
+	}
+	$category = $url_segments[2];
+	$alert    = __( "všechny podcasty", "chi" );
+	?>
+	<style>
+		/*
+		.chi-claim
+		{
+			height: 100%!important;
+		}*/
+		.chi-position-botom {
+			padding: 0;
+		}
+
+		.chi-info-text {
+			margin: 0 auto;
+			padding: 0 0 24px 0;
+		}
+
+		.white-color > p {
+			margin: 0;
+		}
+	</style>
+	<?php
+}
+
 
 if ( $all_video ) {
 	$active_article = "chi-active";
@@ -95,7 +128,22 @@ if ( $all_video ) {
 				</li>
 				<?php
 			}
+			$args = array(
+				'numberposts' => 1,
+				'post_type'   => ['chi_video', 'post'],
+				"category"    => $category_ID,
+				"tag" => 'podcasty'
 
+			);
+
+			$latest_podcast = get_posts( $args );
+			if ( ! empty( $latest_podcast ) ) {
+				?>
+				<li class="nav-item chi-nav-item">
+					<a class="nav-link chi-nav-link <?= $active_podcasty ?> white-color" href="<?= $podcasty ?>">Podcasty</a>
+				</li>
+				<?php
+			}
 			?>
 		</ul>
 	</div>

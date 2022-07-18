@@ -1,4 +1,5 @@
 <?php
+
 	chi_all_headers();
 ?>
 	<style>
@@ -13,6 +14,7 @@
 	$category = get_the_category()[0]->slug;
 	$article  = get_site_url() . "/" . $category;
 	$video    = get_site_url() . "/video/" . $category;
+	$podcasty = get_site_url() . "/podcast/" . $category;
 
 	$active_article = "";
 	$active_video   = "";
@@ -60,6 +62,31 @@
 		$alert          = __( "ČLÁNKY A REPORTÁŽE", "chi" );
 	}
 
+	if ( $url_segments[1] == "podcast" ) {
+		$active_video = "chi-active";
+		$category     = $url_segments[2];
+		$alert        = __( "všechny podcasty", "chi" );
+		?>
+		<style>
+			.chi-claim {
+				height: 100% !important;
+			}
+
+			.chi-position-botom {
+				padding: 0;
+			}
+
+			.chi-info-text {
+				margin: 0;
+				padding: 0 0 24px 0;
+			}
+
+			.white-color > p {
+				margin: 0;
+			}
+		</style>
+		<?php
+	}
 ?>
 <?php get_template_part( 'assets/claims/chi-claims' ); ?>
 <?php global $ids_not_in_main_loop; ?>
@@ -70,14 +97,13 @@
 				<div class="col-md-9 chi-video-section">
 					<?php get_template_part( "assets/claims/video-section" ); ?>
 					<?php
-						if ( $url_segments[1] != "video" and ! $all_video ) {
+				
+						if ( $url_segments[1] != "video" and ! $all_video and $url_segments[1] != 'podcast' ) {
 							get_template_part( "chi-horizontal-advertising" );
 						}
 					?>
 					<div class="others-articles">
-						<div class="d-flex h-20 <?php /* if ($url_segments[1] != 'video' and ! $all_video) {
-                        echo 'mt-5';
-                    } */ ?>">
+						<div class="d-flex h-20">
 							<div class="chi-tag text-uppercase mr-auto p-2">
 								<a href="#" class="chi-tag_link" id="ostatni-clanky"><?php echo $alert ?></a>
 							</div>
