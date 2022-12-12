@@ -904,7 +904,7 @@ function check_textarea_length() { ?>
 			var visual = (typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden() ? true : false;
 
 			if (visual) {
-				title_content = $("#title").val().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
+				title_content = jQuery("#title").val().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
 				editor_content = tinymce.get("content").getContent().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
 				html_excerpt = tinymce.get("htmlExcerpt").getContent().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
 				sum = title_content + editor_content + html_excerpt;
@@ -915,7 +915,7 @@ function check_textarea_length() { ?>
 						'titulek: ' + title_content + ' perex: ' + html_excerpt + ' hlavní obsah: ' + editor_content + ' SUM(' + sum + ')' +
 						'</span>');
 
-				$("#title").on("keyup", function () {
+				jQuery("#title").on("keyup", function () {
 
 					title_content = $("#title").val().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
 					editor_content = tinymce.get("content").getContent().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
@@ -983,8 +983,11 @@ function check_textarea_length() { ?>
 
 	</style>
 	<script>
-		var clipboard = new ClipboardJS('#copy-url-button', {
+		jQuery( document ).ready(function() {
+			console.log( "ready!" );
+			var clipboard = new ClipboardJS('#copy-url-button', {
 			target: function () {
+				console.log('copy');
 				return document.querySelector('a[data-clipboard-text]');
 			}
 		});
@@ -1008,7 +1011,7 @@ function check_textarea_length() { ?>
 		clipboardView.clipboard.on('error', function (e) {
 			console.log(e);
 		});
-
+		});
 	</script>
 	<?php
 
@@ -1016,7 +1019,7 @@ function check_textarea_length() { ?>
 
 
 add_filter( 'get_sample_permalink_html', 'add_copyurl_to_clipboard' );
-add_action( 'admin_init', 'copy_to_clipboard_init' );
+add_action( 'admin_init', 'copy_to_clipboard_init', 20 );
 add_action( 'admin_enqueue_scripts', 'add_clipboard_path' );
 
 function copy_to_clipboard_init() {

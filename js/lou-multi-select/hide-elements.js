@@ -1,9 +1,9 @@
-$( document ).ready(function() {
+jQuery( document ).ready(function() {
 
 
-	$clicket = 	$(function () {
-		$("#chi_selected_in_claim_posts").next().addClass("for-length");
-		$ul = $(".for-length").find(".ms-selection");
+	$clicket = 	jQuery(function () {
+		jQuery("#chi_selected_in_claim_posts").next().addClass("for-length");
+		$ul = jQuery(".for-length").find(".ms-selection");
 		$liLen = $ul.find(".ms-selected").length;
 
 		$clicket = $liLen;
@@ -12,26 +12,26 @@ $( document ).ready(function() {
 	});
 
 
-	$selectable = $(".ms-elem-selectable");
+	$selectable = jQuery(".ms-elem-selectable");
 
 
 	$selectable.on("click", function (e)
 	{
-		$selectable = $(".ms-elem-selectable");
-		$selection = $(".ms-elem-selection .ms-selected");
+		$selectable = jQuery(".ms-elem-selectable");
+		$selection = jQuery(".ms-elem-selection .ms-selected");
 
 		console.log($selection.length)
 		$selection.removeClass("hide");
 		var id = e.currentTarget.id;
 		id = id.replace("-selectable", "-selection");
-		$area = $(".ms-list")[7];
-		$area = $(".ms-list").children(".ms-selected").length;
+		$area = jQuery(".ms-list")[7];
+		$area = jQuery(".ms-list").children(".ms-selected").length;
 
-		var selection = $(id);
+		var selection = jQuery(id);
 		$has = "#";
 
-		$("#chi_selected_in_claim_posts").next().addClass("for-length");
-		$ul = $(".for-length").find(".ms-selection");
+		jQuery("#chi_selected_in_claim_posts").next().addClass("for-length");
+		$ul = jQuery(".for-length").find(".ms-selection");
 		$liLen = $ul.find(".ms-selected").length;
 		$clicket = $liLen;
 		console.log($clicket);
@@ -43,17 +43,17 @@ $( document ).ready(function() {
 		id  = $has.concat(id);
 		//console.log(id);
 
-		selection = $(".ms-list").children(id)[1];
+		selection = jQuery(".ms-list").children(id)[1];
 
 		$clicket++;
 
 		if ($clicket > 3)
 		{
-			$(this).toggleClass("show");
+			jQuery(this).toggleClass("show");
 
 			//selection = selection.find("li");
 			//selection.style.display = "none";
-			$(selection).toggleClass("hide");
+			jQuery(selection).toggleClass("hide");
 			$clicket = 3;
 		}
 
@@ -62,13 +62,13 @@ $( document ).ready(function() {
 		console.log($clicket);
 	});
 
-	$selected = $(".ms-selection");
+	$selected = jQuery(".ms-selection");
 
 
-	$selection = $(".ms-elem-selection .ms-selected");
+	$selection = jQuery(".ms-elem-selection .ms-selected");
 	$selection.on("click", function (e){
-		$("#chi_selected_in_claim_posts").next().addClass("for-length");
-		$ul = $(".for-length").find(".ms-selection");
+		jQuery("#chi_selected_in_claim_posts").next().addClass("for-length");
+		$ul = jQuery(".for-length").find(".ms-selection");
 		$liLen = $ul.find(".ms-selected").length;
 		$clicket = $liLen;
 		if ($clicket > 2)
