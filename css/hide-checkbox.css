@@ -1,0 +1,7 @@
+p.checkbox-for-post {
+  display: none;
+}
+
+p.checkbox-for-post.post {
+  display: block;
+}

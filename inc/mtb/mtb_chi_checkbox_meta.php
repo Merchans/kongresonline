@@ -48,30 +48,24 @@ function chi_checkbox_style()
 }
 
 */
-function add_featured_image_display_settings($content, $post_id)
+function add_featured_image_display_settings($content, $post_id, $thumbnail_id)
 {
+      $field_id    = 'show_featured_image';
+      $field_value = esc_attr(get_post_meta($post_id, $field_id, true));
+      $field_text  = esc_html__('Nechci zobrazovat v textu.', 'generatewp');
+      $field_state = checked($field_value, 1, false);
+      $post_type = get_post_type($post_id);
 
-    if ( get_post_type( get_the_ID() ) == "post" ) :
-        $field_id    = 'show_featured_image';
-        $field_value = esc_attr(get_post_meta($post_id, $field_id, true));
-        $field_text  = esc_html__('Nechci zobrazovat v textu.', 'generatewp');
-        $field_state = checked($field_value, 1, false);
-
-        $field_label = sprintf(
-            '<p><label for="%1$s"><input type="checkbox" name="%1$s" id="%1$s" value="%2$s" %3$s> %4$s</label></p>',
-            $field_id, $field_value, $field_state, $field_text
-        );
-
-        return $content .= $field_label;
-        endif;
-    return $content;
-
+      $field_label = "<p class='checkbox-for-post $post_type'><label for='$field_id'><input type='checkbox' name='$field_id' id='$field_id' value='$field_value' $field_state>$field_text</label></p>";
+      
+      return $content . $field_label;
 }
 
-add_filter('admin_post_thumbnail_html', 'add_featured_image_display_settings', 10, 2);
+add_filter('admin_post_thumbnail_html', 'add_featured_image_display_settings', 10, 3);
 
 function save_featured_image_display_settings($post_ID, $post, $update)
 {
+  
     global $post;
     $is_revision = wp_is_post_revision($post);
     $field_id    = 'show_featured_image';

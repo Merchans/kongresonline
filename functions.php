@@ -1,6 +1,6 @@
 <?php
-define( 'THEME_DIRECTORY', get_template_directory() );
-define( 'THEME_DIRECTORY_URI', get_template_directory_uri() );
+define('THEME_DIRECTORY', get_template_directory());
+define('THEME_DIRECTORY_URI', get_template_directory_uri());
 
 /* CHI custom posty type */
 require_once THEME_DIRECTORY . "/inc/cpt/cpt_advertising.php";
@@ -51,17 +51,18 @@ require_once THEME_DIRECTORY . "/inc/menues.php";
 require_once THEME_DIRECTORY . "/inc/labels.php";
 
 // CHI all header
-function chi_all_headers() {
-	if ( is_front_page() ) :
+function chi_all_headers()
+{
+	if (is_front_page()) :
 		return get_header();
-	elseif ( is_404() ) :
-		return get_header( '404' );
-	elseif ( is_category() ) :
-		return get_header( 'category' );
-	elseif ( is_singular( 'chi_video' ) ) :
-		return get_header( 'single' );
-	elseif ( is_single() ) :
-		return get_header( 'single' );
+	elseif (is_404()) :
+		return get_header('404');
+	elseif (is_category()) :
+		return get_header('category');
+	elseif (is_singular('chi_video')) :
+		return get_header('single');
+	elseif (is_single()) :
+		return get_header('single');
 	else :
 		return get_header();
 	endif;
@@ -76,15 +77,16 @@ $is_active_them_starter = false;
 * CHI THEME SUPPERT
 */
 
-add_theme_support( 'post-thumbnails' );
-add_theme_support( 'menus' );
+add_theme_support('post-thumbnails');
+add_theme_support('menus');
 
 
-add_filter( 'nav_menu_link_attributes', 'chi_menu_add_class', 10, 3 );
+add_filter('nav_menu_link_attributes', 'chi_menu_add_class', 10, 3);
 
-function chi_menu_add_class( $atts, $item, $args ) {
+function chi_menu_add_class($atts, $item, $args)
+{
 
-	if ( in_array( 'current-menu-item', $atts ) ) {
+	if (in_array('current-menu-item', $atts)) {
 		$class = 'nav-link chi-nav-link active chi-active ';
 	} else {
 		$class = 'nav-link chi-nav-link'; // or something based on $item
@@ -95,10 +97,11 @@ function chi_menu_add_class( $atts, $item, $args ) {
 }
 
 
-add_filter( 'nav_menu_css_class', 'special_nav_class', 10, 2 );
+add_filter('nav_menu_css_class', 'special_nav_class', 10, 2);
 
-function special_nav_class( $classes, $item ) {
-	if ( in_array( 'current-menu-item', $classes ) ) {
+function special_nav_class($classes, $item)
+{
+	if (in_array('current-menu-item', $classes)) {
 		$classes[] = 'active chi-active';
 	}
 
@@ -106,32 +109,36 @@ function special_nav_class( $classes, $item ) {
 }
 
 
-function get_chi_make_specilal_form_category( $id = null ) {
+function get_chi_make_specilal_form_category($id = null)
+{
 	$home_url      = get_home_url();
-	$category_slug = get_the_category( $id )[0]->slug;
+	$category_slug = get_the_category($id)[0]->slug;
 	$url           = $home_url . '/' . $category_slug;
 
 	return $url;
 }
 
-function chi_video_time( $id = false ) {
-	if ( $id == false ) {
+function chi_video_time($id = false)
+{
+	if ($id == false) {
 		$id = get_the_ID();
 	}
 
-	return get_post_meta( $id, [ "video_meta_box_video-length" ][0] );
+	return get_post_meta($id, ["video_meta_box_video-length"][0]);
 }
 
-add_filter( 'next_posts_link_attributes', 'posts_link_attributes' );
-add_filter( 'previous_posts_link_attributes', 'posts_link_attributes' );
+add_filter('next_posts_link_attributes', 'posts_link_attributes');
+add_filter('previous_posts_link_attributes', 'posts_link_attributes');
 
-function posts_link_attributes() {
+function posts_link_attributes()
+{
 	return 'class="add-your-class-here"';
 }
 
 /* Print lable of CP  */
 
-function get_chi_print_cp_lables() {
+function get_chi_print_cp_lables()
+{
 	$args = array(
 		'public'              => true,
 		'exclude_from_search' => false,
@@ -140,14 +147,15 @@ function get_chi_print_cp_lables() {
 
 	$output     = 'chi_video'; // names or objects, note names is the default
 	$operator   = 'and'; // 'and' or 'or'
-	$post_types = get_post_types( $args, $output, $operator );
+	$post_types = get_post_types($args, $output, $operator);
 
 	return $post_types["$output"]->label;
 }
 
 
 /*CZech date function */
-function czech_date( $dateFormat, $dateData ) {
+function czech_date($dateFormat, $dateData)
+{
 	$aj = array(
 		"January",
 		"February",
@@ -177,133 +185,141 @@ function czech_date( $dateFormat, $dateData ) {
 		"prosince"
 	);
 
-	$czech_date = str_replace( $aj, $cz, date( $dateFormat, $dateData ) );
+	$czech_date = str_replace($aj, $cz, date($dateFormat, $dateData));
 
 	return $czech_date;
 }
 
 /* MAIN LOOP EDIT */
 
-function chi_category_main_query_offset( $query, $offset = 2 ) {
+function chi_category_main_query_offset($query, $offset = 2)
+{
 
-	if ( ! is_admin() ) {
+	if (!is_admin()) {
 
-		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() && is_category( 'kardiovaskularni-zpravodajstvi' ) ) {
+		if ($query->is_main_query() && $query->is_category() && $query->is_archive() && is_category('kardiovaskularni-zpravodajstvi')) {
 			$args_one_video_or_post = array(
-				"post_type"      => array( "chi_video", "post" ),
+				"post_type"      => array("chi_video", "post"),
 				"posts_per_page" => 1,
 				"category_name"  => "kardiovaskularni-zpravodajstvi",
 				"post_status"    => "publish",
 				'fields'         => 'ids'
 			);
 
-			$first_video_or_post_or_post = new  WP_Query( $args_one_video_or_post );
+			$first_video_or_post_or_post = new  WP_Query($args_one_video_or_post);
 
 			$post = $first_video_or_post_or_post->posts;
 
-			$query->set( 'post__not_in', $post );
+			$query->set('post__not_in', $post);
 
-			if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze&page=1" ) or strpos( $_SERVER['REQUEST_URI'],
-					"?clanky-a-reportaze" ) ) {
-				$query->set( 'post__not_in', '' );
-
+			if (strpos($_SERVER['REQUEST_URI'], "?clanky-a-reportaze&page=1") or strpos(
+				$_SERVER['REQUEST_URI'],
+				"?clanky-a-reportaze"
+			)) {
+				$query->set('post__not_in', '');
 			}
-			if ( isset( $_GET["page"] ) ) {
+			if (isset($_GET["page"])) {
 				$page = $_GET["page"];
-				$page = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
-				$query->set( 'offset', $page );
+				$page = (($page - 1) * get_option("posts_per_page"));
+				$query->set('offset', $page);
 			}
 
 			return;
 		}
 
-		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() ) {
-			
+		if ($query->is_main_query() && $query->is_category() && $query->is_archive()) {
+
 			$category       = get_queried_object();
 			$cat_id         = $category->term_id;
-			$option         = get_term_meta( $cat_id, "_chi_selected_one_options", true );
+			$option         = get_term_meta($cat_id, "_chi_selected_one_options", true);
 			$text           = array();
-			$posts_per_page = get_option( "posts_per_page" );
+			$posts_per_page = get_option("posts_per_page");
 
-			if ( is_array( explode( "/", $_SERVER['REQUEST_URI'] ) ) ) {
-				$text = array_filter( explode( "/", $_SERVER['REQUEST_URI'] ) );
+			if (is_array(explode("/", $_SERVER['REQUEST_URI']))) {
+				$text = array_filter(explode("/", $_SERVER['REQUEST_URI']));
 			}
 
-			
 
-			if ( ! $option ) {
+
+			if (!$option) {
 				return;
 			}
 
 
-			switch ( $option ) {
+			switch ($option) {
 				case 1:
-					$data = get_number_of_posts( 2, $cat_id, "post" );
-					$query->set( 'post__not_in', $data['posts_id'] );
+					$data = get_number_of_posts(2, $cat_id, "post");
+					$query->set('post__not_in', $data['posts_id']);
 
-					if ( isset( $_GET["page"] ) ) {
+					if (isset($_GET["page"])) {
 						$page = $_GET["page"];
-						$page = ( ( $page - 1 ) * $posts_per_page );
-						$query->set( 'offset', $page );
+						$page = (($page - 1) * $posts_per_page);
+						$query->set('offset', $page);
 					}
 
-					if ( in_array( "?clanky-a-reportaze", $text ) or preg_grep( '/clanky-a-reportaze&page=\d/',
-							$text ) ) {
-						$query->set( 'post__not_in', '' );
+					if (in_array("?clanky-a-reportaze", $text) or preg_grep(
+						'/clanky-a-reportaze&page=\d/',
+						$text
+					)) {
+						$query->set('post__not_in', '');
 					}
 					break;
 				case 2:
-					$data = get_number_of_posts( 3, $cat_id, [ "chi_video", "post" ] );
-					$query->set( 'post__not_in', $data['posts_id'] );
+					$data = get_number_of_posts(3, $cat_id, ["chi_video", "post"]);
+					$query->set('post__not_in', $data['posts_id']);
 
-					if ( isset( $_GET["page"] ) ) {
+					if (isset($_GET["page"])) {
 						$page = $_GET["page"];
-						$page = ( ( $page - 1 ) * $posts_per_page );
-						$query->set( 'offset', $page );
+						$page = (($page - 1) * $posts_per_page);
+						$query->set('offset', $page);
 					}
 
-					if ( in_array( "video", $text ) ) {
-						
-						$query->set( 'post__not_in', '' );
-						if ( isset( $_GET["page"] ) ) {
+					if (in_array("video", $text)) {
+
+						$query->set('post__not_in', '');
+						if (isset($_GET["page"])) {
 							$page = $_GET["page"];
-							$page = ( ( $page - 1 ) * $posts_per_page );
-							$query->set( 'offset', $page );
+							$page = (($page - 1) * $posts_per_page);
+							$query->set('offset', $page);
 						}
 
 						break;
 					}
 
 
-					if ( in_array( "?clanky-a-reportaze", $text ) or preg_grep( '/clanky-a-reportaze&page=\d/',
-							$text ) ) {
-						$query->set( 'post__not_in', '' );
+					if (in_array("?clanky-a-reportaze", $text) or preg_grep(
+						'/clanky-a-reportaze&page=\d/',
+						$text
+					)) {
+						$query->set('post__not_in', '');
 					}
 					break;
 				case 3:
-					$exclude = get_term_meta( $cat_id, 'chi_selected_in_claim_posts', true );
-					$query->set( 'post__not_in', $exclude );
+					$exclude = get_term_meta($cat_id, 'chi_selected_in_claim_posts', true);
+					$query->set('post__not_in', $exclude);
 
-					if ( isset( $_GET["page"] ) ) {
+					if (isset($_GET["page"])) {
 						$page = $_GET["page"];
-						$page = ( ( $page - 1 ) * $posts_per_page );
-						$query->set( 'offset', $page );
+						$page = (($page - 1) * $posts_per_page);
+						$query->set('offset', $page);
 					}
 
 
-					if ( in_array( "video", $text ) ) {
-						$query->set( 'post__not_in', '' );
-						if ( isset( $_GET["page"] ) ) {
+					if (in_array("video", $text)) {
+						$query->set('post__not_in', '');
+						if (isset($_GET["page"])) {
 							$page = $_GET["page"];
-							$page = ( ( $page - 1 ) * $posts_per_page );
-							$query->set( 'offset', $page );
+							$page = (($page - 1) * $posts_per_page);
+							$query->set('offset', $page);
 						}
 						break;
 					}
 
-					if ( in_array( "?clanky-a-reportaze", $text ) or preg_grep( '/clanky-a-reportaze&page=\d/',
-							$text ) ) {
-						$query->set( 'post__not_in', '' );
+					if (in_array("?clanky-a-reportaze", $text) or preg_grep(
+						'/clanky-a-reportaze&page=\d/',
+						$text
+					)) {
+						$query->set('post__not_in', '');
 					}
 					break;
 			}
@@ -406,103 +422,107 @@ function chi_category_main_query_offset( $query, $offset = 2 ) {
 		//
 		//}
 	}
-
 }
 
-add_action( 'pre_get_posts', "chi_category_main_query_offset" );
-add_action( 'pre_get_posts', "chi_tag_add_post_type" );
-add_action( 'pre_get_posts', "chi_category_add_post_type", 20, 2 );
+add_action('pre_get_posts', "chi_category_main_query_offset");
+add_action('pre_get_posts', "chi_tag_add_post_type");
+add_action('pre_get_posts', "chi_category_add_post_type", 20, 2);
 
-function chi_tag_add_post_type( $query ) {
-	if ( $query->is_main_query() ) {
-		if ( $query->is_tag() ) {
-			$query->set( 'post_type', array( "post", "chi_video" ) );
+function chi_tag_add_post_type($query)
+{
+	if ($query->is_main_query()) {
+		if ($query->is_tag()) {
+			$query->set('post_type', array("post", "chi_video"));
 		}
 	}
 }
 
-function chi_category_add_post_type( $query, $offset = 0 ) {
+function chi_category_add_post_type($query, $offset = 0)
+{
 
-	if ( ! is_admin() ) {
+	if (!is_admin()) {
 
-		if ( $query->is_main_query() && $query->is_category() && $query->is_archive() ) {
+		if ($query->is_main_query() && $query->is_category() && $query->is_archive()) {
 
 			$category    = get_queried_object();
 			$category_ID = $category->term_id;
 			$args_video  = array(
-				'post_type'   => array( 'chi_video' ),
-				'numberposts' => - 1,
+				'post_type'   => array('chi_video'),
+				'numberposts' => -1,
 				'cat'         => "$category_ID"
 			);
 
 			$args_post = array(
-				'post_type'   => array( 'post' ),
-				'numberposts' => - 1,
+				'post_type'   => array('post'),
+				'numberposts' => -1,
 				'cat'         => "$category_ID"
 			);
 
-//				( $query->tax_query->queried_terms["category"]["terms"][0] == "cardionews" ) ||
-			if ( ( ( count( get_posts( $args_video ) ) + count( get_posts( $args_post ) ) ) < 4 ) || ( count( get_posts( $args_post ) ) < 4 ) ) {
+			//				( $query->tax_query->queried_terms["category"]["terms"][0] == "cardionews" ) ||
+			if (((count(get_posts($args_video)) + count(get_posts($args_post))) < 4) || (count(get_posts($args_post)) < 4)) {
 
-				$query->set( 'offset', 0 );
-				$query->set( 'post_type', array( 'post', 'chi_video' ) );
-				$query->set( 'post__not_in', "" );
+				$query->set('offset', 0);
+				$query->set('post_type', array('post', 'chi_video'));
+				$query->set('post__not_in', "");
 			}
 		}
 	}
 }
 
 // category (can be a parent category)
-function count_cat_post( $category ) {
-	if ( is_string( $category ) ) {
-		$catID = get_cat_ID( $category );
-	} elseif ( is_numeric( $category ) ) {
+function count_cat_post($category)
+{
+	if (is_string($category)) {
+		$catID = get_cat_ID($category);
+	} elseif (is_numeric($category)) {
 		$catID = $category;
 	} else {
 		return 0;
 	}
-	$cat = get_category( $catID );
+	$cat = get_category($catID);
 
 	return $cat;
 }
 
 
-function is_active_them_starter() {
+function is_active_them_starter()
+{
 	global $is_active_them_starter;
 
-	if ( $is_active_them_starter ) {
+	if ($is_active_them_starter) {
 		return true;
 	} else {
 		return false;
 	}
-
 }
 
-function is_template_part( $template_file ) {
+function is_template_part($template_file)
+{
 	global $wp_template_part;
 
 	return $template_file === $wp_template_part;
 }
 
-add_action( 'wp_loaded', 'is_active_them_starter' );
+add_action('wp_loaded', 'is_active_them_starter');
 
 
 /**
  * Pagination
  */
 
-function get_pagination_links() {
+function get_pagination_links()
+{
 	global $wp_query;
 
 
-	if ( isset( $_GET["page"] ) ) {
+	if (isset($_GET["page"])) {
 		$wp_query->query_vars['page'] > 1 ? $current = $wp_query->query_vars['page'] : $current = 1;
 	} else {
 		$current = 1;
 	}
 
-	return paginate_links( array(
-		'base'               => @add_query_arg( 'page', '%#%#ostatni-clanky' ),
+	return paginate_links(array(
+		'base'               => @add_query_arg('page', '%#%#ostatni-clanky'),
 		'format'             => '?page=%#%#ostatni-clanky',
 		'current'            => $current,
 		'total'              => $wp_query->max_num_pages,
@@ -511,79 +531,80 @@ function get_pagination_links() {
 		'after_page_number'  => '</span>',
 		'prev_text'          => '',
 		'next_text'          => '<i class="chi-next-button"></i>'
-	) );
+	));
 }
 
 
-function filter_post_type_link( $link, $post ) {
-	if ( $post->post_type != 'chi_video' ) {
+function filter_post_type_link($link, $post)
+{
+	if ($post->post_type != 'chi_video') {
 		return $link;
 	}
 
-	if ( $cats = get_the_terms( $post->ID, 'category' ) ) {
-		$link = str_replace( '%category%', array_pop( $cats )->slug, $link );
+	if ($cats = get_the_terms($post->ID, 'category')) {
+		$link = str_replace('%category%', array_pop($cats)->slug, $link);
 	}
 
 	return $link;
 }
 
-add_filter( 'post_type_link', 'filter_post_type_link', 10, 2 );
+add_filter('post_type_link', 'filter_post_type_link', 10, 2);
 
 
-add_action( 'pre_get_posts', function ( $query ) {
-	if ( ! is_admin() && $query->is_main_query() ) {
+add_action('pre_get_posts', function ($query) {
+	if (!is_admin() && $query->is_main_query()) {
 
 		//var_dump( array_filter(explode("/", $_SERVER['REQUEST_URI']))[1] );
-		$text = array( "empty" );
-		if ( is_array( explode( "/", $_SERVER['REQUEST_URI'] ) ) ) {
-			$text = array_filter( explode( "/", $_SERVER['REQUEST_URI'] ) );
+		$text = array("empty");
+		if (is_array(explode("/", $_SERVER['REQUEST_URI']))) {
+			$text = array_filter(explode("/", $_SERVER['REQUEST_URI']));
 			//var_dump(array_filter(explode("/", $_SERVER['REQUEST_URI']))[1]);
 		}
 
-		if ( in_array( "video", $text ) ) {
-			if ( is_archive() || is_category() ) {
-				$query->set( 'post_type', 'chi_video' );
+		if (in_array("video", $text)) {
+			if (is_archive() || is_category()) {
+				$query->set('post_type', 'chi_video');
 				/*$query->set( 'offset', 0 );*/
-				if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze" ) ) {
-					$query->set( 'post_type', 'post' );
+				if (strpos($_SERVER['REQUEST_URI'], "?clanky-a-reportaze")) {
+					$query->set('post_type', 'post');
 				}
 			}
 		}
 
-		if ( in_array( "podcast", $text ) ) {			
-			
-			$query->set( 'tag', 'podcasty' );
+		if (in_array("podcast", $text)) {
+
+			$query->set('tag', 'podcasty');
 			/*$query->set( 'offset', 0 );*/
-			if ( strpos( $_SERVER['REQUEST_URI'], "?clanky-a-reportaze" ) ) {
-				$query->set( 'post_type', 'post' );
+			if (strpos($_SERVER['REQUEST_URI'], "?clanky-a-reportaze")) {
+				$query->set('post_type', 'post');
 			}
-		
 		}
 	}
-} );
+});
 
 
-function get_url_var( $name ) {
+function get_url_var($name)
+{
 	$strURL  = $_SERVER['REQUEST_URI'];
-	$arrVals = explode( "/", $strURL );
+	$arrVals = explode("/", $strURL);
 	$found   = 0;
-	foreach ( $arrVals as $index => $value ) {
-		if ( $value == $name ) {
+	foreach ($arrVals as $index => $value) {
+		if ($value == $name) {
 			$found = $index;
 		}
 	}
 	$place = $found + 1;
 
-	return $arrVals[ $place ];
+	return $arrVals[$place];
 }
 
 
 /* CATEGORY CHANGE CHECKBOX to RADIOBOX */
-function admin_js() { ?>
+function admin_js()
+{ ?>
 	<script type="text/javascript">
-
-		jQuery(document).ready(function () {
-			jQuery('form#post').find('.categorychecklist input').each(function () {
+		jQuery(document).ready(function() {
+			jQuery('form#post').find('.categorychecklist input').each(function() {
 				var new_input = jQuery('<input type="radio" />'),
 					attrLen = this.attributes.length;
 
@@ -596,15 +617,15 @@ function admin_js() { ?>
 				jQuery(this).replaceWith(new_input);
 			});
 		});
-
 	</script>
 <?php }
 
-add_action( 'admin_head', 'admin_js' );
+add_action('admin_head', 'admin_js');
 
 
-function has_title_meta_box( $meta_box ) {
-	if ( isset( $meta_box ) && ! empty( $meta_box ) ) {
+function has_title_meta_box($meta_box)
+{
+	if (isset($meta_box) && !empty($meta_box)) {
 		return $meta_box . " – ";
 	}
 
@@ -612,67 +633,68 @@ function has_title_meta_box( $meta_box ) {
 }
 
 
-function chi_claims() {
+function chi_claims()
+{
 
 	$category = get_the_category()[0]->slug;
 
 
 	$args_one_video       = array(
-		"post_type"      => array( "chi_video", "post" ),
+		"post_type"      => array("chi_video", "post"),
 		"posts_per_page" => 1,
 		"category_name"  => $category,
 		"post_status"    => "publish"
 	);
-	$first_video          = new  WP_Query( $args_one_video );
-	$ids_not_in_main_loop = wp_list_pluck( $first_video->posts, 'ID' );
+	$first_video          = new  WP_Query($args_one_video);
+	$ids_not_in_main_loop = wp_list_pluck($first_video->posts, 'ID');
 
 	$args_two_posts = array(
-		"post_type"      => array( "post", "chi_video" ),
+		"post_type"      => array("post", "chi_video"),
 		"posts_per_page" => 2,
 		"category_name"  => $category,
-		"post__not_in"   => [ $ids_not_in_main_loop[0] ]
+		"post__not_in"   => [$ids_not_in_main_loop[0]]
 	);
 
-	$category_posts         = new WP_Query( $args_two_posts );
-	$ids_not_in_main_loop   = wp_list_pluck( $first_video->posts, 'ID' );
-	$ids_not_in_main_loop[] = wp_list_pluck( $category_posts->posts, 'ID' );
-	$ids_not_in_main_loop   = array_merge( $ids_not_in_main_loop, $ids_not_in_main_loop[1] );
-	unset( $ids_not_in_main_loop[1] );
+	$category_posts         = new WP_Query($args_two_posts);
+	$ids_not_in_main_loop   = wp_list_pluck($first_video->posts, 'ID');
+	$ids_not_in_main_loop[] = wp_list_pluck($category_posts->posts, 'ID');
+	$ids_not_in_main_loop   = array_merge($ids_not_in_main_loop, $ids_not_in_main_loop[1]);
+	unset($ids_not_in_main_loop[1]);
 
-	$ids_not_in_main_loop = array_values( $ids_not_in_main_loop );
+	$ids_not_in_main_loop = array_values($ids_not_in_main_loop);
 
 	return $ids_not_in_main_loop;
-
 }
 
 
-add_filter( 'body_class', function ( $classes ) {
-	if ( is_single() || is_category() ) {
+add_filter('body_class', function ($classes) {
+	if (is_single() || is_category()) {
 		global $post;
 
-		foreach ( ( get_the_category( $post->ID ) ) as $category ) {
+		foreach ((get_the_category($post->ID)) as $category) {
 			$classes[] = 'special-' . $category->slug;
 		}
 	}
 
 	return $classes;
-} );
+});
 
 
 // Custom single template by category
 // https://halgatewood.com/wordpress-custom-single-templates-by-category
 // For single posts
-add_filter( 'single_template', 'chi_check_for_category_single_template' );
-function chi_check_for_category_single_template( $t ) {
-	foreach ( (array) get_the_category() as $cat ) {
-		if ( is_singular( "chi_video" ) ) {
-			foreach ( (array) get_the_category() as $cat ) {
-				if ( file_exists( STYLESHEETPATH . "/single-chi_video-category-{$cat->slug}.php" ) ) {
+add_filter('single_template', 'chi_check_for_category_single_template');
+function chi_check_for_category_single_template($t)
+{
+	foreach ((array) get_the_category() as $cat) {
+		if (is_singular("chi_video")) {
+			foreach ((array) get_the_category() as $cat) {
+				if (file_exists(STYLESHEETPATH . "/single-chi_video-category-{$cat->slug}.php")) {
 					return STYLESHEETPATH . "/single-chi_video-category-{$cat->slug}.php";
 				}
-				if ( $cat->parent ) {
-					$cat = get_the_category_by_ID( $cat->parent );
-					if ( file_exists( STYLESHEETPATH . "/single-chi_video-category-{$cat->slug}.php" ) ) {
+				if ($cat->parent) {
+					$cat = get_the_category_by_ID($cat->parent);
+					if (file_exists(STYLESHEETPATH . "/single-chi_video-category-{$cat->slug}.php")) {
 						return STYLESHEETPATH . "/single-chi_video-category-{$cat->slug}.php";
 					}
 				}
@@ -681,12 +703,12 @@ function chi_check_for_category_single_template( $t ) {
 			return $t;
 		}
 
-		if ( file_exists( STYLESHEETPATH . "/single-category-{$cat->slug}.php" ) ) {
+		if (file_exists(STYLESHEETPATH . "/single-category-{$cat->slug}.php")) {
 			return STYLESHEETPATH . "/single-category-{$cat->slug}.php";
 		}
-		if ( $cat->parent ) {
-			$cat = get_the_category_by_ID( $cat->parent );
-			if ( file_exists( STYLESHEETPATH . "/single-category-{$cat->slug}.php" ) ) {
+		if ($cat->parent) {
+			$cat = get_the_category_by_ID($cat->parent);
+			if (file_exists(STYLESHEETPATH . "/single-category-{$cat->slug}.php")) {
 				return STYLESHEETPATH . "/single-category-{$cat->slug}.php";
 			}
 		}
@@ -697,17 +719,18 @@ function chi_check_for_category_single_template( $t ) {
 
 
 // https://markjaquith.wordpress.com/2014/02/19/template_redirect-is-not-for-loading-templates/
-function kardiovaskularni_zpravodajstvi_template_file( $template ) {
+function kardiovaskularni_zpravodajstvi_template_file($template)
+{
 
-	if ( is_tax() ) {
+	if (is_tax()) {
 
-		$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+		$term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
 
 		$kardiovaskularni_zpravodajstvi_ID = 50;   // Taxnomie ID for "kardiovaskularni-zpravodajstvi"
-		if ( $term->parent ) {
-			if ( $term->parent == $kardiovaskularni_zpravodajstvi_ID ) {
-				$new_template = locate_template( array( 'taxonomy-congress-kardiovaskularni-zpravodajstvi.php' ) );
-				if ( '' != $new_template ) {
+		if ($term->parent) {
+			if ($term->parent == $kardiovaskularni_zpravodajstvi_ID) {
+				$new_template = locate_template(array('taxonomy-congress-kardiovaskularni-zpravodajstvi.php'));
+				if ('' != $new_template) {
 					return $new_template;
 				}
 			}
@@ -717,57 +740,58 @@ function kardiovaskularni_zpravodajstvi_template_file( $template ) {
 	return $template;
 }
 
-add_filter( 'template_include', 'kardiovaskularni_zpravodajstvi_template_file', 99 );
+add_filter('template_include', 'kardiovaskularni_zpravodajstvi_template_file', 99);
 
 
 // slow function!!!
 //	add_action( 'wp_head', 'chi_view_posts' );
 
-function chi_view_posts() {
+function chi_view_posts()
+{
 
 	/// !!!! Function segment Is not add in wp theme !!!!
-	$catinfo = get_category_by_slug( segment( 3 ) );
+	$catinfo = get_category_by_slug(segment(3));
 
-	if ( 1 == 1 ) {
-//			$cat_id  = $catinfo->term_id;
+	if (1 == 1) {
+		//			$cat_id  = $catinfo->term_id;
 
-		if ( isset( $_GET["key"] ) ) {
-			if ( $_GET['key'] == 'private_preview' ) {
+		if (isset($_GET["key"])) {
+			if ($_GET['key'] == 'private_preview') {
 				$args = array(
-					'posts_per_page' => - 1,
-					'post_type'      => array( 'post', 'chi_video' ),
-					'post_status'    => array( 'draft' ),
-					'category_name'  => segment( 6 ),
+					'posts_per_page' => -1,
+					'post_type'      => array('post', 'chi_video'),
+					'post_status'    => array('draft'),
+					'category_name'  => segment(6),
 					'fields'         => 'ids'
 				);
 
-				$posts = new WP_Query( $args );
+				$posts = new WP_Query($args);
 
-				if ( ! empty( $posts->posts ) ) {
-					update_option( 'special_urologum', $posts->posts );
-					$temperary_published = get_option( 'special_urologum' );
+				if (!empty($posts->posts)) {
+					update_option('special_urologum', $posts->posts);
+					$temperary_published = get_option('special_urologum');
 
-					if ( ! empty( $temperary_published ) ) {
-						foreach ( $temperary_published as $post_id ) {
+					if (!empty($temperary_published)) {
+						foreach ($temperary_published as $post_id) {
 							$data = array(
 								'ID'          => $post_id,
 								'post_status' => 'publish',
 							);
-							wp_update_post( $data );
+							wp_update_post($data);
 							flush_rewrite_rules();
 						}
 					}
 				}
 			}
 		} else {
-			if ( $temperary_published = get_option( 'special_urologum' ) ) {
-				foreach ( $temperary_published as $post_id ) {
+			if ($temperary_published = get_option('special_urologum')) {
+				foreach ($temperary_published as $post_id) {
 					$data = array(
 						'ID'          => $post_id,
 						'post_status' => 'draft',
 					);
-					wp_update_post( $data );
-					delete_option( 'special_urologum' );
+					wp_update_post($data);
+					delete_option('special_urologum');
 					flush_rewrite_rules();
 				}
 			}
@@ -777,48 +801,51 @@ function chi_view_posts() {
 
 // https://www.webhostinghero.com/how-to-share-a-draft-page-in-wordpress/?fbclid=IwAR1hn_xdoMmt80d8LHgGbqFtHUMMnQd_GKG94KW_MaAPpyoUb5tdobbYA5w
 // https://designwithvalerie.com/share-draft-post-in-wordpress/
-add_filter( 'posts_results', 'chi_set_query_to_draft', null, 2 );
-function chi_set_query_to_draft( $posts, $query ) {
+add_filter('posts_results', 'chi_set_query_to_draft', null, 2);
+function chi_set_query_to_draft($posts, $query)
+{
 
-	if ( ! is_single() ) {
+	if (!is_single()) {
 		return $posts;
 	}
-	if ( sizeof( $posts ) != 1 ) {
-		return $posts;
-	}
-
-	$post_status_obj = get_post_status_object( get_post_status( $posts[0] ) );
-
-	if ( ! $post_status_obj->name == 'draft' ) {
+	if (sizeof($posts) != 1) {
 		return $posts;
 	}
 
-	if ( isset( $_GET["key"] ) ) {
-		if ( $_GET['key'] != 'private_preview' ) {
+	$post_status_obj = get_post_status_object(get_post_status($posts[0]));
+
+	if (!$post_status_obj->name == 'draft') {
+		return $posts;
+	}
+
+	if (isset($_GET["key"])) {
+		if ($_GET['key'] != 'private_preview') {
 			return $posts;
 		}
 	}
 
-	if ( ! isset( $_GET['key'] ) ) {
+	if (!isset($_GET['key'])) {
 		return $posts;
 	}
 
 
 	$query->_draft_post = $posts;
 
-	add_filter( 'the_posts', 'show_draft_post', null, 2 );
+	add_filter('the_posts', 'show_draft_post', null, 2);
 }
 
-function show_draft_post( $posts, $query ) {
-	remove_filter( 'the_posts', 'show_draft_post', null, 2 );
+function show_draft_post($posts, $query)
+{
+	remove_filter('the_posts', 'show_draft_post', null, 2);
 
 	return $query->_draft_post;
 }
 
-add_filter( "preview_post_link", "sctick_a_preview_link_key", 10 );
+add_filter("preview_post_link", "sctick_a_preview_link_key", 10);
 
 
-function sctick_a_preview_link_key( $preview_link ) {
+function sctick_a_preview_link_key($preview_link)
+{
 	$preview_link = $preview_link . "&key=private_preview";
 
 	return $preview_link;
@@ -827,7 +854,8 @@ function sctick_a_preview_link_key( $preview_link ) {
 
 // Add a <sup> and <sub> index to TinyMC
 // from: https://wptavern.com/how-to-add-subscript-and-superscript-characters-in-wordpress
-function chi_mce_buttons_2( $buttons ) {
+function chi_mce_buttons_2($buttons)
+{
 	/**
 	 * Add in a core button that's disabled by defaultmce_buttons_2
 	 *
@@ -838,66 +866,69 @@ function chi_mce_buttons_2( $buttons ) {
 
 
 	return $buttons;
-
-
 }
 
 
-function chi_mce_buttons( $buttons ) {
+function chi_mce_buttons($buttons)
+{
 	$buttons = "count";
 
 	return $buttons;
 }
 
 
-add_filter( 'mce_buttons_2', 'chi_mce_buttons_2' );
+add_filter('mce_buttons_2', 'chi_mce_buttons_2');
 
 
-function lt_html_excerpt( $text ) { // Fakes an excerpt if needed
+function lt_html_excerpt($text)
+{ // Fakes an excerpt if needed
 	global $post;
-	if ( '' == $text ) {
-		$text = get_the_content( '' );
-		$text = apply_filters( 'the_content', $text );
-		$text = str_replace( '\]\]\>', ']]&gt;', $text );
+	if ('' == $text) {
+		$text = get_the_content('');
+		$text = apply_filters('the_content', $text);
+		$text = str_replace('\]\]\>', ']]&gt;', $text);
 		/*just add all the tags you want to appear in the excerpt --
 		be sure there are no white spaces in the string of allowed tags */
-		$text = strip_tags( $text, '<p><br><b><a><em>' );
+		$text = strip_tags($text, '<p><br><b><a><em>');
 		/* you can also change the length of the excerpt here, if you want */
 		$excerpt_length = 15;
-		$words          = explode( ' ', $text, $excerpt_length + 1 );
-		if ( count( $words ) > $excerpt_length ) {
-			array_pop( $words );
-			array_push( $words, '[...]' );
-			$text = implode( ' ', $words );
+		$words          = explode(' ', $text, $excerpt_length + 1);
+		if (count($words) > $excerpt_length) {
+			array_pop($words);
+			array_push($words, '[...]');
+			$text = implode(' ', $words);
 		}
 
-		$text = closetags( $text );
+		$text = closetags($text);
 	}
 
 	return $text;
 }
 
 
-function my_register_tinymce_button( $buttons ) {
-	array_push( $buttons, "chi_stats", "button_green" );
+function my_register_tinymce_button($buttons)
+{
+	array_push($buttons, "chi_stats", "button_green");
 
 	return $buttons;
 }
 
-function my_add_tinymce_button( $plugin_array ) {
+function my_add_tinymce_button($plugin_array)
+{
 	$plugin_array['my_button_script'] = THEME_DIRECTORY_URI . '/mybuttons.js';
 
 	return $plugin_array;
 }
 
 
-add_action( 'admin_print_footer_scripts', 'check_textarea_length' );
-function check_textarea_length() { ?>
+add_action('admin_print_footer_scripts', 'check_textarea_length');
+function check_textarea_length()
+{ ?>
 
 	<script type="text/javascript">
 		// jQuery ready fires too early, use window.onload instead
 
-		window.onload = function () {
+		window.onload = function() {
 
 
 			// are we using visual editor?
@@ -915,7 +946,7 @@ function check_textarea_length() { ?>
 						'titulek: ' + title_content + ' perex: ' + html_excerpt + ' hlavní obsah: ' + editor_content + ' SUM(' + sum + ')' +
 						'</span>');
 
-				jQuery("#title").on("keyup", function () {
+				jQuery("#title").on("keyup", function() {
 
 					title_content = $("#title").val().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
 					editor_content = tinymce.get("content").getContent().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
@@ -931,7 +962,7 @@ function check_textarea_length() { ?>
 				});
 
 				tinyMCEExcerpt = tinymce.get("htmlExcerpt");
-				tinyMCEExcerpt.on('keyup', function (ed, e) {
+				tinyMCEExcerpt.on('keyup', function(ed, e) {
 
 					title_content = $("#title").val().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
 					editor_content = tinymce.get("content").getContent().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
@@ -945,7 +976,7 @@ function check_textarea_length() { ?>
 							'</span>');
 				});
 
-				tinyMCE.activeEditor.on('keyup', function (ed, e) {
+				tinyMCE.activeEditor.on('keyup', function(ed, e) {
 
 					title_content = $("#title").val().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
 					editor_content = tinymce.get("content").getContent().replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/g, '').length;
@@ -964,148 +995,162 @@ function check_textarea_length() { ?>
 		}
 	</script>
 	<style type="text/css">
-        .wp_themeSkin .word-count-message {
-            font-size: 0.7em;
-            display: none;
-            float: right;
-            color: #fff;
-            font-weight: bold;
-            margin-top: 2px;
-        }
+		.wp_themeSkin .word-count-message {
+			font-size: 0.7em;
+			display: none;
+			float: right;
+			color: #fff;
+			font-weight: bold;
+			margin-top: 2px;
+		}
 
-        .wp_themeSkin .toomanychars .mce-statusbar {
-            background: red;
-        }
+		.wp_themeSkin .toomanychars .mce-statusbar {
+			background: red;
+		}
 
-        .wp_themeSkin .toomanychars .word-count-message {
-            display: block;
-        }
-
+		.wp_themeSkin .toomanychars .word-count-message {
+			display: block;
+		}
 	</style>
 	<script>
-		jQuery( document ).ready(function() {
-			console.log( "ready!" );
+		jQuery(document).ready(function() {
+			console.log("ready!");
 			var clipboard = new ClipboardJS('#copy-url-button', {
-			target: function () {
-				console.log('copy');
-				return document.querySelector('a[data-clipboard-text]');
-			}
-		});
-		var clipboardView = new ClipboardJS('#copy-url-button-view', {
-			target: function () {
-				return document.querySelector('a[data-clipboard-text]');
-			}
-		});
-		clipboard.on('success', function (e) {
-			console.log(e);
-		});
+				target: function() {
+					console.log('copy');
+					return document.querySelector('a[data-clipboard-text]');
+				}
+			});
+			var clipboardView = new ClipboardJS('#copy-url-button-view', {
+				target: function() {
+					return document.querySelector('a[data-clipboard-text]');
+				}
+			});
+			clipboard.on('success', function(e) {
+				console.log(e);
+			});
 
-		clipboard.on('error', function (e) {
-			console.log(e);
-		});
+			clipboard.on('error', function(e) {
+				console.log(e);
+			});
 
-		clipboardView.on('success', function (e) {
-			console.log(e);
-		});
+			clipboardView.on('success', function(e) {
+				console.log(e);
+			});
 
-		clipboardView.clipboard.on('error', function (e) {
-			console.log(e);
-		});
+			clipboardView.clipboard.on('error', function(e) {
+				console.log(e);
+			});
 		});
 	</script>
-	<?php
+<?php
 
 }
 
 
-add_filter( 'get_sample_permalink_html', 'add_copyurl_to_clipboard' );
-add_action( 'admin_init', 'copy_to_clipboard_init', 20 );
-add_action( 'admin_enqueue_scripts', 'add_clipboard_path' );
+add_filter('get_sample_permalink_html', 'add_copyurl_to_clipboard');
+add_action('admin_init', 'copy_to_clipboard_init', 20);
+add_action('admin_enqueue_scripts', 'add_clipboard_path');
 
-function copy_to_clipboard_init() {
+function copy_to_clipboard_init()
+{
 	/* Register our script. */
-	wp_register_script( 'zero-clipboard', THEME_DIRECTORY_URI . '/js/ZeroClipboard.min.js' );
-	wp_register_script( 'zero-clipboard-main', THEME_DIRECTORY_URI . '/js/main.js' );
-	wp_enqueue_script( 'zero-clipboard' );
-	wp_enqueue_script( 'zero-clipboard-main', 'jquery' );
-
+	wp_register_script('zero-clipboard', THEME_DIRECTORY_URI . '/js/ZeroClipboard.min.js');
+	wp_register_script('zero-clipboard-main', THEME_DIRECTORY_URI . '/js/main.js');
+	wp_enqueue_script('zero-clipboard');
+	wp_enqueue_script('zero-clipboard-main', 'jquery');
 }
 
-function add_clipboard_path() {
-	wp_localize_script( 'zero-clipboard-main', 'ZeroClipboardSettings',
-		array( 'path' => THEME_DIRECTORY_URI . '/js/clipboard.min.js', ) );
+function add_clipboard_path()
+{
+	wp_localize_script(
+		'zero-clipboard-main',
+		'ZeroClipboardSettings',
+		array('path' => THEME_DIRECTORY_URI . '/js/clipboard.min.js',)
+	);
 }
 
-function add_copyurl_to_clipboard( $return ) {
+function add_copyurl_to_clipboard($return)
+{
 	global $post;
-	if ( get_post_status( $post ) == "publish" ) {
-		$return .= sprintf( "<span id='copy-url-btn'><a href='#' id=\"copy-url-button\" data-clipboard-text='%s' class='button button-small'>Kopírovat odkaz</a></span> ",
-			get_permalink( $post->ID ) );
+	if (get_post_status($post) == "publish") {
+		$return .= sprintf(
+			"<span id='copy-url-btn'><a href='#' id=\"copy-url-button\" data-clipboard-text='%s' class='button button-small'>Kopírovat odkaz</a></span> ",
+			get_permalink($post->ID)
+		);
 	}
-	$return .= sprintf( "<span id='copy-url-btn-view'><a href='#' id=\"copy-url-button-view\" data-clipboard-text='%s' class='button button-small'>Kopírovat náhledový odkaz</a></span> ",
-		get_site_url( "", "",
-			"https" ) . "/?post_type=" . get_post_type( $post->ID ) . "&p=$post->ID&preview=true&key=private_preview" );
+	$return .= sprintf(
+		"<span id='copy-url-btn-view'><a href='#' id=\"copy-url-button-view\" data-clipboard-text='%s' class='button button-small'>Kopírovat náhledový odkaz</a></span> ",
+		get_site_url(
+			"",
+			"",
+			"https"
+		) . "/?post_type=" . get_post_type($post->ID) . "&p=$post->ID&preview=true&key=private_preview"
+	);
 
 	return $return;
 }
 
 
-add_filter( 'tiny_mce_before_init', 'tinymce_add_chars' );
-function tinymce_add_chars( $settings ) {
-	$new_chars                  = json_encode( array(
-		array( '37;', '%' ),
-		array( '8224', 'Dagger' ),
-		array( '8230', 'Horizontal ellipsis' ),
-		array( '8539', '1/8 Fraction' ),
-		array( '8730', 'Square Root' ),
-		array( '8818', 'Less than or equivalent to' ),
-		array( '8819', 'Greater than or equivalent to' ),
-		array( '0963', 'Sigma' ),
-		array( '0956', 'Mu' ),
-	) );
+add_filter('tiny_mce_before_init', 'tinymce_add_chars');
+function tinymce_add_chars($settings)
+{
+	$new_chars                  = json_encode(array(
+		array('37;', '%'),
+		array('8224', 'Dagger'),
+		array('8230', 'Horizontal ellipsis'),
+		array('8539', '1/8 Fraction'),
+		array('8730', 'Square Root'),
+		array('8818', 'Less than or equivalent to'),
+		array('8819', 'Greater than or equivalent to'),
+		array('0963', 'Sigma'),
+		array('0956', 'Mu'),
+	));
 	$settings['charmap_append'] = $new_chars;
 
 	return $settings;
 }
 
-function chi_post_types_admin_order( $wp_query ) {
-	if ( is_admin() ) {
+function chi_post_types_admin_order($wp_query)
+{
+	if (is_admin()) {
 		// Get the post type from the query
 		$post_type = $wp_query->query['post_type'];
 
-		if ( $post_type == 'chi_video' && empty( $_GET['orderby'] ) ) {
+		if ($post_type == 'chi_video' && empty($_GET['orderby'])) {
 
-			$wp_query->set( 'orderby', 'date' );
+			$wp_query->set('orderby', 'date');
 
-			$wp_query->set( 'order', 'DESC' );
+			$wp_query->set('order', 'DESC');
 		}
 
-		if ( $post_type == 'chi_inzerce' && empty( $_GET['orderby'] ) ) {
+		if ($post_type == 'chi_inzerce' && empty($_GET['orderby'])) {
 
-			$wp_query->set( 'orderby', 'title' );
+			$wp_query->set('orderby', 'title');
 
-			$wp_query->set( 'order', 'ASC' );
+			$wp_query->set('order', 'ASC');
 		}
 	}
 }
 
-add_filter( 'pre_get_posts', 'chi_post_types_admin_order' );
+add_filter('pre_get_posts', 'chi_post_types_admin_order');
 
 
-function is_automat_nbsp_active() {
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+function is_automat_nbsp_active()
+{
+	include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
-	if ( is_plugin_active( 'automat-nbsp/automat-nbsp.php' ) ) {
+	if (is_plugin_active('automat-nbsp/automat-nbsp.php')) {
 		return 1;
 	}
 
 	return 0;
-
 }
 
-function get_number_of_posts( $per_page = 3, $cat_id = null, $post_type = array() ) {
+function get_number_of_posts($per_page = 3, $cat_id = null, $post_type = array())
+{
 
-	if ( $cat_id ) {
+	if ($cat_id) {
 		$args = array(
 			"post_type"      => $post_type,
 			"posts_per_page" => $per_page,
@@ -1115,13 +1160,13 @@ function get_number_of_posts( $per_page = 3, $cat_id = null, $post_type = array(
 
 		$data                 = array();
 		$data['posts_number'] = 0;
-		$posts                = new WP_Query( $args );
+		$posts                = new WP_Query($args);
 		// The Loop
-		if ( $posts->have_posts() ) :
-			while ( $posts->have_posts() ) : $posts->the_post();
+		if ($posts->have_posts()) :
+			while ($posts->have_posts()) : $posts->the_post();
 				// Do Stuff
-				if ( get_post_type( get_the_ID() ) == "post" ) {
-					$data['posts_number'] ++;
+				if (get_post_type(get_the_ID()) == "post") {
+					$data['posts_number']++;
 					$data['posts_id'][] = get_the_ID();
 				}
 
@@ -1134,19 +1179,19 @@ function get_number_of_posts( $per_page = 3, $cat_id = null, $post_type = array(
 		return $data;
 	}
 
-	return - 1;
-
+	return -1;
 }
 
-function page_option( $needle, $string, $page, $query ) {
-	if ( in_array( $needle, $string ) ) {
-		$page = ( ( $page - 1 ) * get_option( "posts_per_page" ) );
-		$query->set( 'offset', $page );
+function page_option($needle, $string, $page, $query)
+{
+	if (in_array($needle, $string)) {
+		$page = (($page - 1) * get_option("posts_per_page"));
+		$query->set('offset', $page);
 
 		return 1;
 	}
 
-	return - 1;
+	return -1;
 }
 
 
@@ -1156,25 +1201,26 @@ function page_option( $needle, $string, $page, $query ) {
  * @param integer $pre_minut
  * @return string
  */
-function display_read_time(int $pre_minut = 300, int $post_id = null) : string {
-	
+function display_read_time(int $pre_minut = 300, int $post_id = null): string
+{
+
 
 	if ($post_id  == null) {
 		global $post;
 		$post_id = $post->ID;
 	}
 
-    $content = get_post_field( 'post_content', $post_id  );
-    $count_words = str_word_count( strip_tags( $content ) );
-	
-    $read_time = ceil($count_words / $pre_minut);
-	
-	$prefix = " <i class='fas fa-clock'></i> ";
-    $suffix = " min čtení";
-	
-    $read_time_output = $prefix . $read_time . $suffix;
+	$content = get_post_field('post_content', $post_id);
+	$count_words = str_word_count(strip_tags($content));
 
-    return $read_time_output;
+	$read_time = ceil($count_words / $pre_minut);
+
+	$prefix = " <i class='fas fa-clock'></i> ";
+	$suffix = " min čtení";
+
+	$read_time_output = $prefix . $read_time . $suffix;
+
+	return $read_time_output;
 }
 
 
@@ -1187,27 +1233,133 @@ function display_read_time(int $pre_minut = 300, int $post_id = null) : string {
  * @param string $content
  * @return string
  */
-function add_data_analytics_cookiecategory( $content ) : string {
+function add_data_analytics_cookiecategory($content): string
+{
 
-	$content = str_replace('<iframe','<iframe data-cookiecategory="analytics"', $content);
+	$content = str_replace('<iframe', '<iframe data-cookiecategory="analytics"', $content);
 
 	return $content;
 }
 
 
-add_action( 'init',  function() {
-    add_rewrite_rule( 'podcast/([a-z0-9-]+)[/]?$', 'index.php?category_name=$matches[1]', 'top' );
-} );
+add_action('init',  function () {
+	add_rewrite_rule('podcast/([a-z0-9-]+)[/]?$', 'index.php?category_name=$matches[1]', 'top');
+});
 
-add_filter( 'query_vars', function( $query_vars ) {
-    $query_vars[] = 'podcast';
-    return $query_vars;
-} );
+add_filter('query_vars', function ($query_vars) {
+	$query_vars[] = 'podcast';
+	return $query_vars;
+});
 
-add_action( 'template_include', function( $template ) {
-    if ( get_query_var( 'podcast' ) == false || get_query_var( 'podcast' ) == '' ) {
-        return $template;
-    }
- 
-    // return get_template_directory() . '/template-name.php';
-} );
+add_action('template_include', function ($template) {
+	if (get_query_var('podcast') == false || get_query_var('podcast') == '') {
+		return $template;
+	}
+
+	// return get_template_directory() . '/template-name.php';
+});
+
+add_action('admin_head', 'save_show_featured_image');
+
+function save_show_featured_image()
+{
+?>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$('#categorychecklist').bind('click', function(event) {
+				let category_id = $(event.target).closest("input").val();
+
+				var data = {
+					action: 'my_action',
+					category_id: category_id,
+				};
+
+				// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+				$.post(ajaxurl, data, function(response) {
+					$('#ms-chi_selected_articles_or_videos').remove();
+					$('#chi_selected_articles_or_videos').remove();
+					$('.special-wrapper').append(response);
+				});
+			});
+		});
+	</script>
+<?php
+}
+
+add_action('wp_ajax_my_action', 'my_action_callback');
+
+function my_action_callback()
+{
+	$category_id = $_POST['category_id'];
+	echo $cat_id;
+	if (empty($category_id)) {
+		wp_die();
+		exit(); // this is required to return a proper result & exit is faster than die();
+	}
+
+	$args                  = array('post_type' => array('post', 'chi_video'), 'numberposts' => -1, 'category' => $category_id);
+	$chi_posts_loop = get_posts($args);
+?>
+	<select name="chi_selected_articles_or_videos[]" id="chi_selected_articles_or_videos" multiple="multiple">
+		<?php
+		foreach ($chi_posts_loop as $chi_post) {
+			$dir_id = $chi_post->ID;
+
+			$print = true;
+
+			if (empty($chi_selected_articles_or_videos_values)) {
+				$selected = '';
+			} else {
+				$selected = (in_array($dir_id, $chi_selected_articles_or_videos_values)) ? 'selected="selected"' : '';
+			}
+		?>
+			<option <?php echo $selected; ?> value="<?php echo $dir_id ?>">
+				<?php echo $chi_post->post_title; ?>
+			</option>
+		<?php
+		}
+		?>
+	</select>
+	<script>
+		jQuery('#chi_selected_articles_or_videos').multiSelect({
+
+			selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder=' Vyhledávání...'>",
+			selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder=' Vyhledávání...'>",
+			afterInit: function(ms) {
+				var that = this,
+					$selectableSearch = that.$selectableUl.prev(),
+					$selectionSearch = that.$selectionUl.prev(),
+					selectableSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
+					selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
+
+				that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+					.on('keydown', function(e) {
+						if (e.which === 40) {
+							that.$selectableUl.focus();
+							return false;
+						}
+					});
+
+				that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+					.on('keydown', function(e) {
+						if (e.which == 40) {
+							that.$selectionUl.focus();
+							return false;
+						}
+					});
+			},
+			afterSelect: function() {
+				this.qs1.cache();
+				this.qs2.cache();
+			},
+			afterDeselect: function() {
+				this.qs1.cache();
+				this.qs2.cache();
+			}
+		});
+	</script>
+<?php
+
+	wp_die();
+	exit(); // this is required to return a proper result & exit is faster than die();
+}

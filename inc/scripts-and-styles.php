@@ -3,6 +3,8 @@
 function ticket_select_input($hook)
 {
 	if ("post.php" == $hook) {
+		wp_enqueue_style("hide-checkbox", THEME_DIRECTORY_URI . "/css/hide-checkbox.css");
+
 		//css
 		wp_enqueue_style("genre-style", THEME_DIRECTORY_URI . "/css/lou-multi-select/multi-select.css");
 
