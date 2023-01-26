@@ -1269,15 +1269,18 @@ function save_show_featured_image()
 			$('#categorychecklist').bind('click', function(event) {
 				let category_id = $(event.target).closest("input").val();
 
+				if (category_id == undefined) {
+					return;
+				}
+
 				var data = {
 					action: 'my_action',
 					category_id: category_id,
 				};
-
+				$('#ms-chi_selected_articles_or_videos').remove();
+				$('#chi_selected_articles_or_videos').remove();
 				// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 				$.post(ajaxurl, data, function(response) {
-					$('#ms-chi_selected_articles_or_videos').remove();
-					$('#chi_selected_articles_or_videos').remove();
 					$('.special-wrapper').append(response);
 				});
 			});
@@ -1291,7 +1294,6 @@ add_action('wp_ajax_my_action', 'my_action_callback');
 function my_action_callback()
 {
 	$category_id = $_POST['category_id'];
-	echo $cat_id;
 	if (empty($category_id)) {
 		wp_die();
 		exit(); // this is required to return a proper result & exit is faster than die();
@@ -1363,3 +1365,15 @@ function my_action_callback()
 	wp_die();
 	exit(); // this is required to return a proper result & exit is faster than die();
 }
+
+function chi_remove_then_add_image_sizes()
+{
+	remove_image_size('medium');
+	remove_image_size('thumbnail');
+	add_image_size('medium', 300, 300, true);
+
+
+	add_image_size('chi-post', 750, 500, true);
+	add_image_size('chi-email', 750, 400, true);
+}
+add_action('init', 'chi_remove_then_add_image_sizes');
