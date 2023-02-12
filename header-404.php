@@ -23,14 +23,14 @@
     }
 
     .navbar-collapse {
-        justify-content: flex-end;
+        justify-content: space-between;
     }
 </style>
 
 <body>
-<?php wp_body_open(); ?>
+    <?php wp_body_open(); ?>
     <header>
-        <div class="navbar navbar-light chi-bg-light chi-navbar-height">
+        <!-- <div class="navbar navbar-light chi-bg-light chi-navbar-height">
             <div class="left" id="chi-nav-toggle">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
                     <?php get_search_form(); ?>
                 </div>
             </div>
-        </div>
+        </div> -->
         <nav class="navbar navbar-expand-lg navbar-light chi-bg-light chi-navbar-nav pt-0 pb-0">
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <?php

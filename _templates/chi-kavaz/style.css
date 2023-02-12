@@ -159,9 +159,17 @@ label {
 }
 
 .chi-nav-item {
-  font-size: 15px;
-  line-height: 19px;
+	font-size: 15px;
+	line-height: 19px;
+	display: flex;
+	align-items: center;
 }
+
+.chi-nav-item::after:not(:last-child) {
+	content: "|";
+	background-color: #ffffff;
+}
+
 
 .chi-nav-link:hover:not(chi-active),
 .chi-nav-link:focus:not(chi-active),
@@ -1124,9 +1132,9 @@ a.next.page-numbers:hover {
 
 .chi-claim--kavaz {
   background-image:  url("img/313 1.png");
-background-color: #cccccc; /* Used if the image is unavailable */
+  /* background-color: #cccccc;  */
   height: 100%; /* You must set a specified height */
-  background-position: center 60px; /* Center the image */
+  /* background-position: center 60px;  */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */}
 

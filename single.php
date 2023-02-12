@@ -26,9 +26,14 @@ wp_head();
 		color: #212529;
 	}
 
+	p {
+		margin-bottom: 1rem;
+	}
+
 	h3 {
 		font-weight: normal;
 		font-size: 1.4em;
+		margin-bottom: .5rem;
 	}
 
 	p {
@@ -62,7 +67,7 @@ wp_head();
 										</a>
 									</strong>
 									&gt; <?php }
-										the_title() ?>
+											the_title() ?>
 							</p>
 						</div>
 					</div>

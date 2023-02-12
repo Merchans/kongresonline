@@ -32,9 +32,14 @@ wp_head();
         line-height: 26px;
     }
 
+    p {
+        margin-bottom: 1rem;
+    }
+
     h3 {
         font-weight: normal;
         font-size: 1.4em;
+        margin-bottom: .5rem;
     }
 </style>
 <?php chi_special_background(); ?>

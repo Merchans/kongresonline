@@ -1368,12 +1368,7 @@ function my_action_callback()
 
 function chi_remove_then_add_image_sizes()
 {
-	remove_image_size('medium');
-	remove_image_size('thumbnail');
-	add_image_size('medium', 300, 300, true);
-
-
-	add_image_size('chi-post', 750, 500, true);
-	add_image_size('chi-email', 750, 400, true);
+	add_image_size('chi-post', 750, 500);
+	add_image_size('chi-email', 750, 400);
 }
 add_action('init', 'chi_remove_then_add_image_sizes');

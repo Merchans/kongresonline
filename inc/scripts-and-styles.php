@@ -200,7 +200,7 @@ function chi_hook_for_playlist()
 
 ?>
 	<script>
-		setTimeout(function(){
+		setTimeout(function() {
 			if (window.innerWidth < 768) {
 				let playlist = document.getElementsByClassName('wp-playlist')[0];
 				let windowsWidth = window.innerWidth - 100;

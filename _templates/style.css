@@ -120,11 +120,18 @@ label {
   margin-bottom: 8px;
 }
 
+
 .chi-nav-item {
-  font-size: 15px;
-  line-height: 19px;
+	font-size: 15px;
+	line-height: 19px;
+	display: flex;
+	align-items: center;
 }
 
+.chi-nav-item::after:not(:last-child) {
+	content: "|";
+	background-color: #ffffff;
+}
 .chi-nav-link:hover:not(.chi-active),
 .chi-nav-link:focus:not(.chi-active),
 .chi-nav-link:target:not(.chi-active) {

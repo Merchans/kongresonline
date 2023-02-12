@@ -1,21 +1,17 @@
-.chi-search
-{
+.chi-search {
 	height: 38px;
 	width: 400px;
 }
 
-.chi-logo
-{
-    background: url("img/chi-logo.svg") left top no-repeat;
+.chi-logo {
+	background: url("img/chi-logo.svg") left top no-repeat;
 }
 
-.chi-navbar-height
-{
-	min-height: 60px!important;
+.chi-navbar-height {
+	min-height: 60px !important;
 }
 
-.chi-logo__txt-indent
-{
+.chi-logo__txt-indent {
 	text-indent: -9999999px;
 	margin: 0;
 	display: block;
@@ -24,8 +20,7 @@
 	width: 240px;
 }
 
-.chi-logo__small-text
-{
+.chi-logo__small-text {
 	color: #FFFFFF;
 	opacity: 0.63;
 	font-size: 12px;
@@ -35,55 +30,54 @@
 
 
 #chi-search {
-    background-image: url("img/searchicon.svg");
+	background-image: url("img/searchicon.svg");
 
-    background-position: 10px 7px;
-    background-repeat: no-repeat;
-    width: 100%;
-    font-size: 15px;
-    padding: 7px 10px 7px 42px;
-    /*border: 1px solid #ddd;*/
-    margin-bottom: 12px;
+	background-position: 10px 7px;
+	background-repeat: no-repeat;
+	width: 100%;
+	font-size: 15px;
+	padding: 7px 10px 7px 42px;
+	/*border: 1px solid #ddd;*/
+	margin-bottom: 12px;
 
-   /* background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #F5F5F5;*/
+	/* background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #F5F5F5;*/
 	box-shadow: inset 0px 4px 14px rgba(0, 0, 0, 0.12);
 	border: none;
 	border-radius: 6px;
 }
 
-.chi-navbar-nav
-{
+.chi-navbar-nav {
 	background: #FFFFFF;
 	box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.07);
 }
-.chi-active
-{
+
+.chi-active {
 	border-bottom: 2px solid #E30613;
 	margin-bottom: 8px;
 }
-.chi-nav-item {
-    font-size: 15px;
-    line-height: 19px;
 
+.chi-nav-item {
+	font-size: 15px;
+	line-height: 19px;
 }
+
+
 
 .chi-nav-link:hover:not(.chi-active),
 .chi-nav-link:focus:not(.chi-active),
-.chi-nav-link:target:not(.chi-active)
-{
+.chi-nav-link:target:not(.chi-active) {
 	border-bottom: 2px solid #E30613;
 	-webkit-transition: all 0.3s ease-in;
 	transition: all 0.3s ease-in;
 	margin-bottom: 8px;
 }
-.chi-nav-link
-{
-   color: #000000!important;
-    margin-bottom: 0!important;
+
+.chi-nav-link {
+	color: #000000 !important;
+	margin-bottom: 0 !important;
 }
 
-.chi-info-text
-{
+.chi-info-text {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 24px;
@@ -93,8 +87,7 @@
 
 .chi-box-2,
 .chi-box-3,
-.chi-box-1
-{
+.chi-box-1 {
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-1.png");
 	width: 100%;
 	height: 466px;
@@ -107,33 +100,28 @@
 	background-size: cover;
 }
 
-.chi-theme-card:nth-child(odd)
-{
+.chi-theme-card:nth-child(odd) {
 	margin-right: 5px;
 }
 
 
-.chi-theme-card:nth-child(even)
-{
+.chi-theme-card:nth-child(even) {
 	margin-left: 5px;
 
 }
 
-.chi-card--borner-none
-{
+.chi-card--borner-none {
 	border: none;
 	background-color: transparent;
 }
 
-.chi-card--box-1
-{
+.chi-card--box-1 {
 	height: 199px;
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-main-video.png") no-repeat center center;
-	  background-size: cover;
+	background-size: cover;
 }
 
-.chi-card-title
-{
+.chi-card-title {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 24px;
@@ -142,47 +130,45 @@
 	color: #000000;
 }
 
-.chi-card-body
-{
+.chi-card-body {
 	padding: 10px 0;
 	background-color: transparent;
 
 }
 
-.chi-card-text
-{
+.chi-card-text {
 	font-size: 16px;
 	line-height: 20px;
 	color: #626262;
 }
-.chi-name-title
-{
+
+.chi-name-title {
 	font-style: normal;
-font-weight: bold;
-font-size: 14px;
-line-height: 18px;
-height: 19px;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 18px;
+	height: 19px;
 
 
-.chi-time
-{
+	.chi-time {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 18px;
+
+		color: #979797;
+	}
+}
+
+.chi-name--min-title {
 	font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 18px;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 18px;
 
-color: #979797;
+	color: #000000;
 }
-}
-.chi-name--min-title
-{
-	font-style: normal;
-font-weight: bold;
-font-size: 14px;
-line-height: 18px;
 
-color: #000000;
-}
 /*
 .chi-box-2:hover,
 .chi-box-3:hover,
@@ -194,36 +180,32 @@ color: #000000;
 }
 */
 .chi-box-2,
-.chi-box-3
-{
+.chi-box-3 {
 	height: 222px;
 	background-repeat: no-repeat;
 }
 
-.chi-box-2
-{
-background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-2.png");
+.chi-box-2 {
+	background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-2.png");
 	background: -o-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-2.png");
 	background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-2.png");
-	  background-size: cover;
+	background-size: cover;
 }
 
-.chi-box-3
-{
+.chi-box-3 {
 	background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-3.png");
 	background: -o-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-3.png");
 	background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-box-3.png");
 	background-position: cover;
 	margin-top: 21px;
 
-	@media only screen and (max-width: 765px)
-	{
+	@media only screen and (max-width: 765px) {
 		margin-top: 0;
 	}
 
 }
-.chi-tag
-{
+
+.chi-tag {
 	display: inline-block;
 
 	display: flex;
@@ -243,19 +225,16 @@ background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100
 
 }
 
-.chi-tag_link
-{
+.chi-tag_link {
 	color: #FFFFFF;
 }
 
-.chi-tag_link:hover
-{
+.chi-tag_link:hover {
 	text-decoration: none;
-	color: #FFFFFF!important;
+	color: #FFFFFF !important;
 }
 
-.chi-category
-{
+.chi-category {
 	display: inline-block;
 
 	padding: 0 10px;
@@ -266,12 +245,11 @@ background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100
 	background: #FFFFFF;
 
 	display: flex;
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
-.chi-category__link
-{
+.chi-category__link {
 	height: 15px;
 
 	font-style: normal;
@@ -282,14 +260,12 @@ background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100
 	color: #E30613;
 }
 
-.chi-category__link a:hover
-{
+.chi-category__link a:hover {
 	text-decoration: none;
 	color: #E30613;
 }
 
-.chi-title-white
-{
+.chi-title-white {
 	max-width: 504px;
 	height: 68px;
 
@@ -302,40 +278,34 @@ background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100
 	color: #FFFFFF;
 }
 
-.chi-time
-{
+.chi-time {
 	font-size: 14px;
 	line-height: 18px;
 	color: #FFFFFF;
 }
 
-.chi-time strong
-{
+.chi-time strong {
 	font-size: 14px;
 	line-height: 18px;
 }
 
-.h-20
-{
+.h-20 {
 	height: 20px;
 }
 
-.chi-active-link
-{
+.chi-active-link {
 	font-weight: 700;
 	color: black;
 	cursor: context-menu;
 	text-decoration: none;
 }
 
-.chi-active-link:hover
-{
+.chi-active-link:hover {
 	color: black;
 	text-decoration: none;
 }
 
-.chi-sub-title
-{
+.chi-sub-title {
 	font-style: normal;
 	font-weight: bold;
 	font-size: 16px;
@@ -345,69 +315,63 @@ background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100
 
 }
 
-.position-relative
-{
-	.chi-time
-{
+.position-relative {
+	.chi-time {
 		font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 18px;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 18px;
 
-color: #979797;
+		color: #979797;
+	}
+
+	.chi-time strong {
+		font-size: 14px;
+		line-height: 18px;
+	}
 }
 
-.chi-time strong
-{
-	font-size: 14px;
-	line-height: 18px;
-}
-}
-
-.chi-media
-{
+.chi-media {
 	height: 100px;
 	max-width: 472px;
 }
-.chi-media-img
-{
+
+.chi-media-img {
 	height: 100%;
 	min-width: 177px;
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.23) 100%), url("img/chi-main-video.png") no-repeat center center;
-	  background-size: cover;
+	background-size: cover;
 
-	  .chi-tag
-	  {
-	  	margin-right: 0;
-	  	margin-left: 15px;
-	  }
-	  margin-right: 10px;
+	.chi-tag {
+		margin-right: 0;
+		margin-left: 15px;
+	}
+
+	margin-right: 10px;
 }
 
-.chi-othes-articles img
-{
+.chi-othes-articles img {
 	padding-right: 15px;
-	width: 275px!important;
-	height: 150px!important;
+	width: 275px !important;
+	height: 150px !important;
 }
 
-.inline-image
-{
+.inline-image {
 	width: 100%;
 	display: flex;
 }
+
 .image-credit-wrapper {
-overflow: hidden;
-position: relative;
+	overflow: hidden;
+	position: relative;
 }
 
 .image-credit-wrapper .image-credit {
-position: absolute;
-left: 0px;
+	position: absolute;
+	left: 0px;
 }
 
-.image-credit
-{
+.image-credit {
 	background: #FFFFFF;
 	color: #ccc;
 	display: inline-block;
@@ -419,23 +383,21 @@ left: 0px;
 	left: 0;
 }
 
-.chi-category-credit
-{
+.chi-category-credit {
 	background: #FFFFFF;
 }
 
 figcaption {
-position: relative;
-margin: 0;
-padding: 0;
-border: 0;
-font-size: 100%;
-vertical-align: baseline;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
 }
 
 
-.chi-category-credit
-{
+.chi-category-credit {
 	font-size: 12px;
 	line-height: 15px;
 	text-transform: uppercase;
@@ -443,28 +405,24 @@ vertical-align: baseline;
 	color: #E30613;
 }
 
-.chi-advertise
-{
+.chi-advertise {
 	border: 1px solid #DADADA;
-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-.chi-pagination
-{
+.chi-pagination {
 	width: 104px;
 	height: 28px;
 	margin-bottom: 0;
-    margin-top: 13px;
+	margin-top: 13px;
 }
 
-.chi-page-item .active
-{
+.chi-page-item .active {
 	background: #DADADA;
 	border-radius: 2px;
 }
 
-.chi-page-link
-{
+.chi-page-link {
 	color: #000000;
 	width: 20px;
 	height: 28px;
@@ -473,32 +431,28 @@ box-sizing: border-box;
 	text-align: center;
 }
 
-.chi-page-link .active
-{
+.chi-page-link .active {
 	background: #DADADA;
 	border-radius: 2px;
 }
 
-.chi-page-link:hover
-{
+.chi-page-link:hover {
 	background: #DADADA;
 	border-radius: 2px;
 	text-decoration: none;
 
 }
 
-.chi-pagination::after
-{
+.chi-pagination::after {
 	content: url("img/arrow-right.svg");
 	font-size: 20px;
 	margin-left: 13px;
 	width: 20px;
-    height: 28px;
+	height: 28px;
 
 }
 
-.chi-btn-more-acticle
-{
+.chi-btn-more-acticle {
 	font-weight: bold;
 	font-size: 16px;
 	line-height: 39px;
@@ -513,14 +467,12 @@ box-sizing: border-box;
 	height: 50px;
 }
 
-.chi-btn-more-acticle:hover
-{
-	box-shadow:none;
+.chi-btn-more-acticle:hover {
+	box-shadow: none;
 	color: white;
 }
 
 
-.pre-footer
-{
+.pre-footer {
 	background: #F5F5F5;
 }
