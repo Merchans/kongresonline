@@ -1880,3 +1880,19 @@ dl img {
 .chi-claim.special-kardiorok  {
 	height: 620px;
 }
+
+
+#cookiePreferencesButton {
+	cursor: pointer;
+}
+.chi-nav-item {
+	font-size: 15px;
+	line-height: 19px;
+	display: flex;
+	align-items: center;
+}
+
+.chi-nav-item::after:not(:last-child) {
+	content: "|";
+	background-color: #ffffff;
+}
