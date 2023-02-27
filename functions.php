@@ -1360,7 +1360,7 @@ function my_action_callback()
 			}
 		});
 	</script>
-<?php
+	<?php
 
 	wp_die();
 	exit(); // this is required to return a proper result & exit is faster than die();
@@ -1372,3 +1372,55 @@ function chi_remove_then_add_image_sizes()
 	add_image_size('chi-email', 750, 400);
 }
 add_action('init', 'chi_remove_then_add_image_sizes');
+
+
+add_action('wp_ajax_search_results', 'search_results_callback');
+add_action('wp_ajax_nopriv_search_results', 'search_results_callback');
+
+function search_results_callback()
+{
+	$searchTerm = $_POST['search_term'];
+	$currentCategory = $_POST['current_category'];
+
+	$args = array(
+		'post_type' => array('post', 'chi_video'),
+		's' => $searchTerm,
+		'category_name' => $currentCategory,
+		'posts_per_page' => 5,
+	);
+	$query = new WP_Query($args);
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+	?>
+			<a href="<?php echo get_post_permalink() ?>" class="chi-search-list__item">
+				<img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'thumbnail')  ?>" class="chi-search-list__img">
+				<div class="chi-search-list__right">
+					<h5 class="chi-search-list__title">
+						<?php echo get_the_title(); ?>
+					</h5>
+					<p class="chi-search-list__date">
+						<small>
+							<?php echo get_the_date(); ?>
+						</small>
+					</p>
+					<small class="chi-search-list__type">
+						<?php echo get_post_type() == 'post' ? 'článek' : 'video' ?>
+					</small>
+				</div>
+			</a>
+		<?php
+		}
+	} else {
+		?>
+		<div class="chi-search-list__right">
+			<h5 class="chi-search-list__title text-center p-5">
+				<?php echo 'Žádné výsledky' ?>
+			</h5>
+		</div>
+<?php
+	}
+	wp_reset_postdata();
+	wp_die();
+}

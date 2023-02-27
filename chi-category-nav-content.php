@@ -153,7 +153,7 @@ if ($all_video) {
 			}
 			?>
 		</ul>
-		<div class="right">
+		<div class="<?php if (!is_front_page()) echo 'chi-search-container' ?> right">
 			<?php get_search_form(); ?>
 		</div>
 	</div>

@@ -18,11 +18,11 @@
   width: 100%;
   height: 100%;
 }
-.special-dermanews,
+/* .special-dermanews,
 .special-respironews {
     height: 600px!important;
 }
-
+ */
 
 
 
@@ -52,31 +52,31 @@
     background-size: cover;
 }
 
-.single.chi-claim.special-dianews {
-    height: 552px!important;
+/* .single.chi-claim.special-dianews {
+    height: 552px;
 }
 
 .single.chi-claim.special-urologum {
-    height: 530px!important;
-}
+    height: 530px;
+} */
 /*
 .single.chi-claim.special-onkologum 
 {
-	height: 550px!important;
+	height: 550px;
 }
 .category.chi-claim.special-cardionews
 {
-	height:200px!important;
+	height:200px;
 }
 */
-.single.chi-claim.special-opl {
-    height: 620px!important;
+/* .single.chi-claim.special-opl {
+    height: 620px;
 }
 
 .single.chi-claim.special-oncoforum 
 {
-	height: 570px!important;
-}
+	height: 570px;
+} */
 /*.single.chi-claim.special-cardionews,
 .single-chi_video.chi-claim.special-cardionews {
     height: 560px!important;

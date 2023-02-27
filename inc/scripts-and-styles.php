@@ -112,7 +112,32 @@ function chi_hook_for_google_analytics()
 		})(window, document, 'script', 'dataLayer', 'GTM-MR6KDL5');
 	</script>
 	<!-- End Google Tag Manager -->
+	<script>
+		jQuery(document).ready(function($) {
+			$("#chi-search-input").keyup(function() {
+				var searchTerm = $("#chi-search-input").val();
 
+				if (searchTerm.length > 2) {
+					var currentCategory = <?php echo json_encode(single_cat_title('', false)); ?>;
+
+					$.ajax({
+						type: "POST",
+						url: "<?php echo admin_url('admin-ajax.php'); ?>",
+						data: {
+							action: "search_results",
+							search_term: searchTerm,
+							current_category: currentCategory
+						},
+						success: function(data) {
+							$("#search-results").html(data);
+						}
+					});
+				} else {
+					$("#search-results").html("");
+				}
+			});
+		});
+	</script>
 <?php
 }
 
