@@ -2000,3 +2000,18 @@ dl img {
 	padding: 5px;
 	margin: 0;
 }
+
+#chi-search-input {
+  background-image: url("img/searchicon.svg");
+  background-position: 10px 7px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 15px;
+  padding: 7px 10px 7px 42px;
+  /*border: 1px solid #ddd;*/
+  margin-bottom: 12px;
+  /* background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #F5F5F5;*/
+  box-shadow: inset 0px 4px 14px rgba(0, 0, 0, 0.12);
+  border: none;
+  border-radius: 6px;
+}
