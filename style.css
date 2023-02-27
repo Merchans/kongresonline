@@ -1919,8 +1919,16 @@ dl img {
 
 	position: absolute;
 	right: 0;
-	top: -19px;
+	top: -16px;
 }
+
+@media only screen and (max-width: 991px) {
+  .chi-search-wrapper  {
+		display: none;
+	}
+}
+
+
 
 .chi-search-wrapper--front-page {
 	position: initial;
@@ -1930,6 +1938,7 @@ dl img {
 	background: #FFFFFF;
 	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.07);
 	border-radius: 12px;
+	z-index: 999;
 }
 
 .chi-search-list__item {

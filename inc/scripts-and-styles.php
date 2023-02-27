@@ -118,7 +118,12 @@ function chi_hook_for_google_analytics()
 				var searchTerm = $("#chi-search-input").val();
 
 				if (searchTerm.length > 2) {
-					var currentCategory = <?php echo json_encode(single_cat_title('', false)); ?>;
+					var currentCategory = $('#chi-search-input').data('category');
+					console.log(currentCategory);
+
+					if (!currentCategory) {
+						currentCategory = <?php echo json_encode(single_cat_title('', false)); ?>;
+					}
 
 					$.ajax({
 						type: "POST",
