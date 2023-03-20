@@ -5,8 +5,7 @@ add_action("add_meta_boxes", "ticket_directors_to_movie");
 function ticket_directors_to_movie()
 {
     $screen = array("post", "chi_video");
-    add_meta_box
-    (
+    add_meta_box(
         "all-movies-meta",
         "Vyberte inzerci horizontální nebo vertikální",
         "ticket_directors_to_movies_meta_options",
@@ -24,9 +23,9 @@ function ticket_directors_to_movies_meta_options($post)
     $ticket_directors_loop = get_posts($args);
 
 
-	(array)$chi_advertising_horizontal_values = get_post_meta($post->ID, '_chi_advertising_horizontals', true);
+    (array)$chi_advertising_horizontal_values = get_post_meta($post->ID, '_chi_advertising_horizontals', true);
 
-	?>
+?>
 
     <br>
     <p><strong>Vyberte všechny horizontální inzerce</strong></p>
@@ -35,23 +34,20 @@ function ticket_directors_to_movies_meta_options($post)
         <?php
         foreach ($ticket_directors_loop as $ticket_director) {
             $dir_id = $ticket_director->ID;
-			$print = true;
+            $print = true;
 
-            if ( empty($chi_advertising_horizontal_values) )
-            {
+            if (empty($chi_advertising_horizontal_values)) {
                 $selected = '';
-            }
-            else
-			{
+            } else {
                 $selected = in_array($dir_id, $chi_advertising_horizontal_values) ? 'selected="selected"' : '';
-			}
+            }
 
 
-            ?>
-            <option <?php echo $selected?> value="<?php echo $dir_id ?>">
+        ?>
+            <option <?php echo $selected ?> value="<?php echo $dir_id ?>">
                 <?php echo $ticket_director->post_title; ?>
             </option>
-            <?php
+        <?php
         }
         ?>
     </select>
@@ -62,30 +58,27 @@ function ticket_directors_to_movies_meta_options($post)
         <?php
         $args               = array('post_type' => 'chi_inzerce', 'numberposts' => -1,);
         $ticket_actors_loop = get_posts($args);
-		(array)$chi_advertising_vertical_values = get_post_meta($post->ID, '_chi_advertising_verticals', true);
+        (array)$chi_advertising_vertical_values = get_post_meta($post->ID, '_chi_advertising_verticals', true);
 
         foreach ($ticket_actors_loop as $ticket_actor) {
             $dir_id = $ticket_actor->ID;
             $print = true;
 
 
-            if ( empty($chi_advertising_vertical_values) )
-            {
+            if (empty($chi_advertising_vertical_values)) {
                 $selected = '';
-            }
-            else
-            {
+            } else {
                 $selected = (in_array($dir_id, $chi_advertising_vertical_values)) ? 'selected="selected"' : '';
             }
-            ?>
-            <option <?php echo $selected;?> value="<?php echo $dir_id ?>">
+        ?>
+            <option <?php echo $selected; ?> value="<?php echo $dir_id ?>">
                 <?php echo $ticket_actor->post_title; ?>
             </option>
-            <?php
+        <?php
         }
         ?>
     </select>
-    <?php
+<?php
 }
 
 
@@ -98,24 +91,28 @@ add_action('save_post', 'ticket_movies_save_post');
 
 // https://wordpress.stackexchange.com/questions/288501/meta-value-does-not-save-for-scheduled-posts
 
-function ticket_movies_save_post(  )
+function ticket_movies_save_post()
 {
     global $post;
-	$nonce = $_POST['ticket_directors_to_movies_meta_options_nonce'];
 
-    if ( !wp_verify_nonce( $nonce, 'ticket_directors_to_movies_meta_options' ) )
+    if (!isset($_POST['ticket_directors_to_movies_meta_options_nonce']))
         return;
 
-	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
+    $nonce = $_POST['ticket_directors_to_movies_meta_options_nonce'];
+
+    if (!wp_verify_nonce($nonce, 'ticket_directors_to_movies_meta_options'))
+        return;
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return;
     }
 
 
-//	if ( !isset( $_POST['chi_advertising_horizontal']) && !isset( $_POST['chi_advertising_vertical']  ) )
-//		return;
+    //	if ( !isset( $_POST['chi_advertising_horizontal']) && !isset( $_POST['chi_advertising_vertical']  ) )
+    //		return;
 
 
-    if ( isset( $_POST['chi_advertising_horizontal'] ) && !empty($_POST['chi_advertising_horizontal'] )) {
+    if (isset($_POST['chi_advertising_horizontal']) && !empty($_POST['chi_advertising_horizontal'])) {
 
         $sanitized_data_directors = array();
 
@@ -127,13 +124,11 @@ function ticket_movies_save_post(  )
         }
 
         update_post_meta($post->ID, '_chi_advertising_horizontals', $sanitized_data_directors);
-    }
-    else
-    {
-        delete_post_meta( $post->ID, '_chi_advertising_horizontals');
+    } else {
+        delete_post_meta($post->ID, '_chi_advertising_horizontals');
     }
 
-    if ( isset( $_POST['chi_advertising_vertical'] ) && !empty($_POST['chi_advertising_vertical'] )) {
+    if (isset($_POST['chi_advertising_vertical']) && !empty($_POST['chi_advertising_vertical'])) {
 
         $sanitized_data_actors    = array();
 
@@ -144,11 +139,7 @@ function ticket_movies_save_post(  )
         }
 
         update_post_meta($post->ID, '_chi_advertising_verticals', $sanitized_data_actors);
+    } else {
+        delete_post_meta($post->ID, '_chi_advertising_verticals');
     }
-    else
-    {
-        delete_post_meta( $post->ID, '_chi_advertising_verticals');
-    }
-
-
 }

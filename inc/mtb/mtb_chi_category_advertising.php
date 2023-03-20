@@ -12,7 +12,11 @@ function chi_selected_in_category_advertising_horizontal($post)
     $chi_posts_loop = get_posts($args);
 
 
-    $chi_selected_in_category_advertising_horizontal_values = get_term_meta($_GET["tag_ID"], 'chi_selected_in_category_advertising_horizontal', true); ?>
+
+    $chi_selected_in_category_advertising_horizontal_values = get_term_meta($_GET["tag_ID"], 'chi_selected_in_category_advertising_horizontal', true);
+
+    $chi_selected_in_category_advertising_horizontal_values = empty($chi_selected_in_category_advertising_horizontal_values) ? array() : $chi_selected_in_category_advertising_horizontal_values;
+?>
     <tr class="form-field">
         <th scope="row"><label for="chi_selected_in_category_advertising_horizontal">Výběr horizontální inzerce</label></th>
         <td>
@@ -22,25 +26,22 @@ function chi_selected_in_category_advertising_horizontal($post)
                     $dir_id = $chi_post->ID;
 
                     $print = true;
-                    if ( empty($chi_selected_in_category_advertising_horizontal_values) )
-                    {
+                    if (empty($chi_selected_in_category_advertising_horizontal_values)) {
                         $selected = '';
-                    }
-                    else
-                    {
+                    } else {
                         $selected = (in_array($dir_id, $chi_selected_in_category_advertising_horizontal_values)) ? 'selected="selected"' : '';
                     }
-                    ?>
-                    <option <?php echo $selected;?> value="<?php echo $dir_id ?>">
+                ?>
+                    <option <?php echo $selected; ?> value="<?php echo $dir_id ?>">
                         <?php echo $chi_post->post_title; ?>
                     </option>
-                    <?php
+                <?php
                 }
                 ?>
         </td>
         </select>
     </tr>
-    <?php
+<?php
 }
 
 
@@ -49,32 +50,29 @@ function chi_selected_in_category_advertising_horizontal($post)
  */
 add_action('edited_category', 'chi_selected_in_category_advertising_horizontal_save');
 
-function chi_selected_in_category_advertising_horizontal_save( $post  )
+function chi_selected_in_category_advertising_horizontal_save($post)
 {
-	//global $post;
+    //global $post;
 
-	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
-		return $post;
-	}
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post;
+    }
 
-    if (isset( $_POST['chi_selected_in_category_advertising_horizontal'] ) && '' !== $_POST['chi_selected_in_category_advertising_horizontal']  ) {
+    if (isset($_POST['chi_selected_in_category_advertising_horizontal']) && '' !== $_POST['chi_selected_in_category_advertising_horizontal']) {
 
         $sanitized_data_posts = array();
-        delete_term_meta( $post, 'chi_selected_in_category_advertising_horizontal');
+        delete_term_meta($post, 'chi_selected_in_category_advertising_horizontal');
         $data_posts = (array)$_POST['chi_selected_in_category_advertising_horizontal'];
 
-        foreach ( $data_posts as $key => $value) {
+        foreach ($data_posts as $key => $value) {
             $sanitized_data_posts[$key] = (int)strip_tags(stripslashes($value));
         }
 
         $image = $_POST['chi_selected_in_category_advertising_horizontal'];
-        add_term_meta( $post, 'chi_selected_in_category_advertising_horizontal', $image, true );
+        add_term_meta($post, 'chi_selected_in_category_advertising_horizontal', $image, true);
+    } else {
+        delete_term_meta($post, 'chi_selected_in_category_advertising_horizontal');
     }
-    else
-    {
-        delete_term_meta( $post, 'chi_selected_in_category_advertising_horizontal');
-    }
-
 }
 
 
@@ -90,7 +88,11 @@ function chi_selected_in_category_advertising_vertical($post)
     $chi_posts_loop = get_posts($args);
 
 
-    $chi_selected_in_category_advertising_horizontal_values = get_term_meta($_GET["tag_ID"], 'chi_selected_in_category_advertising_vertical', true); ?>
+    $chi_selected_in_category_advertising_horizontal_values = get_term_meta($_GET["tag_ID"], 'chi_selected_in_category_advertising_vertical', true);
+
+    $chi_selected_in_category_advertising_horizontal_values = empty($chi_selected_in_category_advertising_horizontal_values) ? array() : $chi_selected_in_category_advertising_horizontal_values;
+
+?>
     <tr class="form-field">
         <th scope="row"><label for="chi_selected_in_category_advertising_horizontal">Výběr vertikální inzerce</label></th>
         <td>
@@ -99,18 +101,19 @@ function chi_selected_in_category_advertising_vertical($post)
                 foreach ($chi_posts_loop as $chi_post) {
                     $dir_id = $chi_post->ID;
 
-                    $selected = (in_array($dir_id, $chi_selected_in_category_advertising_horizontal_values)) ? 'selected="selected"' : '';  $print = true;
-                    ?>
-                    <option <?php echo $selected;?> value="<?php echo $dir_id ?>">
+                    $selected = (in_array($dir_id, $chi_selected_in_category_advertising_horizontal_values)) ? 'selected="selected"' : '';
+                    $print = true;
+                ?>
+                    <option <?php echo $selected; ?> value="<?php echo $dir_id ?>">
                         <?php echo $chi_post->post_title; ?>
                     </option>
-                    <?php
+                <?php
                 }
                 ?>
         </td>
         </select>
     </tr>
-    <?php
+<?php
 }
 
 
@@ -118,30 +121,27 @@ function chi_selected_in_category_advertising_vertical($post)
  * Hooks into WordPress' save_post function
  */
 add_action('edited_category', 'chi_selected_in_category_advertising_vertical_save');
-function chi_selected_in_category_advertising_vertical_save( $post  )
+function chi_selected_in_category_advertising_vertical_save($post)
 {
-	//global $post;
+    //global $post;
 
-	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
-		return $post;
-	}
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post;
+    }
 
-    if (isset( $_POST['chi_selected_in_category_advertising_vertical'] ) && '' !== $_POST['chi_selected_in_category_advertising_vertical']  ) {
+    if (isset($_POST['chi_selected_in_category_advertising_vertical']) && '' !== $_POST['chi_selected_in_category_advertising_vertical']) {
 
         $sanitized_data_posts = array();
-        delete_term_meta($post , 'chi_selected_in_category_advertising_vertical');
+        delete_term_meta($post, 'chi_selected_in_category_advertising_vertical');
         $data_posts = (array)$_POST['chi_selected_in_category_advertising_vertical'];
 
-        foreach ( $data_posts as $key => $value) {
+        foreach ($data_posts as $key => $value) {
             $sanitized_data_posts[$key] = (int)strip_tags(stripslashes($value));
         }
 
         $image = $_POST['chi_selected_in_category_advertising_vertical'];
-        add_term_meta( $post, 'chi_selected_in_category_advertising_vertical', $image, true );
+        add_term_meta($post, 'chi_selected_in_category_advertising_vertical', $image, true);
+    } else {
+        delete_term_meta($post, 'chi_selected_in_category_advertising_vertical');
     }
-    else
-    {
-        delete_term_meta( $post, 'chi_selected_in_category_advertising_vertical');
-    }
-
 }

@@ -50,44 +50,47 @@ function chi_checkbox_style()
 */
 function add_featured_image_display_settings($content, $post_id, $thumbnail_id)
 {
-      $field_id    = 'show_featured_image';
-      $field_value = esc_attr(get_post_meta($post_id, $field_id, true));
-      $field_text  = esc_html__('Nechci zobrazovat v textu.', 'generatewp');
-      $field_state = checked($field_value, 1, false);
-      $post_type = get_post_type($post_id);
+  $field_id    = 'show_featured_image';
+  $field_value = esc_attr(get_post_meta($post_id, $field_id, true));
+  $field_text  = esc_html__('Nechci zobrazovat v textu.', 'generatewp');
+  $field_state = checked($field_value, 1, false);
+  $post_type = get_post_type($post_id);
 
-      $field_label = "<p class='checkbox-for-post $post_type'><label for='$field_id'><input type='checkbox' name='$field_id' id='$field_id' value='$field_value' $field_state>$field_text</label></p>";
-      
-      return $content . $field_label;
+  $field_label = "<p class='checkbox-for-post $post_type'><label for='$field_id'><input type='checkbox' name='$field_id' id='$field_id' value='$field_value' $field_state>$field_text</label></p>";
+
+  return $content . $field_label;
 }
 
 add_filter('admin_post_thumbnail_html', 'add_featured_image_display_settings', 10, 3);
 
 function save_featured_image_display_settings($post_ID, $post, $update)
 {
-  
-    global $post;
-    $is_revision = wp_is_post_revision($post);
-    $field_id    = 'show_featured_image';
+
+  global $post;
+  $is_revision = wp_is_post_revision($post);
+  $field_id    = 'show_featured_image';
+  if (isset($post->ID)) {
     $valuse = get_post_meta($post->ID, $field_id, true);
+  }
 
 
-    $field_value = isset($_REQUEST[$field_id]) ? 1 : 0;
+  $field_value = isset($_REQUEST[$field_id]) ? 1 : 0;
 
-    if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE || $is_revision )
-    {
-        return;
+  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE || $is_revision) {
+    return;
+  }
+
+
+  if ($field_value != 1) {
+    if (isset($post->ID)) {
+      update_post_meta($post->ID, $field_id, $field_value);
     }
+    return;
+  }
 
-
-    if ( $field_value != 1 )
-    {
-        update_post_meta( $post->ID, $field_id, $field_value);
-        return;
-    }
-
-    update_post_meta( $post->ID, $field_id, $field_value);
+  if (isset($post->ID)) {
+    update_post_meta($post->ID, $field_id, $field_value);
+  }
 }
 
 add_action('save_post', 'save_featured_image_display_settings', 10, 3);
-

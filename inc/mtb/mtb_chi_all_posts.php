@@ -90,6 +90,8 @@ function chi_selected_articles_or_video_save()
     // 	return;
     // }
     else {
-        delete_post_meta($post->ID, '_chi_selected_articles_or_videoss');
+        if (isset($post->ID)) {
+            delete_post_meta($post->ID, '_chi_selected_articles_or_videoss');
+        }
     }
 }

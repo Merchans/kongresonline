@@ -1381,12 +1381,15 @@ function search_results_callback()
 {
 	$searchTerm = $_POST['search_term'];
 	$currentCategory = $_POST['current_category'];
+	global $user_ID;
 
 	$args = array(
 		'post_type' => array('post', 'chi_video'),
 		's' => $searchTerm,
 		'category_name' => $currentCategory,
 		'posts_per_page' => 5,
+		'post_status' => 'publish',
+		'post_author' => $user_ID,
 	);
 	$query = new WP_Query($args);
 
@@ -1424,3 +1427,6 @@ function search_results_callback()
 	wp_reset_postdata();
 	wp_die();
 }
+
+add_filter('auto_update_plugin', '__return_true');
+add_filter('auto_update_theme', '__return_true');
